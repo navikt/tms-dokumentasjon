@@ -1,25 +1,14 @@
-import logo from './logo.svg';
 import './App.css';
+import {DocumentationGroup} from "./DocumentationGroup";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <div className="App">
+            <h1>Dokumentasjon for min side</h1>
+            <DocumentationGroup title={"Utkast"}
+                                repositories={["min-side-utkast-topic-iac", "tms-utkast"]}/>
+        </div>
+    );
 }
 
 export default App;
