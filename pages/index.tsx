@@ -1,17 +1,13 @@
-import Head from 'next/head'
 import { NextPage } from 'next'
 import Link from "next/link";
-
+import Image from "next/image";
 
 
 const IndexPage: NextPage = _ => {
   return (
     <main>
-      <Head>
-        <title>Docs</title>
-      </Head>
       <h1>Min side dokumentasjon</h1>
-        <Link href={"/utkast"}>Utkast</Link>
+       <Image src={"datakatt.svg"} alt={"Katt som sitter bak en data"}  height={300} width={300}/>
     </main>
   )
 }
