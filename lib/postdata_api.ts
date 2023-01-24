@@ -1,17 +1,30 @@
-import { PostData } from '../types/postdata'
+import {DocData} from "../types/data";
+import {unified} from "unified";
+import remarkGfm from "remark-gfm";
+import remarkParse from "remark-parse";
+import remarkStringify from "remark-stringify";
+import {Base64} from "js-base64";
 
-export async function GetPost(id: string): Promise<PostData> {
-  const response = await fetch(
-    `https://jsonplaceholder.typicode.com/posts/${id}`
-  )
-  const postData: PostData = (await response.json()) as PostData
-  return postData
+export async function GetUtkast(repository: string): Promise<DocData> {
+    const response = await fetch(
+        `https://api.github.com/repos/navikt/${repository}/contents/README.md`
+    )
+    const docData: DocData = (await response.json()) as DocData
+    const content = await renderMarkdown(Base64.decode(docData.content))
+
+    return {content}
 }
 
-export async function GetPosts(): Promise<PostData[]> {
-  const response = await fetch(
-    'https://jsonplaceholder.typicode.com/posts?_page=1'
-  )
-  const postList: PostData[] = (await response.json()) as PostData[]
-  return postList
+async function renderMarkdown(content: string): Promise<string> {
+    console.info("----------------- render markdown------------------------")
+    const decoded = Base64.decode(content)
+    console.info("******before renderinng******\n",content)
+    const result = await unified()
+        .use(remarkParse)
+        .use(remarkGfm)
+        .use(remarkStringify)
+        .process(content)
+
+    console.info("****** after renderinng******\n",result)
+    return String(result)
 }
