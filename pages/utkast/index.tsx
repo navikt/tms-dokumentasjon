@@ -21,8 +21,8 @@ const Utkast: NextPage<UtkastData> = ({utkast,utkastIac}: UtkastData) => {
     return (
         <main>
             <h1>Utkast</h1>
-            <p>{utkast.content}</p>
-            <p>{utkastIac.content}</p>
+            <div dangerouslySetInnerHTML={{ __html: utkast.content }}></div>
+            <div dangerouslySetInnerHTML={{ __html: utkastIac.content }}></div>
         </main>
     )
 }
