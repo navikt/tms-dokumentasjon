@@ -9,6 +9,7 @@ export async function GetUtkast(repository: string): Promise<DocData> {
     const response = await fetch(
         `https://api.github.com/repos/navikt/${repository}/contents/howto.md`
     )
+    logStatus(response.status, response.statusText,repository)
     const docData: DocData = (await response.json()) as DocData
     const content = await renderMarkdown(Base64.decode(docData.content))
 
@@ -22,4 +23,11 @@ async function renderMarkdown(content: string): Promise<string> {
         .use(remarkHtml)
         .process(content)
     return String(result)
+}
+
+const logStatus = (status: number, message:string,repo:string) => {
+    console.info("----------------Henting av data fra "+ repo+ "---------- \n")
+    console.info("status: "+ status + "\n")
+    console.info("message: "+ message + "\n")
+    console.info("------------------------------------------------------------")
 }
