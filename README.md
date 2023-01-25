@@ -4,7 +4,7 @@ Dokumentasjon for produsenter til min side. Henter markdown filer fra tms-repoer
 
 ## Legge inn nye docs fra git repo:
 
-1. Lag en howtod.md fil i repoet
+1. Lag en howto.md fil i repoet
 2. Se utkastmappa for eksempel på oppsett
 3. Om du lager en ny underside: legg til link i _app.tsx
 
