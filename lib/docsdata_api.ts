@@ -5,11 +5,20 @@ import remarkParse from 'remark-parse'
 import remarkHtml from 'remark-html'
 import {Base64} from "js-base64";
 
-export async function GetUtkast(repository: string): Promise<DocData> {
+
+export async function GetDocs(repository: string): Promise<DocData> {
+    const accessToken = Base64.encode(process.env.ACCESS_TOKEN + ":")
     const response = await fetch(
-        `https://api.github.com/repos/navikt/${repository}/contents/howto.md`
+        `https://api.github.com/repos/navikt/${repository}/contents/howto.md`,
+        {
+            headers: new Headers({
+                'Authorization': 'Basic ' + accessToken,
+                'Content-Type': 'application/json'
+            }),
+
+        }
     )
-    logStatus(response.status, response.statusText,repository)
+    checkStatus(response.status, response.statusText, repository)
     const docData: DocData = (await response.json()) as DocData
     const content = await renderMarkdown(Base64.decode(docData.content))
 
@@ -25,9 +34,13 @@ async function renderMarkdown(content: string): Promise<string> {
     return String(result)
 }
 
-const logStatus = (status: number, message:string,repo:string) => {
-    console.info("----------------Henting av data fra "+ repo+ "---------- \n")
-    console.info("status: "+ status + "\n")
-    console.info("message: "+ message + "\n")
+const checkStatus = (status: number, message: string, repo: string) => {
+    console.info("\n ----\t Henting av data fra " + repo + " ---------")
+    if (status != 200) {
+        console.error("Kunne ikke hente dokumentasjon fra ${repo} \n status: ${status} ${message} ")
+        throw new Error(`Kunne ikke hente dokumentasjon fra ${repo}. Se bygglog for feilmelding`)
+    } else {
+        console.info(" message: " + message)
+    }
     console.info("------------------------------------------------------------")
 }

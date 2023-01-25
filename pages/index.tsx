@@ -9,8 +9,8 @@ const IndexPage: NextPage = _ => {
        <Image src={"datakatt.svg"} alt={"Katt som sitter bak en data"}  height={300} width={300}/>
         <p>
           Her finner du teknisk informasjon om hvordan teamet ditt kan få inn innhold på min side.
-          Ta gjenre en titt på **sett inn link til Aksel dokumentasjon** sånn at du bruker det riktg
         </p>
+        <p> Finner du ikke det du lurer på her? Spør i #team-personbruker på slack</p>
     </main>
   )
 }
