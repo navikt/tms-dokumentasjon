@@ -1,18 +1,23 @@
 @import "~@navikt/ds-tokens";
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,400;0,600;1,300&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/hack-font/3.3.0/web/hack-subset.min.css');
+
 
 :root {
     --text-blue: var(--a-deepblue-800);
+    --text-blue-600: var(--a-deepblue-600);
 }
+
 html {
     color: var(--a-text-default);
-    font-family: "Source Sans Pro", sans-serif;
+    font-family: Hack, monospace;
     text-align: center;
-    line-height: 28px;
+
 }
 
 body {
     margin: 0;
+    font-size: 18px;
 }
 
 pre {
@@ -27,31 +32,34 @@ p {
     margin: 5px auto 0 auto;
 }
 
-main {
-    font-size: 20px;
-    font-weight: 400;
-    letter-spacing: -0.019999999552965164px;
-    text-align: center;
-
-}
-
 nav {
     width: 100%;
     display: inline-flex;
+    margin-top: 45px;
 }
 
 nav a,
 nav a:visited {
     padding: 5px;
     margin-left: 10px;
-    color: var(--a-text-default);
-    font-size: 18px;
+    color: var(--text-blue);
+    font-size: 16px;
+}
+
+
+main {
     font-weight: 400;
+    letter-spacing: -0.019999999552965164px;
+    text-align: center;
+    padding-top: 90px;
+
 }
 
 .container {
     max-width: 800px;
     margin: 0 auto 0 auto;
+    padding: 0;
+    min-height: 800px;
 }
 
 
