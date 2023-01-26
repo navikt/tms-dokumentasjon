@@ -3,7 +3,6 @@ import {GetStaticProps, NextPage} from 'next'
 import {UtkastData} from "../../types/data";
 import {GetDocs} from "../../lib/docsdata_api";
 
-
 export const getStaticProps: GetStaticProps<UtkastData> = async (
     context
 ) => {

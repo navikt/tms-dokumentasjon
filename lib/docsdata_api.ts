@@ -2,8 +2,11 @@ import {DocData} from "../types/data";
 import {unified} from "unified";
 import remarkGfm from "remark-gfm";
 import remarkParse from 'remark-parse'
-import remarkHtml from 'remark-html'
 import {Base64} from "js-base64";
+import rehypeHighlight from "rehype-highlight";
+import remarkRehype from "remark-rehype";
+import rehypeStringify from "rehype-stringify";
+import rehypePrettyCode from "rehype-pretty-code";
 
 
 export async function GetDocs(repository: string): Promise<DocData> {
@@ -26,11 +29,18 @@ export async function GetDocs(repository: string): Promise<DocData> {
 }
 
 async function renderMarkdown(content: string): Promise<string> {
+
+    const codeHigligthingOptions = {
+        theme: 'one-dark-pro',
+    }
     const result = await unified()
         .use(remarkParse)
         .use(remarkGfm)
-        .use(remarkHtml)
+        .use(remarkRehype)
+        .use(rehypePrettyCode, codeHigligthingOptions)
+        .use(rehypeStringify)
         .process(content)
+    console.info(result)
     return String(result)
 }
 
@@ -40,7 +50,7 @@ const checkStatus = (status: number, message: string, repo: string) => {
         console.error("Kunne ikke hente dokumentasjon fra ${repo} \n status: ${status} ${message} ")
         throw new Error(`Kunne ikke hente dokumentasjon fra ${repo}. Se bygglog for feilmelding`)
     } else {
-        console.info( message)
+        console.info(message)
     }
     console.info("---------------------------------")
 }

@@ -8,6 +8,7 @@
     --text-blue-600: var(--a-deepblue-600);
 }
 
+/*global*/
 html {
     color: var(--a-text-default);
     font-family: Hack, monospace;
@@ -20,18 +21,31 @@ body {
     font-size: 18px;
 }
 
-pre {
-    background-color: var(--a-gray-900);
-    max-width: 400px;
-    padding: 20px;
-    color: var(--a-white);
-    font-size: 14px;
-}
-
 p {
     margin: 5px auto 0 auto;
 }
 
+main {
+    font-weight: 400;
+    letter-spacing: -0.019999999552965164px;
+    text-align: center;
+    padding-top: 90px;
+
+}
+
+h1 {
+    color: var(--text-blue);
+}
+
+/*wrapper*/
+.container {
+    max-width: 800px;
+    margin: 0 auto 0 auto;
+    padding: 0;
+    min-height: 800px;
+}
+
+/*navbar*/
 nav {
     width: 100%;
     display: inline-flex;
@@ -45,23 +59,6 @@ nav a:visited {
     color: var(--text-blue);
     font-size: 16px;
 }
-
-
-main {
-    font-weight: 400;
-    letter-spacing: -0.019999999552965164px;
-    text-align: center;
-    padding-top: 90px;
-
-}
-
-.container {
-    max-width: 800px;
-    margin: 0 auto 0 auto;
-    padding: 0;
-    min-height: 800px;
-}
-
 
 .navbar {
     width: 100%;
@@ -95,7 +92,7 @@ main {
     font-weight: 600;
 }
 
-
+/*howto pages*/
 .howto {
     padding: 10px;
     text-align: left;
@@ -106,10 +103,53 @@ main {
     color: var(--text-blue);
 }
 
-#slack {
-    color: var(--text-blue)
+.howto h1 {
+    font-size: 36px;
+    line-height: 52px;
 }
 
+.howto h2 {
+    font-size: 28px;
+    line-height: 40px;
+    color: var(--text-blue);
+}
+
+.howto h3 {
+    font-size: 18px;
+    line-height: 24px;
+    color: var(--a-text-default);
+}
+
+.howto h4 {
+    color: var(--text-blue-600);
+}
+
+.howto p {
+    font-size: 16px;
+}
+
+.howto p:first-of-type {
+    padding-bottom: 40px;
+    border-bottom: black solid 1px;
+    margin-bottom: 60px;
+}
+
+.howto li {
+    font-size: 16px;
+}
+
+pre {
+    max-width: 400px;
+    padding: 20px;
+    font-size: 14px;
+}
+
+/*homepage*/
+.home p {
+    max-width: 400px;
+}
+
+/*footer*/
 .footer {
     width: 100%;
     height: 250px;
@@ -133,7 +173,6 @@ main {
     margin: 40px auto 12px auto;
 }
 
-
-.home p{
-    max-width: 400px;
+#slack {
+    color: var(--text-blue)
 }
