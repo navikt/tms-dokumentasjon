@@ -30,7 +30,10 @@ export async function GetDocs(repository: string): Promise<DocData> {
 async function renderMarkdown(content: string): Promise<string> {
 
     const codeHigligthingOptions = {
-        theme: 'one-dark-pro',
+        theme: {
+            dark: 'material-palenight',
+            light: 'material-lighter'
+        },
         keepBackground: true
     }
     const result = await unified()

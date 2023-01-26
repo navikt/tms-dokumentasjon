@@ -2,15 +2,38 @@
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,400;0,600;1,300&display=swap');
 @import url('https://cdnjs.cloudflare.com/ajax/libs/hack-font/3.3.0/web/hack-subset.min.css');
 
+@media (prefers-color-scheme: dark) {
+    :root {
+        --default-text: white;
+        --text-800: var(--a-text-on-inverted);
+        --text-600: var(--a-text-on-inverted);
+        --background-color: var(--a-surface-inverted);
+        --footer-color: black;
+        --divider-color: white;
+    }
+    pre[data-theme='light'],
+    code[data-theme='light'] {
+        display: none;
+    }
+}
 
-:root {
-    --text-blue: var(--a-deepblue-800);
-    --text-blue-600: var(--a-deepblue-600);
+@media (prefers-color-scheme: light) {
+    :root {
+        --default-text: var(--a-text-default);
+        --text-800: var(--a-deepblue-800);
+        --text-600: var(--a-deepblue-600);
+        --footer-color: var(--a-deepblue-800);
+        --background-color: white;
+    }
+    pre[data-theme='dark'],
+    code[data-theme='dark'] {
+        display: none;
+    }
 }
 
 /*global*/
 html {
-    color: var(--a-text-default);
+    color: var(--default-text);
     font-family: Hack, monospace;
     text-align: center;
 
@@ -19,6 +42,7 @@ html {
 body {
     margin: 0;
     font-size: 18px;
+    background-color: var(--background-color);
 }
 
 p {
@@ -34,7 +58,7 @@ main {
 }
 
 h1 {
-    color: var(--text-blue);
+    color: var(--text-800);
 }
 
 /*wrapper*/
@@ -56,7 +80,7 @@ nav a,
 nav a:visited {
     padding: 5px;
     margin-left: 10px;
-    color: var(--text-blue);
+    color: var(--text-800);
     font-size: 16px;
 }
 
@@ -88,7 +112,7 @@ nav a:visited {
 .current,
 .current:visited {
     text-decoration: none;
-    color: var(--text-blue);
+    color: var(--text-800);
     font-weight: 600;
 }
 
@@ -100,7 +124,7 @@ nav a:visited {
 }
 
 .howto a {
-    color: var(--text-blue);
+    color: var(--text-800);
 }
 
 .howto h1 {
@@ -111,7 +135,7 @@ nav a:visited {
 .howto h2 {
     font-size: 28px;
     line-height: 40px;
-    color: var(--text-blue);
+    color: var(--text-800);
 }
 
 .howto h3 {
@@ -121,7 +145,7 @@ nav a:visited {
 }
 
 .howto h4 {
-    color: var(--text-blue-600);
+    color: var(--text-600);
 }
 
 .howto p {
@@ -130,7 +154,7 @@ nav a:visited {
 
 .howto p:first-of-type {
     padding-bottom: 40px;
-    border-bottom: black solid 1px;
+    border-bottom: var(--divider-color) solid 0.06em;
     margin-bottom: 60px;
 }
 
@@ -146,14 +170,14 @@ pre {
 
 /*homepage*/
 .home p {
-    max-width: 400px;
+    max-width: 600px;
 }
 
 /*footer*/
 .footer {
     width: 100%;
     height: 250px;
-    background-color: var(--text-blue);
+    background-color: var(--footer-color);
     color: white;
     text-align: left;
     padding-top: 10px;
@@ -174,5 +198,5 @@ pre {
 }
 
 #slack {
-    color: var(--text-blue)
+    color: var(--text-800)
 }
