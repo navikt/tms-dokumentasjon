@@ -15,7 +15,6 @@ const MyApp = ({Component, pageProps}: AppProps) => {
                 <title>Min side docs {"\n" + currentPath.replace("/", " – ")}</title>
             </Head>
             <div className={"container"}>
-
                 <nav>
                     <div className={"navbar left"}>
                         <Link href={"/"} className={currentPath == "/" ? "current" : ""}>Min side utvikler-docs </Link>
@@ -29,7 +28,13 @@ const MyApp = ({Component, pageProps}: AppProps) => {
                 </nav>
                 <Component {...pageProps} />
             </div>
-            <div className={"footer"}><p> Testing testing</p></div>
+            <div className={"footer"}>
+                <p>Min side på slack</p>
+
+                <p>#team-personbruker</p>
+                <p>#brukernotifikasjoner</p>
+                <p>#utkast</p>
+            </div>
         </div>)
 }
 
