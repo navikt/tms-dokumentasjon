@@ -3,7 +3,6 @@ import {unified} from "unified";
 import remarkGfm from "remark-gfm";
 import remarkParse from 'remark-parse'
 import {Base64} from "js-base64";
-import rehypeHighlight from "rehype-highlight";
 import remarkRehype from "remark-rehype";
 import rehypeStringify from "rehype-stringify";
 import rehypePrettyCode from "rehype-pretty-code";
@@ -32,6 +31,7 @@ async function renderMarkdown(content: string): Promise<string> {
 
     const codeHigligthingOptions = {
         theme: 'one-dark-pro',
+        keepBackground: true
     }
     const result = await unified()
         .use(remarkParse)
@@ -40,7 +40,6 @@ async function renderMarkdown(content: string): Promise<string> {
         .use(rehypePrettyCode, codeHigligthingOptions)
         .use(rehypeStringify)
         .process(content)
-    console.info(result)
     return String(result)
 }
 
