@@ -14,5 +14,5 @@ Bygg og deploy appen på nytt i github actions
 ## Oppsett
 1. Lag en env.local fil og legg inn `ACCESS_TOKEN` fra github
 2. Bygg prosjektet slik at de eksterne doc-filene blir hentet inn: `npm run build:export`
-3. Start applikasjonen: `next`
+3. Start applikasjonen: `next dev`eller `next start` om du vil se de resultatet på de statiske filene
 

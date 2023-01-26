@@ -35,12 +35,12 @@ async function renderMarkdown(content: string): Promise<string> {
 }
 
 const checkStatus = (status: number, message: string, repo: string) => {
-    console.info("\n ----\t Henting av data fra " + repo + " ---------")
+    console.info("\n ----\t Henting av data fra " + repo + " ------")
     if (status != 200) {
         console.error("Kunne ikke hente dokumentasjon fra ${repo} \n status: ${status} ${message} ")
         throw new Error(`Kunne ikke hente dokumentasjon fra ${repo}. Se bygglog for feilmelding`)
     } else {
-        console.info(" message: " + message)
+        console.info( message)
     }
-    console.info("------------------------------------------------------------")
+    console.info("---------------------------------")
 }
