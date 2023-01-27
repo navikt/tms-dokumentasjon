@@ -1,6 +1,7 @@
 import {NextPage} from "next";
 import React, {useEffect, useState} from "react";
 import Image from "next/image";
+import styles from "./Katt.module.css"
 
 
 interface CatContent {
@@ -19,9 +20,8 @@ const Katt: NextPage = () => {
     const [randomKatt, setRandomKatt] = useState(katter[0]);
 
     const nyKatt = () => {
-        const current = randomKatt
         let index = randomIntInRange(0, katter.length)
-        while (katter[index].text==current.text){
+        while (katter[index].text==randomKatt.text){
             index = randomIntInRange(0,katter.length)
         }
         setRandomKatt(katter[index]);
@@ -30,11 +30,12 @@ const Katt: NextPage = () => {
     useEffect(() => {
         nyKatt()
     }, []);
+
     return (
-        <main className={"katt"}>
+        <main className={styles.katt}>
             <h1>Tadda!</h1>
             <p>Du fant en katt som {randomKatt.text}</p>
-            <Image src={randomKatt.imgSrc} role={"presentation"} width={500} height={500} alt={""}/>
+            <Image src={randomKatt.imgSrc} role={"presentation"} width={400} height={400} alt={""}/>
             <button onClick={()=>nyKatt()}>Gi meg ny katt!</button>
         </main>
     )
@@ -42,17 +43,9 @@ const Katt: NextPage = () => {
 
 const randomIntInRange = (min: number, max: number) => {
     let difference = max - min;
-
-    // generate random number
     let rand = Math.random();
+    return  Math.floor(rand * difference) + min;
 
-    // multiply with difference
-    rand = Math.floor(rand * difference);
-
-    // add with min value
-    rand = rand + min;
-
-    return rand;
 }
 
 export default Katt

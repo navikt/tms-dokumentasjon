@@ -20,15 +20,11 @@
     display: none;
 }
 
+/*dark theme*/
 .darktheme pre[data-theme='light'],
 .darktheme code[data-theme='light'] {
         display: none;
     }
-
-
-/*dark theme*/
-
-
 [data-theme='dark'] {
     --default-text: white;
     --text-800: var(--a-text-on-inverted);
@@ -39,7 +35,6 @@
     --cat-color: var(--a-gray-600)
 }
 
-/* ----------------------------------------*/
 
 /*global*/
 html {
@@ -64,7 +59,6 @@ main {
     letter-spacing: -0.019999999552965164px;
     text-align: center;
     padding-top: 90px;
-
 }
 
 h1 {
@@ -86,6 +80,11 @@ nav {
     margin-top: 45px;
 }
 
+.custom-nav {
+    width: 100%;
+    display: inline-flex;
+    margin-top: 45px;
+}
 nav a,
 nav a:visited {
     padding: 5px;
@@ -99,21 +98,18 @@ nav a:visited {
     vertical-align: bottom;
     line-height: 28px;
 }
-
 .right {
     margin-right: 0;
     width: 100%;
     font-size: 18px;
     text-align: right;
 }
-
 .left {
     width: 100%;
     margin-left: 0;
     display: inline-block;
     text-align: left;
 }
-
 .left a {
     font-size: 20px;
     text-decoration: none;
@@ -187,17 +183,6 @@ pre {
     max-width: 600px;
 }
 
-.katt button {
-    color: var(--default-text);
-    background-color: var(--background-color);
-    font-family: Hack, monospace;
-    text-align: center;
-    padding: 20px;
-    font-size: 20px;
-    display: block;
-    margin: 80px auto 20px auto;
-    border: solid 1px;
-}
 
 #kattenmin:visited,
 #kattenmin {
@@ -215,8 +200,3 @@ pre {
     font-size: 16px;
     margin-right: -31px;
 }
-
-.katt p {
-    padding-bottom: 70px;
-}
-

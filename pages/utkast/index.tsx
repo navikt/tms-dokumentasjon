@@ -16,10 +16,6 @@ export const getStaticProps: GetStaticProps<UtkastData> = async (
 
 const Utkast: NextPage<UtkastData> = ({utkast}: UtkastData) => {
 
-
-
-
-
     return (
         <main className={"utkast"}>
             <div dangerouslySetInnerHTML={{__html: utkast.content}} className={"howto"}/>
