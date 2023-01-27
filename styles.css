@@ -233,12 +233,14 @@ pre {
 }
 
 #kattenmin:hover,
-#kattenmin:focus
-{
+#kattenmin:focus {
     padding: 5px;
     color: var(--text-800);
     font-size: 16px;
     margin-right: -31px;
 }
 
+.katt p {
+    padding-bottom: 70px;
+}
 

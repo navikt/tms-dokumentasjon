@@ -6,13 +6,13 @@ import "../styles.css"
 
 const MyApp = ({Component, pageProps}: AppProps) => {
     const currentPath = useRouter().pathname
-
+    const pagename = currentPath.length==1?"":currentPath.replace("/", " – ")
 
     return (
         <div>
             <Head>
                 <link rel="shortcut icon" href="/favicon.svg" type="image/svg+xml"/>
-                <title>Min side docs {"\n" + currentPath.replace("/", " – ")}</title>
+                <title>Min side docs {pagename}</title>
             </Head>
             <div className={"container"}>
                 <nav>

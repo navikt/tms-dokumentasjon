@@ -38,7 +38,7 @@ async function renderMarkdown(content: string): Promise<string> {
     const codeHigligthingOptions = {
         theme: {
             dark: 'material-palenight',
-            light: 'material-lighter'
+            light: 'github-light'
         },
         keepBackground: true
     }
