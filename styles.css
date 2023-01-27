@@ -10,7 +10,9 @@
         --background-color: var(--a-surface-inverted);
         --footer-color: black;
         --divider-color: white;
+        --cat-color: var(--a-gray-600)
     }
+
     pre[data-theme='light'],
     code[data-theme='light'] {
         display: none;
@@ -25,7 +27,10 @@
         --footer-color: var(--a-deepblue-800);
         --background-color: white;
         --divider-color: black;
+        --cat-color: var(--background-color)
+
     }
+
     pre[data-theme='dark'],
     code[data-theme='dark'] {
         display: none;
@@ -133,6 +138,10 @@ nav a:visited {
     line-height: 52px;
 }
 
+.howto h1:first-letter {
+    text-transform: capitalize;
+}
+
 .howto h2 {
     font-size: 28px;
     line-height: 40px;
@@ -201,3 +210,35 @@ pre {
 #slack {
     color: var(--text-800)
 }
+
+.katt button {
+    color: var(--default-text);
+    background-color: var(--background-color);
+    font-family: Hack, monospace;
+    text-align: center;
+    padding: 20px;
+    font-size: 20px;
+    display: block;
+    margin: 80px auto 20px auto;
+    border: solid 1px;
+}
+
+#kattenmin:visited,
+#kattenmin {
+    color: transparent;
+    width: 30px;
+    display: inline-block;
+    margin-right: -31px;
+    padding: 5px;
+}
+
+#kattenmin:hover,
+#kattenmin:focus
+{
+    padding: 5px;
+    color: var(--text-800);
+    font-size: 16px;
+    margin-right: -31px;
+}
+
+

@@ -24,6 +24,7 @@ const MyApp = ({Component, pageProps}: AppProps) => {
                         <Link href={"/varsler"} className={currentPath == "/varsler" ? "current" : ""}>Varsler</Link>
                         <Link href={"/mikrofrontend"}
                               className={currentPath == "/mikrofrontend" ? "current" : ""}>Mikrofrontend</Link>
+                        <Link id="kattenmin" href={"/katt"}>Katt</Link>
                     </div>
                 </nav>
                 <Component {...pageProps} />

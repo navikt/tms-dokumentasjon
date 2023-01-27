@@ -27,7 +27,8 @@
     "remark-stringify": "^10.0.2",
     "serve": "^14.0.1",
     "shiki": "^0.12.1",
-    "unified": "^10.1.2"
+    "unified": "^10.1.2",
+    "use-dark-mode-ts": "^1.0.2"
   },
   "devDependencies": {
     "@types/node": "^18.0.0",
