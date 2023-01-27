@@ -10,6 +10,12 @@ import rehypePrettyCode from "rehype-pretty-code";
 
 export async function GetDocs(repository: string): Promise<DocData> {
     const accessToken = Base64.encode(process.env.ACCESS_TOKEN + ":")
+    console.info("Bruker accesstoken: " + process.env.ACCESS_TOKEN)
+    console.info(accessToken)
+    if (!accessToken){
+        console.error("Mangler ACCESS_TOKEN er ikke satt")
+        process.exit(-1)
+    }
     const response = await fetch(
         `https://api.github.com/repos/navikt/${repository}/contents/howto.md`,
         {

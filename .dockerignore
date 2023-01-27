@@ -4,4 +4,4 @@ node_modules
 npm-debug.log
 README.md
 .git
-.env.local
+/.env.local

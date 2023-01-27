@@ -1,37 +1,37 @@
 FROM node:16-alpine AS deps
 RUN apk add --no-cache libc6-compat
-ARG TOKEN
-ENV env_token=$TOKEN
+ARG NPM_TOKEN
 
 WORKDIR /app
 
 # Install dependencies based on the preferred package manager
 COPY package.json package-lock.json*  ./
 COPY .npmrc ./
-COPY .env   ./
-RUN echo "//npm.pkg.github.com/:_authToken=$env_token" >> .npmrc
-RUN echo "$env_token" >> .env
+RUN echo "//npm.pkg.github.com/:_authToken=$NPM_TOKEN" >> .npmrc
 RUN cat .npmrc
-RUN cat .env
 RUN npm ci;
 
 
 # Rebuild the source code only when needed
 FROM node:16-alpine AS builder
+ARG READ_TOKEN
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 RUN ls
 
 ENV NEXT_TELEMETRY_DISABLED 1
+ENV ACCESS_TOKEN=$READ_TOKEN
 RUN npm run build
-RUN ls
 
 # Production image, copy all the files and run next
 FROM node:16-alpine AS runner
 WORKDIR /app
+ARG READ_TOKEN
+
 
 ENV NODE_ENV production
+ENV ACCESS_TOKEN=$READ_TOKEN
 ENV NEXT_TELEMETRY_DISABLED 1
 
 RUN addgroup --system --gid 1001 nodejs
@@ -48,6 +48,6 @@ RUN ls
 USER nextjs
 
 EXPOSE 3000
-ENV NODE_ENV production
+RUN echo "accesstoken:$ACCESS_TOKEN"
 
 CMD ["node", "server.js"]
