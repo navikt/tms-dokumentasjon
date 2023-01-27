@@ -3,40 +3,44 @@ import Link from "next/link";
 import Head from "next/head";
 import {useRouter} from "next/router";
 import "../styles.css"
+import {ThemeProvider} from "next-themes";
+import Footer from "../components/Footer";
+import {useDarkTheme} from "../lib/theme";
 
 const MyApp = ({Component, pageProps}: AppProps) => {
     const currentPath = useRouter().pathname
-    const pagename = currentPath.length==1?"":currentPath.replace("/", " – ")
+    const pathName = currentPath.length == 1 ? "" : currentPath.replace("/", " – ")
+    const pagename = "Min side docs " + pathName
+    const darkTheme = useDarkTheme()
 
     return (
-        <div>
-            <Head>
-                <link rel="shortcut icon" href="/favicon.svg" type="image/svg+xml"/>
-                <title>Min side docs {pagename}</title>
-            </Head>
-            <div className={"container"}>
-                <nav>
-                    <div className={"navbar left"}>
-                        <Link href={"/"} className={currentPath == "/" ? "current" : ""}>Min side utvikler-docs </Link>
-                    </div>
-                    <div className={"navbar right"}>
-                        <Link href={"/utkast"} className={currentPath == "/utkast" ? "current" : ""}>Utkast</Link>
-                        <Link href={"/varsler"} className={currentPath == "/varsler" ? "current" : ""}>Varsler</Link>
-                        <Link href={"/mikrofrontend"}
-                              className={currentPath == "/mikrofrontend" ? "current" : ""}>Mikrofrontend</Link>
-                        <Link id="kattenmin" href={"/katt"}>Katt</Link>
-                    </div>
-                </nav>
-                <Component {...pageProps} />
+        <ThemeProvider>
+            <div className={darkTheme?"darktheme":"lightheme"}>
+                <Head>
+                    <link rel="shortcut icon" href="/favicon.svg" type="image/svg+xml"/>
+                    <title>{pagename}</title>
+                </Head>
+                <div className={"container"}>
+                    <nav>
+                        <div className={"navbar left"}>
+                            <Link href={"/"} className={currentPath == "/" ? "current" : ""}>Min side
+                                utvikler-docs </Link>
+                        </div>
+                        <div className={"navbar right"}>
+                            <Link href={"/utkast"} className={currentPath == "/utkast" ? "current" : ""}>Utkast</Link>
+                            <Link href={"/varsler"}
+                                  className={currentPath == "/varsler" ? "current" : ""}>Varsler</Link>
+                            <Link href={"/mikrofrontend"}
+                                  className={currentPath == "/mikrofrontend" ? "current" : ""}>Mikrofrontend</Link>
+                            <Link id="kattenmin" href={"/katt"}>Katt</Link>
+                        </div>
+                    </nav>
+                    <Component {...pageProps} />
+                </div>
+                <Footer/>
             </div>
-            <div className={"footer"}>
-                <p>Min side på slack</p>
-
-                <p>#team-personbruker</p>
-                <p>#brukernotifikasjoner</p>
-                <p>#utkast</p>
-            </div>
-        </div>)
+        </ThemeProvider>
+    )
 }
 
 export default MyApp

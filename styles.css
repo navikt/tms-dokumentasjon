@@ -2,40 +2,44 @@
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,400;0,600;1,300&display=swap');
 @import url('https://cdnjs.cloudflare.com/ajax/libs/hack-font/3.3.0/web/hack-subset.min.css');
 
-@media (prefers-color-scheme: dark) {
-    :root {
-        --default-text: white;
-        --text-800: var(--a-text-on-inverted);
-        --text-600: var(--a-text-on-inverted);
-        --background-color: var(--a-surface-inverted);
-        --footer-color: black;
-        --divider-color: white;
-        --cat-color: var(--a-gray-600)
-    }
+/*default(light) theme*/
 
-    pre[data-theme='light'],
-    code[data-theme='light'] {
-        display: none;
-    }
+:root {
+    --default-text: var(--a-text-default);
+    --text-800: var(--a-deepblue-800);
+    --text-600: var(--a-deepblue-600);
+    --footer-color: var(--a-deepblue-800);
+    --background-color: white;
+    --divider-color: black;
+    --cat-color: var(--background-color)
+
 }
 
-@media (prefers-color-scheme: light) {
-    :root {
-        --default-text: var(--a-text-default);
-        --text-800: var(--a-deepblue-800);
-        --text-600: var(--a-deepblue-600);
-        --footer-color: var(--a-deepblue-800);
-        --background-color: white;
-        --divider-color: black;
-        --cat-color: var(--background-color)
+.lightheme pre[data-theme='dark'],
+.lightheme code[data-theme='dark'] {
+    display: none;
+}
 
-    }
-
-    pre[data-theme='dark'],
-    code[data-theme='dark'] {
+.darktheme pre[data-theme='light'],
+.darktheme code[data-theme='light'] {
         display: none;
     }
+
+
+/*dark theme*/
+
+
+[data-theme='dark'] {
+    --default-text: white;
+    --text-800: var(--a-text-on-inverted);
+    --text-600: var(--a-text-on-inverted);
+    --background-color: var(--a-surface-inverted);
+    --footer-color: black;
+    --divider-color: white;
+    --cat-color: var(--a-gray-600)
 }
+
+/* ----------------------------------------*/
 
 /*global*/
 html {
@@ -181,34 +185,6 @@ pre {
 /*homepage*/
 .home p {
     max-width: 600px;
-}
-
-/*footer*/
-.footer {
-    width: 100%;
-    min-height: 20vh;
-    background-color: var(--footer-color);
-    color: white;
-    text-align: left;
-    padding-top: 10px;
-}
-
-.footer p {
-    max-width: 800px;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 20px;
-}
-
-.footer p:first-child {
-    font-size: 16px;
-    font-weight: 700;
-    line-height: 24px;
-    margin: 40px auto 12px auto;
-}
-
-#slack {
-    color: var(--text-800)
 }
 
 .katt button {

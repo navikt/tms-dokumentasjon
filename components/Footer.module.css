@@ -1,0 +1,26 @@
+.footer {
+    width: 100%;
+    min-height: 20vh;
+    background-color: var(--footer-color);
+    color: white;
+    text-align: left;
+    padding-top: 10px;
+}
+
+.footer p {
+    max-width: 800px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.footer p:first-child {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 24px;
+    margin: 40px auto 12px auto;
+}
+
+#slack {
+    color: var(--text-800)
+}
