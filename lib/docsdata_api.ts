@@ -9,13 +9,13 @@ import rehypePrettyCode from "rehype-pretty-code";
 
 
 export async function GetDocs(repository: string): Promise<DocData> {
-    const accessToken = Base64.encode(process.env.ACCESS_TOKEN + ":")
-    console.info("Bruker accesstoken: " + process.env.ACCESS_TOKEN)
-    console.info(accessToken)
-    if (!accessToken){
-        console.error("Mangler ACCESS_TOKEN er ikke satt")
+
+    if(!process.env.ACCESS_TOKEN){
+        console.error("ACCESS_TOKEN er ikke satt")
         process.exit(-1)
     }
+
+    const accessToken = Base64.encode(process.env.ACCESS_TOKEN + ":")
     const response = await fetch(
         `https://api.github.com/repos/navikt/${repository}/contents/howto.md`,
         {
@@ -55,8 +55,8 @@ async function renderMarkdown(content: string): Promise<string> {
 const checkStatus = (status: number, message: string, repo: string) => {
     console.info("\n ----\t Henting av data fra " + repo + " ------")
     if (status != 200) {
-        console.error("Kunne ikke hente dokumentasjon fra ${repo} \n status: ${status} ${message} ")
-        throw new Error(`Kunne ikke hente dokumentasjon fra ${repo}. Se bygglog for feilmelding`)
+        console.error(`Kunne ikke hente dokumentasjon fra ${repo} \n status: ${status} ${message}`)
+        throw new Error(`Kunne ikke hente dokumentasjon fra ${repo}`)
     } else {
         console.info(message)
     }

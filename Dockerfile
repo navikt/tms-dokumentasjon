@@ -8,7 +8,6 @@ WORKDIR /app
 COPY package.json package-lock.json*  ./
 COPY .npmrc ./
 RUN echo "//npm.pkg.github.com/:_authToken=$NPM_TOKEN" >> .npmrc
-RUN cat .npmrc
 RUN npm ci;
 
 
@@ -48,6 +47,5 @@ RUN ls
 USER nextjs
 
 EXPOSE 3000
-RUN echo "accesstoken:$ACCESS_TOKEN"
 
 CMD ["node", "server.js"]
