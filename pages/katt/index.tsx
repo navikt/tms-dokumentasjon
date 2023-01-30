@@ -14,7 +14,7 @@ const Katt: NextPage = () => {
     const katter: CatContent[] = [
         { imgSrc: "katt/katt-gave.svg", text:"gjemmer seg bak en gave"},
         { imgSrc: "katt/katt-nøste.svg",text:"sitter på ett garnøste"},
-        { imgSrc:"katt/katt-utkast.svg",text:"gjemmer seg bak ett ark"},
+        { imgSrc:"katt/katt-utkast-gray-paper.svg",text:"gjemmer seg bak ett ark"},
         {imgSrc:"katt/katt-varsler.svg",text:"gjemmer seg inni en bjelle"}
     ]
     const [randomKatt, setRandomKatt] = useState(katter[0]);
@@ -35,7 +35,7 @@ const Katt: NextPage = () => {
         <main className={styles.katt}>
             <h1>Tadda!</h1>
             <p>Du fant en katt som {randomKatt.text}</p>
-            <Image src={randomKatt.imgSrc} role={"presentation"} width={400} height={400} alt={""}/>
+            <Image src={randomKatt.imgSrc} role={"presentation"} width={240} height={240} alt={""}/>
             <button onClick={()=>nyKatt()}>Gi meg ny katt!</button>
         </main>
     )

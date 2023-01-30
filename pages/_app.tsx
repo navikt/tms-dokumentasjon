@@ -17,7 +17,7 @@ const MyApp = ({Component, pageProps}: AppProps) => {
         <ThemeProvider>
             <div className={darkTheme?"darktheme":"lightheme"}>
                 <Head>
-                    <link rel="shortcut icon" href="/favicon.svg" type="image/svg+xml"/>
+                    <link rel="shortcut icon" href="/favicon-kattefjes.svg" type="image/svg+xml"/>
                     <title>{pagename}</title>
                 </Head>
                 <div className={"container"}>
