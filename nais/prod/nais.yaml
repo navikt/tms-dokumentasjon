@@ -1,0 +1,28 @@
+apiVersion: "nais.io/v1alpha1"
+kind: "Application"
+metadata:
+  name: tms-dokumentasjon
+  namespace: min-side
+  labels:
+    team: min-side
+spec:
+  image: {{ image }}
+  port: 7800
+  liveness:
+    path: /api/isAlive
+    initialDelay: 10
+  readiness:
+    path: /api/isReady
+    initialDelay: 10
+  replicas:
+    min: 1
+    max: 1
+  ingresses:
+    - "https://tms-dokumentasjon.intern.nav.no"
+  resources:
+    limits:
+      cpu: "3"
+      memory: 768Mi
+    requests:
+      cpu: "500m"
+      memory: 512Mi

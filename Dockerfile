@@ -1,13 +1,13 @@
 FROM node:16-alpine AS deps
 RUN apk add --no-cache libc6-compat
-ARG NPM_TOKEN
+ARG READ_TOKEN
 
 WORKDIR /app
 
 # Install dependencies based on the preferred package manager
 COPY package.json package-lock.json*  ./
 COPY .npmrc ./
-RUN echo "//npm.pkg.github.com/:_authToken=$NPM_TOKEN" >> .npmrc
+RUN echo "//npm.pkg.github.com/:_authToken=$READ_TOKEN" >> .npmrc
 RUN npm ci;
 
 

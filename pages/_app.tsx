@@ -3,7 +3,7 @@ import Head from "next/head";
 import {useRouter} from "next/router";
 import {ThemeProvider} from "next-themes";
 import {useDarkTheme} from "../lib/theme";
-import Navbar from "../components/NavBar/NavBar";
+import Navbar from "../components/Navbar/Navbar";
 import Footer from "../components/Footer/Footer";
 import "../styles.css"
 

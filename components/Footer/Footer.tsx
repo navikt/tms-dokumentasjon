@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./Footer.module.css"
 
-const Footer = _ => {
+const Footer = () => {
     return (
         <div className={styles.footer}>
             <p id={"slack"}>Min side på slack</p>
