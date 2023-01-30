@@ -19,12 +19,22 @@
 .lightheme code[data-theme='dark'] {
     display: none;
 }
+.lightheme pre[data-theme='light'] {
+    background-color: #F7F7F7!important;
+    border-radius: 12px;
+}
+
 
 /*dark theme*/
 .darktheme pre[data-theme='light'],
 .darktheme code[data-theme='light'] {
         display: none;
     }
+.darktheme pre[data-theme='dark']{
+    border-radius: 12px;
+}
+
+
 [data-theme='dark'] {
     --default-text: white;
     --text-800: var(--a-text-on-inverted);
@@ -58,7 +68,7 @@ main {
     font-weight: 400;
     letter-spacing: -0.019999999552965164px;
     text-align: center;
-    padding-top: 90px;
+    padding-top: 60px;
 }
 
 h1 {
@@ -85,6 +95,7 @@ nav {
     display: inline-flex;
     margin-top: 45px;
 }
+
 nav a,
 nav a:visited {
     padding: 5px;
@@ -98,20 +109,23 @@ nav a:visited {
     vertical-align: bottom;
     line-height: 28px;
 }
+
 .right {
     margin-right: 0;
     width: 100%;
     font-size: 18px;
     text-align: right;
 }
+
 .left {
     width: 100%;
     margin-left: 0;
     display: inline-block;
     text-align: left;
 }
+
 .left a {
-    font-size: 20px;
+    font-size: 18px;
     text-decoration: none;
 }
 
@@ -127,6 +141,9 @@ nav a:visited {
     padding: 10px;
     text-align: left;
     margin: 0 auto 0 auto;
+    max-width: 600px;
+    line-height: 26px;
+    font-size: 16px;
 }
 
 .howto a {
@@ -143,29 +160,27 @@ nav a:visited {
 }
 
 .howto h2 {
-    font-size: 28px;
-    line-height: 40px;
+    font-size: 24px;
+    line-height: 36px;
     color: var(--text-800);
+    padding-top: 32px;
 }
 
 .howto h3 {
     font-size: 18px;
     line-height: 24px;
-    color: var(--a-text-default);
+    color: var(--text-800);
+    margin-top: 44px
 }
 
 .howto h4 {
+    font-weight: bold;
     color: var(--text-600);
 }
 
-.howto p {
-    font-size: 16px;
-}
-
 .howto p:first-of-type {
-    padding-bottom: 40px;
-    border-bottom: var(--divider-color) solid 0.06em;
-    margin-bottom: 60px;
+    font-size: 16px;
+    line-height: 26px;
 }
 
 .howto li {
@@ -173,7 +188,7 @@ nav a:visited {
 }
 
 pre {
-    max-width: 400px;
+    max-width: 600px;
     padding: 20px;
     font-size: 14px;
 }
@@ -181,6 +196,15 @@ pre {
 /*homepage*/
 .home p {
     max-width: 600px;
+    line-height: 28px;
+}
+
+.home img {
+    margin-left: -50px;
+}
+
+.home h1 {
+    margin-top: 0;
 }
 
 
