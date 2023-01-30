@@ -19,8 +19,9 @@
 .lightheme code[data-theme='dark'] {
     display: none;
 }
+
 .lightheme pre[data-theme='light'] {
-    background-color: #F7F7F7!important;
+    background-color: #F7F7F7 !important;
     border-radius: 12px;
 }
 
@@ -28,9 +29,10 @@
 /*dark theme*/
 .darktheme pre[data-theme='light'],
 .darktheme code[data-theme='light'] {
-        display: none;
-    }
-.darktheme pre[data-theme='dark']{
+    display: none;
+}
+
+.darktheme pre[data-theme='dark'] {
     border-radius: 12px;
 }
 
@@ -224,4 +226,21 @@ pre {
     color: var(--text-800);
     font-size: 16px;
     margin-right: -31px;
+}
+
+.errorkatt {
+    margin-bottom: 30px;
+}
+
+.errorkatt h1 {
+    font-size: 24px;
+}
+
+.errorkatt img{
+    margin-bottom: 60px;
+    margin-top: 24px;
+}
+
+.errorkatt a {
+    font-size: 16px;
 }
