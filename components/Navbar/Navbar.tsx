@@ -14,8 +14,8 @@ const Navbar = ({currentPath}: NavBarProps) => {
             </div>
             <div className={"navbar right"}>
                 <Link href={"/utkast"} className={currentPath == "/utkast" ? "current" : ""}>Utkast</Link>
-                <Link href={"/varsler"}
-                      className={currentPath == "/varsler" ? "current" : ""}>Varsler</Link>
+                <Link href={"/varsel"}
+                      className={currentPath == "/varsel" ? "current" : ""}>Varsler</Link>
                 <Link href={"/mikrofrontend"}
                       className={currentPath == "/mikrofrontend" ? "current" : ""}>Mikrofrontend</Link>
                 <Link id="kattenmin" href={"/katt"}>Mjau</Link>

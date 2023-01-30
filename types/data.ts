@@ -10,3 +10,7 @@ export interface MikrofrontendData {
   mikrofrontend: DocData
 }
 
+export interface VarselData {
+  docs: DocData
+}
+
