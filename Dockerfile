@@ -32,6 +32,7 @@ ARG READ_TOKEN
 ENV NODE_ENV production
 ENV ACCESS_TOKEN=$READ_TOKEN
 ENV NEXT_TELEMETRY_DISABLED 1
+ENV PORT=8080
 
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
