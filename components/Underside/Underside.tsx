@@ -2,6 +2,7 @@ import React from "react";
 import Link from "next/link";
 import styles from "./Underside.module.css"
 import {Back} from "@navikt/ds-icons";
+import HowTo from "../HowTo/HowTo";
 
 export interface VarselUndersideProps {
     content: string,
@@ -13,7 +14,7 @@ const Underside = ({content, parentPath}: VarselUndersideProps) =>
         <div className={styles.tilbakeLink}>
             <Link href={parentPath}> <Back role={"presentation"} className={styles.backIcon}/> Varsler</Link>
         </div>
-        <div dangerouslySetInnerHTML={{__html: content}} className={"howto"}/>
+        <HowTo content={content}/>
     </main>
 
 

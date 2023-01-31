@@ -1,0 +1,55 @@
+.howto {
+    padding: 10px;
+    text-align: left;
+    margin: 0 auto 0 auto;
+    max-width: 600px;
+    line-height: 26px;
+    font-size: 16px;
+}
+
+.howto a {
+    color: var(--text-800);
+}
+
+.howto h1 {
+    font-size: 36px;
+    line-height: 52px;
+}
+
+.howto h1:first-letter {
+    text-transform: capitalize;
+}
+
+.howto h2 {
+    font-size: 24px;
+    line-height: 36px;
+    color: var(--text-800);
+    padding-top: 32px;
+}
+
+.howto h3 {
+    font-size: 18px;
+    line-height: 24px;
+    color: var(--text-800);
+    margin-top: 44px
+}
+
+.howto h4 {
+    font-weight: bold;
+    color: var(--text-600);
+}
+
+.howto p:first-of-type {
+    font-size: 16px;
+    line-height: 26px;
+}
+
+.howto li {
+    font-size: 16px;
+}
+
+.howto pre {
+    max-width: 600px;
+    padding: 20px;
+    font-size: 14px;
+}
