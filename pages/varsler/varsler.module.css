@@ -1,0 +1,37 @@
+.undersider {
+    padding: 10px;
+    text-align: left;
+    margin: 40px auto 0 auto;
+    max-width: 600px;
+    line-height: 26px;
+    font-size: 16px;
+}
+.undersider h1 {
+    margin-bottom: 65px;
+}
+
+.undersider ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.undersider a,
+.undersider a:visited {
+    color: var(--text-800);
+    font-size: 16px;
+    line-height: 28px;
+    text-decoration: none;
+    border-bottom: var(--a-border-subtle) solid 1px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    min-width: 600px;
+    display: inline-block;
+}
+
+.undersider a:hover {
+    text-decoration: underline;
+}
+
+.undersider a:first-child {
+    border-top: var(--a-border-subtle) solid 1px;
+}
