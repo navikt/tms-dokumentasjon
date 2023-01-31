@@ -8,20 +8,20 @@
     padding-bottom: 20px;
 }
 
-.footer p {
+.footer a {
     max-width: 800px;
     font-weight: 400;
     font-size: 14px;
     line-height: 20px;
+    display: block;
+    color: white;
+    margin: 5px auto 0 auto;
 }
 
-.footer p:first-child {
+.footer h2 {
+    max-width: 800px;
     font-size: 16px;
     font-weight: 700;
     line-height: 24px;
-    margin: 40px auto 12px auto;
-}
-
-.footer #slack {
-    color: var(--text-800)
+    margin: 40px auto 15px auto;
 }
