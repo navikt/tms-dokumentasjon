@@ -14,10 +14,10 @@ const Navbar = ({currentLocation}: NavBarProps) => {
                     utvikler-docs </Link>
             </div>
             <div className={"navbar right"}>
-                <Link href={"utkast"} className={currentLocation == "utkast" ? "current" : ""}>Utkast</Link>
-                <Link href={"varsler"}
+                <Link href={"/utkast"} className={currentLocation == "utkast" ? "current" : ""}>Utkast</Link>
+                <Link href={"/varsler"}
                       className={currentLocation == "varsler" ? "current" : ""}>Varsler</Link>
-                <Link href={"mikrofrontend"}
+                <Link href={"/mikrofrontend"}
                       className={currentLocation == "mikrofrontend" ? "current" : ""}>Mikrofrontend</Link>
                 <Link id="kattenmin" href={"/katt"}>Mjau</Link>
             </div>
