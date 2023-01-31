@@ -11,6 +11,7 @@
     "build:export": "next build && next export"
   },
   "dependencies": {
+    "@navikt/ds-icons": "^2.1.5",
     "@navikt/ds-tokens": "^2.1.1",
     "install": "^0.13.0",
     "js-base64": "^3.7.4",
