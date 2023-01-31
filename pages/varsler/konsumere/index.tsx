@@ -15,7 +15,7 @@ export const getStaticProps: GetStaticProps<VarselData> = async (
 }
 
 const KonsumereVarsel: NextPage<VarselData> = ({docs}: VarselData) =>
-        <Underside content={docs.content} parentPath={"/varsel"}/>
+        <Underside content={docs.content} parentPath={"/varsler"}/>
 
 
 export default KonsumereVarsel

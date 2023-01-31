@@ -7,21 +7,23 @@ import Navbar from "../components/Navbar/Navbar";
 import Footer from "../components/Footer/Footer";
 import "../styles.css"
 
-const MyApp = ({Component, pageProps}: AppProps) => {
+const Home = ({Component, pageProps}: AppProps) => {
     const currentPath = useRouter().pathname
-    const pathName = currentPath.length == 1 ? "" : currentPath.replace("/", " – ")
+    const location = currentPath.length == 1 ? "" : currentPath.split("/")[1]
+    const pathName = currentPath.length == 1 ? "" : " — " + location
+
     const pagename = "Min side docs " + pathName
     const darkTheme = useDarkTheme()
 
     return (
         <ThemeProvider>
-            <div className={darkTheme?"darktheme":"lightheme"}>
+            <div className={darkTheme ? "darktheme" : "lightheme"}>
                 <Head>
                     <link rel="shortcut icon" href="/favicon-kattefjes.svg" type="image/svg+xml"/>
                     <title>{pagename}</title>
                 </Head>
                 <div className={"container"}>
-                    <Navbar currentPath={currentPath}/>
+                    <Navbar currentLocation={location}/>
                     <Component {...pageProps} />
                 </div>
                 <Footer/>
@@ -30,4 +32,5 @@ const MyApp = ({Component, pageProps}: AppProps) => {
     )
 }
 
-export default MyApp
+export default Home
+

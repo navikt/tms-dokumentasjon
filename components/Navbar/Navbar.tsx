@@ -2,22 +2,23 @@ import React from "react";
 import Link from "next/link";
 
 interface NavBarProps {
-    currentPath: string
+    currentLocation: string
 }
 
-const Navbar = ({currentPath}: NavBarProps) => {
+const Navbar = ({currentLocation}: NavBarProps) => {
+    console.log(currentLocation)
     return (
         <nav>
             <div className={"navbar left"}>
-                <Link href={"/"} className={currentPath == "/" ? "current" : ""}>Min side
+                <Link href={"/"} className={currentLocation == "" ? "current" : ""}>Min side
                     utvikler-docs </Link>
             </div>
             <div className={"navbar right"}>
-                <Link href={"/utkast"} className={currentPath == "/utkast" ? "current" : ""}>Utkast</Link>
-                <Link href={"/varsel"}
-                      className={currentPath == "/varsel" ? "current" : ""}>Varsler</Link>
-                <Link href={"/mikrofrontend"}
-                      className={currentPath == "/mikrofrontend" ? "current" : ""}>Mikrofrontend</Link>
+                <Link href={"utkast"} className={currentLocation == "utkast" ? "current" : ""}>Utkast</Link>
+                <Link href={"varsler"}
+                      className={currentLocation == "varsler" ? "current" : ""}>Varsler</Link>
+                <Link href={"mikrofrontend"}
+                      className={currentLocation == "mikrofrontend" ? "current" : ""}>Mikrofrontend</Link>
                 <Link id="kattenmin" href={"/katt"}>Mjau</Link>
             </div>
         </nav>

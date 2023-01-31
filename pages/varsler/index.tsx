@@ -7,7 +7,7 @@ const Varsel: NextPage = () => {
     return (
         <main>
             <ul>
-                <li><Link href={"varsel/konsumere"}> Konsumere varsel-hendelser</Link></li>
+                <li><Link href={"varsler/konsumere"}> Konsumere varsel-hendelser</Link></li>
             </ul>
         </main>
     )
