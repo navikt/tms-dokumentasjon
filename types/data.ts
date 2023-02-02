@@ -1,9 +1,8 @@
 export interface DocData {
   content: string
 }
-
-export interface UtkastData {
-  utkast: DocData
+export interface DocMetaData {
+  lastUpdated: Date
 }
 
 export interface MikrofrontendData {

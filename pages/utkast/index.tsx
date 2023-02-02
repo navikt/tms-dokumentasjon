@@ -1,19 +1,25 @@
 import React from 'react'
 import {GetStaticProps, NextPage} from 'next'
-import {UtkastData} from "../../types/data";
-import {GetDocs} from "../../lib/docsdata_api";
+import {GetDocs, GetLastUpdated} from "../../lib/docsdata_api";
 import HowTo from "../../components/HowTo/HowTo";
+import {DocData, DocMetaData} from "../../types/data";
 
-export const getStaticProps: GetStaticProps<UtkastData> = async () => {
-    const utkast = await GetDocs("tms-utkast")
+export interface UtkastProps {
+    docData: DocData,
+    docMetaData: DocMetaData
+}
+
+export const getStaticProps: GetStaticProps<UtkastProps> = async () => {
+    const docData = await GetDocs("tms-utkast")
+    const docMetaData = await GetLastUpdated("tms-utkast")
     return {
         props: {
-            utkast
+            docData, docMetaData
         },
     }
 }
 
-const Utkast: NextPage<UtkastData> = ({utkast}: UtkastData) =>
-    <HowTo content={utkast.content}/>
+const Utkast: NextPage<UtkastProps> = ({docData, docMetaData}: UtkastProps) =>
+    <HowTo content={docData.content} lastUpdated={docMetaData.lastUpdated}/>
 
 export default Utkast

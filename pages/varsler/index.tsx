@@ -8,7 +8,7 @@ const Varsler: NextPage = () => {
     return (
         <main className={styles.undersider}>
             <h1>Varsler</h1>
-            <ul >
+            <ul>
                 <li><Link href={"varsler/konsumere"}> Konsumere varsel-hendelser</Link></li>
             </ul>
         </main>
