@@ -17,7 +17,7 @@ jobs:
         run:
           "docker build --build-arg READ_TOKEN=${{ secrets.READER_TOKEN }} --tag ${IMAGE}$(date +'%Y%m%d%H%M%S')  .
           \ && echo $GITHUB_TOKEN | docker login  --username $GITHUB_REPOSITORY --password-stdin https://ghcr.io\
-          \ && docker push ${IMAGE}"
+          \ && docker push ${IMAGE}$(date +'%Y%m%d%H%M%S')"
 
   deploy-prod:
     if: github.ref == 'refs/heads/main'
