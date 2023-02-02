@@ -21,6 +21,7 @@ Dokumentasjon for produsenter til min side. Henter markdown filer fra tms-repoer
 1. Lag en ny mappe `/pages/<hovedside>/<nyside>`
 2. lag en `index.tsx`fil i den nye mappa
 3. Se [varsler/konsumere](pages/varsler/konsumere) for eksempel på oppsett
+4. Legg til ny link i hovedsiden. Se [varsler](pages/varsler/index.tsx) for eksempel
 
 ## Dev-oppsett
 1. Lag en `env.local` fil og legg inn `ACCESS_TOKEN` fra github som har tilgang til å lese nav-packages
