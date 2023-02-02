@@ -4,15 +4,29 @@ Dokumentasjon for produsenter til min side. Henter markdown filer fra tms-repoer
 
 ## Legge inn nye docs fra git repo:
 
+### I repoet du vil legge til:
 1. Lag en howto.md fil i repoet
-2. Se utkastmappa for eksempel på oppsett
-3. Om du lager en ny underside: legg til link i _app.tsx
+#### Sett opp automatisk regenerering av docs    
+1. Kopier [update_docs.yaml](.github/workflows/trigger/update_docs.yaml) og legg den til i workflows-mappa i repoet
+2. Legg til ett github token med repo-tilgang  `DOC_TRIGGER_TOKEN` i Settings-> Secrets and variables -> Actions
 
-## Om du har oppdatert ett doc:
-Bygg og deploy appen på nytt i github actions
+### I tms-dokumentasjon:
+#### Hvis du skal lage en hoved-side:
+1. Lag en ny mappe `/pages/<nyside>` 
+2. lag en `index.tsx`fil i den nye mappa
+3. Se [utkast](pages/utkast/index.tsx) for eksempel på oppsett
+4. Legg til link til den nye sida i [NavBar](components/Navbar/Navbar.tsx)
 
-## Oppsett
-1. Lag en env.local fil og legg inn `ACCESS_TOKEN` fra github
-2. Bygg prosjektet slik at de eksterne doc-filene blir hentet inn: `npm run build:export`
-3. Start applikasjonen: `next dev`eller `next start` om du vil se de resultatet på de statiske filene
+#### Hvis du skal legge til en underside
+1. Lag en ny mappe `/pages/<hovedside>/<nyside>`
+2. lag en `index.tsx`fil i den nye mappa
+3. Se [varsler/konsumere](pages/varsler/konsumere) for eksempel på oppsett
+
+## Dev-oppsett
+1. Lag en `env.local` fil og legg inn `ACCESS_TOKEN` fra github som har tilgang til å lese nav-packages
+2. Start applikasjonen med reload for alle filer: `next dev`
+
+### Sjekke output med statiske filer
+2. Bygg prosjektet slik at de eksterne doc-filene blir hentet inn: `npm run build`
+3. Start applikasjonen: `next start` 
 
