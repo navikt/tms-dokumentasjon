@@ -170,6 +170,14 @@ nav a:visited {
     margin-top: 0;
 }
 
+.last-updated {
+    font-size: 12px!important;
+    color: var(--a-text-subtle);
+    border-bottom: var(--a-text-subtle) solid 1px;
+    line-height: 20px!important;
+    letter-spacing: 0.04em;
+    padding-bottom: 5px;
+}
 
 
 .errorkatt {

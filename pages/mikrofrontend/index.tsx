@@ -1,21 +1,28 @@
 import React from 'react'
 import {GetStaticProps, NextPage} from 'next'
-import {MikrofrontendData} from "../../types/data";
-import {GetDocs} from "../../lib/docsdata_api";
+import {DocData, DocMetaData} from "../../types/data";
+import {GetDocs, GetDocMetadata} from "../../lib/docsdata_api";
 import HowTo from "../../components/HowTo/HowTo";
 
 
-export const getStaticProps: GetStaticProps<MikrofrontendData> = async () => {
-    const mikrofrontend = await GetDocs("tms-mikrofrontend-selector")
+
+export interface MikrofrontendProps {
+    docData: DocData,
+    docMetaData: DocMetaData
+}
+
+export const getStaticProps: GetStaticProps<MikrofrontendProps> = async () => {
+    const docData = await GetDocs("tms-mikrofrontend-selector")
+    const docMetaData = await GetDocMetadata("tms-mikrofrontend-selector")
     return {
         props: {
-            mikrofrontend
+            docData,docMetaData
         },
     }
 }
 
-const Mikrofrontend: NextPage<MikrofrontendData> = ({mikrofrontend}: MikrofrontendData) =>
-    <HowTo content={mikrofrontend.content}/>
+const Mikrofrontend: NextPage<MikrofrontendProps> = ({docData, docMetaData}: MikrofrontendProps) =>
+    <HowTo content={docData.content} lastUpdated={docMetaData}/>
 
 
 export default Mikrofrontend

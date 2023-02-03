@@ -14,7 +14,7 @@ export async function GetDocs(repository: string): Promise<DocData> {
     return {content}
 }
 
-export async function GetLastUpdated(repository: string): Promise<DocMetaData> {
+export async function GetDocMetadata(repository: string): Promise<DocMetaData> {
 
     const response = await fetchFromRepository(`https://api.github.com/repos/navikt/${repository}/commits?path=howto.md`)
     const latestCommit = await response.json()

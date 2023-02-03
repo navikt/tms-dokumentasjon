@@ -1,15 +1,13 @@
 export interface DocData {
-  content: string
-}
-export interface DocMetaData {
-  lastUpdated: Date
+    content: string
 }
 
-export interface MikrofrontendData {
-  mikrofrontend: DocData
+export interface DocMetaData {
+    lastUpdated: string
 }
+
 
 export interface VarselData {
-  docs: DocData
+    docs: DocData
 }
 

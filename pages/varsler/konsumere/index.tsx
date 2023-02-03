@@ -1,21 +1,29 @@
 import React from 'react'
 import {GetStaticProps, NextPage} from 'next'
-import {VarselData} from "../../../types/data";
-import {GetDocs} from "../../../lib/docsdata_api";
+import {DocData, DocMetaData} from "../../../types/data";
+import {GetDocMetadata, GetDocs} from "../../../lib/docsdata_api";
 import Underside from "../../../components/Underside/Underside";
 
-export const getStaticProps: GetStaticProps<VarselData> = async (
+
+interface KonsumereVarselProps {
+    docs: DocData
+    metaData: DocMetaData
+}
+
+export const getStaticProps: GetStaticProps<KonsumereVarselProps> = async (
     context
 ) => {
     const docs = await GetDocs("tms-varsel-event-gateway")
-    return {props: {
-            docs
+    const metaData = await GetDocMetadata("tms-varsel-event-gateway")
+    return {
+        props: {
+            docs, metaData
         },
     }
 }
 
-const KonsumereVarsel: NextPage<VarselData> = ({docs}: VarselData) =>
-        <Underside content={docs.content} parentPath={"/varsler"}/>
+const KonsumereVarsel: NextPage<KonsumereVarselProps> = ({docs, metaData}: KonsumereVarselProps) =>
+    <Underside content={docs.content} parentPath={"/varsler"} lastUpdated={metaData.lastUpdated} parentName={"Varsel"}/>
 
 
 export default KonsumereVarsel
