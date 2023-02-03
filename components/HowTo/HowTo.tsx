@@ -9,7 +9,6 @@ export interface HowToProps {
 }
 
 const HowTo = ({content, lastUpdated}: HowToProps) => {
-    console.log(typeof lastUpdated)
 
     useEffect(() => {
         const h1 = document.querySelector("h1")!!
