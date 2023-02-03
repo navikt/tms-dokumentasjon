@@ -28,6 +28,5 @@ Dokumentasjon for produsenter til min side. Henter markdown filer fra tms-repoer
 2. Start applikasjonen med reload for alle filer: `next dev`
 
 ### Sjekke output med statiske filer
-2. Bygg prosjektet slik at de eksterne doc-filene blir hentet inn: `npm run build`
-3. Start applikasjonen: `next start` 
+2. `npm run build:local`
 
