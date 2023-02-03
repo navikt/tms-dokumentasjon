@@ -7,7 +7,7 @@ import HowTo from "../HowTo/HowTo";
 export interface UndersideProps {
     content: string,
     parentPath: string,
-    lastUpdated: Date,
+    lastUpdated: string,
     parentName: string
 }
 

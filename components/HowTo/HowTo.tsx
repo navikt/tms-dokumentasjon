@@ -5,14 +5,14 @@ import {enUS, nb} from "date-fns/locale";
 
 export interface HowToProps {
     content: string
-    lastUpdated: String
+    lastUpdated: string
 }
 
 const HowTo = ({content, lastUpdated}: HowToProps) => {
     console.log(typeof lastUpdated)
 
     useEffect(() => {
-        const h1 = document.querySelector("h1")
+        const h1 = document.querySelector("h1")!!
         const date = parseISO(lastUpdated)
         const dateLocales = {nb: nb, en: enUS}
 
