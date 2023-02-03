@@ -3,6 +3,7 @@ import {GetStaticProps, NextPage} from 'next'
 import {DocData, DocMetaData} from "../../types/data";
 import {GetDocs, GetDocMetadata} from "../../lib/docsdata_api";
 import HowTo from "../../components/HowTo/HowTo";
+import {UtkastProps} from "../utkast";
 
 
 
@@ -22,7 +23,7 @@ export const getStaticProps: GetStaticProps<MikrofrontendProps> = async () => {
 }
 
 const Mikrofrontend: NextPage<MikrofrontendProps> = ({docData, docMetaData}: MikrofrontendProps) =>
-    <HowTo content={docData.content} lastUpdated={docMetaData}/>
+    <HowTo content={docData.content} lastUpdated={docMetaData.lastUpdated}/>
 
 
 export default Mikrofrontend

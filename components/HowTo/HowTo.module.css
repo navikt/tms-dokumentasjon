@@ -39,6 +39,10 @@
     color: var(--text-600);
 }
 
+.howto p {
+    margin-top: 50px;
+}
+
 .howto p:first-of-type {
     font-size: 16px;
     line-height: 26px;
