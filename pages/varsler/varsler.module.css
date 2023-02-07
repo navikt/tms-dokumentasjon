@@ -21,17 +21,26 @@
     font-size: 16px;
     line-height: 28px;
     text-decoration: none;
-    border-bottom: var(--a-border-subtle) solid 1px;
-    padding-top: 15px;
-    padding-bottom: 15px;
     min-width: 600px;
-    display: inline-block;
+    display: inline;
 }
 
 .undersider a:hover {
     text-decoration: underline;
 }
 
-.undersider a:first-child {
+.undersider li {
+    border-bottom: var(--a-border-subtle) solid 1px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.undersider li:first-child {
     border-top: var(--a-border-subtle) solid 1px;
+}
+
+.undersider h2 {
+    font-size: 20px;
+    margin-top: 50px;
+    color: var(--text-800);
 }
