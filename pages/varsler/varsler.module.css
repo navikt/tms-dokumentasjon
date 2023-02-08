@@ -1,3 +1,6 @@
+
+
+
 .undersider {
     padding: 10px;
     text-align: left;
@@ -30,13 +33,13 @@
 }
 
 .undersider li {
-    border-bottom: var(--a-border-subtle) solid 1px;
+    border-bottom: var(--list-border) solid 1px;
     padding-top: 15px;
     padding-bottom: 15px;
 }
 
 .undersider li:first-child {
-    border-top: var(--a-border-subtle) solid 1px;
+    border-top: var(--list-border) solid 1px;
 }
 
 .undersider h2 {
