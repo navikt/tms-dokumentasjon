@@ -12,6 +12,8 @@ const Navbar = ({currentLocation}: NavBarProps) =>
                 utvikler-docs </Link>
         </div>
         <div className={"navbar right"}>
+            <Link href={"/innholdsguide"}
+                  className={currentLocation == "innholdsguide" ? "current" : ""}>Innholdsguide</Link>
             <Link href={"/utkast"} className={currentLocation == "utkast" ? "current" : ""}>Utkast</Link>
             <Link href={"/varsler"}
                   className={currentLocation == "varsler" ? "current" : ""}>Varsler</Link>
