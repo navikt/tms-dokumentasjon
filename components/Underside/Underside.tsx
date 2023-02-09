@@ -9,14 +9,15 @@ export interface UndersideProps {
     parentPath: string,
     lastUpdated: string,
     parentName: string
+    wide?:boolean
 }
 
-const  Underside = ({content, parentPath, lastUpdated, parentName}: UndersideProps) =>
+const  Underside = ({content, parentPath, lastUpdated, parentName, wide}: UndersideProps) =>
     <main>
         <div className={styles.tilbakeLink}>
             <Link href={parentPath}> <Back role={"presentation"} className={styles.backIcon}/> {parentName}</Link>
         </div>
-        <HowTo content={content} lastUpdated={lastUpdated}/>
+        <HowTo content={content} lastUpdated={lastUpdated} wide={wide}/>
     </main>
 
 

@@ -17,7 +17,7 @@ export const getStaticProps: GetStaticProps<VarselUndersideProps> = async (
 }
 
 const VarselProdusere: NextPage<VarselUndersideProps> = ({docs, metaData}: VarselUndersideProps) =>
-    <Underside content={docs.content} parentPath={"/varsler"} lastUpdated={metaData.lastUpdated} parentName={"Varsel"}/>
+    <Underside content={docs.content} parentPath={"/varsler"} lastUpdated={metaData.lastUpdated} parentName={"Varsel"} wide/>
 
 
 export default VarselProdusere

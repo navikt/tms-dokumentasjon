@@ -5,10 +5,14 @@ import {enUS, nb} from "date-fns/locale";
 
 export interface HowToProps {
     content: string
-    lastUpdated: string
+    lastUpdated: string,
+    wide?: boolean
 }
 
-const HowTo = ({content, lastUpdated}: HowToProps) => {
+const HowTo = ({content, lastUpdated, wide}: HowToProps) => {
+    const classnameString = wide? `${styles.howto} ${styles.wide}`:`${styles.howto}`
+    console.log(wide)
+    console.log(classnameString)
 
     useEffect(() => {
         const h1 = document.querySelector("h1")!!
@@ -31,9 +35,10 @@ const HowTo = ({content, lastUpdated}: HowToProps) => {
         h1.after(dateP)
 
     }, [])
+
     return (
         <main>
-            <div dangerouslySetInnerHTML={{__html: content}} className={styles.howto}/>
+            <div dangerouslySetInnerHTML={{__html: content}} className={classnameString}/>
         </main>
     )
 }
