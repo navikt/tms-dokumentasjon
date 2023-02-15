@@ -11,8 +11,6 @@ export interface HowToProps {
 
 const HowTo = ({content, lastUpdated, wide}: HowToProps) => {
     const classnameString = wide? `${styles.howto} ${styles.wide}`:`${styles.howto}`
-    console.log(wide)
-    console.log(classnameString)
 
     useEffect(() => {
         const h1 = document.querySelector("h1")!!
