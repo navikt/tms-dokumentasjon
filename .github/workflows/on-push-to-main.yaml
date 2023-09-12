@@ -7,6 +7,9 @@ on:
       - README.md
   repository_dispatch:
     types: "rebuild_doc"
+permissions:
+  contents: write
+  packages: write
 env:
   "IMAGE": "ghcr.io/${{ github.repository }}/tms-dokumentasjon:${{ github.sha }}"
   "GITHUB_TOKEN": "${{ secrets.GITHUB_TOKEN }}"
