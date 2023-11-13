@@ -7,8 +7,8 @@ import {VarselUndersideProps} from "../index";
 export const getStaticProps: GetStaticProps<VarselUndersideProps> = async (
     context
 ) => {
-    const docs = await GetDocs("tms-varsel-authority/varsel-action")
-    const metaData = await GetDocMetadata("tms-varsel-authority/varsel-action")
+    const docs = await GetDocs("dittnav-brukernotifikasjonbestiller")
+    const metaData = await GetDocMetadata("dittnav-brukernotifikasjonbestiller")
     return {
         props: {
             docs, metaData
@@ -16,8 +16,8 @@ export const getStaticProps: GetStaticProps<VarselUndersideProps> = async (
     }
 }
 
-const VarselProdusere: NextPage<VarselUndersideProps> = ({docs, metaData}: VarselUndersideProps) =>
+const VarselProdusereLegacy: NextPage<VarselUndersideProps> = ({docs, metaData}: VarselUndersideProps) =>
     <Underside content={docs.content} parentPath={"/varsler"} lastUpdated={metaData.lastUpdated} parentName={"Varsel"} wide/>
 
 
-export default VarselProdusere
+export default VarselProdusereLegacy
