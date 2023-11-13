@@ -16,12 +16,13 @@ const Varsler: NextPage = () => {
         <main className={styles.undersider}>
             <h1>Varsler</h1>
             <ul>
+                <li><Link href={"varsler/produsere-legacy"}>Produsere varsel-hendelser (legacy)</Link></li>
                 <li><Link href={"varsler/produsere"}>Produsere varsel-hendelser</Link></li>
                 <li><Link href={"varsler/konsumere"}>Konsumere varsel-hendelser</Link></li>
             </ul>
             <h2>Eldre dokumentasjon</h2>
             <ul>
-                <li><Link href={"/varsler/builder"}>Message builder</Link></li>
+                <li><Link href={"/varsler/builder-legacy"}>Message builder (legacy avro)</Link></li>
                 <li><Link href={"/varsler/eksternvarsling"}>Ekstern varsling</Link></li>
                 <li><Link href={"/varsler/faq"}>FAQ</Link></li>
                 <li><Link href={"/varsler/metrics"}>Metrics</Link></li>

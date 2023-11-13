@@ -7,9 +7,9 @@ WORKDIR /app
 # Install dependencies based on the preferred package manager
 COPY package.json package-lock.json*  ./
 COPY .npmrc ./
-RUN echo "//npm.pkg.github.com/:_authToken=$READ_TOKEN" >> .npmrc
-RUN npm ci;
+RUN  npm install --ommit=dev
 
+RUN ls -alh
 
 # Rebuild the source code only when needed
 FROM node:16-alpine AS builder
