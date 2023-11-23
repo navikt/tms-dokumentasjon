@@ -18,6 +18,7 @@ const Varsler: NextPage = () => {
             <ul>
                 <li><Link href={"/varsler/produsere"}>Produsere varsel-hendelser</Link></li>
                 <li><Link href={"/varsler/konsumere"}>Konsumere varsel-hendelser</Link></li>
+                <li><Link href={"/varsler/migrering"}>Migreringsguide</Link></li>
             </ul>
             <h2>Eldre dokumentasjon</h2>
             <ul>

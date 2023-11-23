@@ -2,10 +2,10 @@ import {DocData, DocMetaData} from "../types/data";
 import {Base64} from "js-base64";
 import {checkStatus, getAccessToken, renderMarkdown} from "./api_utils";
 
-export async function GetDocs(repository: string): Promise<DocData> {
+export async function GetDocs(repository: string, filename?: string): Promise<DocData> {
 
     const response = await fetchFromRepository(
-        `https://api.github.com/repos/navikt/${repository}/contents/howto.md`
+        `https://api.github.com/repos/navikt/${repository}/contents/${filename || "howto.md"}`
     )
     checkStatus(response.status, response.statusText, repository, "markdown dokumentasjon")
     const docData: DocData = (await response.json()) as DocData
@@ -14,11 +14,11 @@ export async function GetDocs(repository: string): Promise<DocData> {
     return {content}
 }
 
-export async function GetDocMetadata(repository: string): Promise<DocMetaData> {
+export async function GetDocMetadata(repository: string, filename?: string): Promise<DocMetaData> {
 
-    const response = await fetchFromRepository(`https://api.github.com/repos/navikt/${repository}/commits?path=howto.md`)
+    const response = await fetchFromRepository(`https://api.github.com/repos/navikt/${repository}/commits?path=${filename || "howto.md"}`)
     const latestCommit = await response.json()
-    checkStatus(response.status, response.statusText, repository,"metadat")
+    checkStatus(response.status, response.statusText, repository, "metadat")
     return {lastUpdated: latestCommit[0].commit.committer.date}
 }
 
@@ -38,7 +38,7 @@ export async function GetLegacyDocMetadata(filnavn: string): Promise<DocMetaData
 
     const response = await fetchFromRepository(`https://api.github.com/repos/navikt/brukernotifikasjon-docs/commits?path=docs/${filnavn}.md`)
     const latestCommit = await response.json()
-    checkStatus(response.status, response.statusText, filnavn,"metadat")
+    checkStatus(response.status, response.statusText, filnavn, "metadat")
     return {lastUpdated: latestCommit[0].commit.committer.date}
 }
 
