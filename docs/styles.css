@@ -1,0 +1,56 @@
+@import url('https://cdn.nav.no/aksel/@navikt/ds-css/2.9.0/index.css');
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,400;0,600;1,300&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/hack-font/3.3.0/web/hack-subset.min.css');
+
+:root {
+    --default-text: var(--a-text-default);
+    --text-800: var(--a-deepblue-800);
+    --text-600: var(--a-deepblue-600);
+    --footer-color: var(--a-deepblue-800);
+    --background-color: white;
+    --divider-color: black;
+    --cat-color: var(--background-color);
+    --text-subtle: var(--a-text-subtle);
+    --divider-color-subtle: var(--a-border-subtle);
+    --list-border: var(--a-border-subtle)
+
+
+    /*
+        color: var(--a-text-subtle);
+    border-bottom: var(--a-text-subtle) solid 1px;
+    */
+
+}
+
+body {
+    font-family: Hack, monospace !important;
+    font-size: 18px;
+    background-color: var(--background-color);
+}
+
+div[role=main] {
+    color: red;
+    font-weight: 400;
+    letter-spacing: -0.019999999552965164px;
+    text-align: center;
+    padding-top: 30px;
+    padding-bottom: 20px;
+}
+
+h1 {
+    color: var(--default-text)
+}
+
+nav a,
+nav a:visited {
+    padding: 5px;
+    margin-left: 10px;
+    color: var(--text-800);
+    font-size: 16px;
+}
+
+.container {
+
+}
+
+
