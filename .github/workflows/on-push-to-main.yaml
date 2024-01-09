@@ -3,11 +3,20 @@ name: github pages
 on:
   push:
     branches:
-      - main
+      - "main"
+    paths-ignore:
+      - README.md
+  repository_dispatch:
+    types: "rebuild_doc"
+  workflow_dispatch:
+permissions:
+  contents: write
+  packages: write
+
 
 jobs:
   deploy:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
@@ -33,7 +42,7 @@ jobs:
             ${{ runner.os }}-pip-
 
       - name: Install dependencies
-        run: python3 -m pip install mkdocs
+        run: python3 -m pip install mkdocs mkdocs-embed-external-markdown
 
       - run: mkdocs build
 
