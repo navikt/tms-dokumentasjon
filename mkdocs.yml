@@ -4,7 +4,13 @@ nav:
   - Forside: index.md
   - Utkast: utkast.md
   - Microforntend: microfrontend.md
-  - Varsler: varsler/index.md
+  - Varsler:
+      - Varsler: varsler/index.md
+      - Produsere varsler: varsler/produsere.md
+      - Konsumere varsler: varsler/konsumere.md
+      - Migrere fra AVRO: varsler/migrere.md
+
+
 plugins:
   - search
   - external-markdown
