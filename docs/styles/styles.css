@@ -29,16 +29,19 @@ body {
 }
 
 div[role=main] {
-    color: red;
+    color: var(--default-text);
     font-weight: 400;
     letter-spacing: -0.019999999552965164px;
-    text-align: center;
     padding-top: 30px;
     padding-bottom: 20px;
 }
 
 h1 {
     color: var(--default-text)
+}
+
+img{
+    border: none !important;
 }
 
 nav a,
@@ -49,8 +52,5 @@ nav a:visited {
     font-size: 16px;
 }
 
-.container {
-
-}
 
 

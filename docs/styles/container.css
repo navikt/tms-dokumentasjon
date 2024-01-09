@@ -1,0 +1,106 @@
+@import './styles.css';
+
+.container {
+  padding: 10px;
+  text-align: left;
+  margin: 0 auto 0 auto;
+  line-height: 26px;
+  font-size: 16px;
+}
+
+.container a {
+  color: var(--text-800);
+}
+
+.container h1 {
+  font-size: 36px;
+  line-height: 52px;
+}
+
+.container h1:first-letter {
+  text-transform: capitalize;
+}
+
+.container h2 {
+  font-size: 24px;
+  line-height: 36px;
+  color: var(--text-800);
+  padding-top: 32px;
+}
+
+.container h3 {
+  font-size: 18px;
+  line-height: 24px;
+  color: var(--text-800);
+  margin-top: 44px
+}
+
+.container h4 {
+  font-weight: bold;
+  color: var(--text-600);
+  margin-bottom: 10px;
+}
+
+.container p {
+  margin-top: 20px;
+}
+
+.container p:first-of-type {
+  font-size: 16px;
+  line-height: 26px;
+}
+
+.container p:nth-of-type(2) {
+margin-top: 50px;
+}
+
+.container li {
+  font-size: 16px;
+}
+
+.container pre {
+  padding: 20px;
+  font-size: 14px;
+}
+
+.container p:has(img) {
+  max-width: 600px;
+  text-align: center;
+}
+
+/* Tables **/
+
+.container table {
+  margin-top: 10px;
+}
+
+.container th {
+  border-bottom:var(--divider-color) 1px solid;
+  border-left:var(--divider-color) 1px solid;
+  border-top:var(--divider-color) 1px solid;
+  padding: 8px;
+  text-align: center;
+}
+
+.container td {
+  border-left: var(--divider-color) 1px solid;
+  border-bottom: var(--divider-color) 1px solid;
+  padding: 10px;
+}
+
+.container tr td:last-child {
+  border-right: var(--divider-color) 1px solid;
+
+}
+
+.container tr th:last-child {
+  border-right: var(--divider-color) 1px solid;
+
+}
+
+.container table+h4 {
+  margin-top: 30px;
+}
+.container table+h4+p {
+  margin-top: 10px;
+}
