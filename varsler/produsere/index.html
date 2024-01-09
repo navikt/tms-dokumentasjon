@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://tms-dokumentasjon.intern.nav.no/varsler/produsere/">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Produsere varsler - Min side utvikler-docs</title>
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
+        <link href="../../styles.css" rel="stylesheet">
+        <link href="../../styles/container.css" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../..">Min side utvikler-docs</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href="../../utkast/" class="nav-link">Utkast</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../../microfrontend/" class="nav-link">Microforntend</a>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Varsler <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../" class="dropdown-item">Varsler</a>
+</li>
+                                    
+<li>
+    <a href="./" class="dropdown-item active">Produsere varsler</a>
+</li>
+                                    
+<li>
+    <a href="../konsumere/" class="dropdown-item">Konsumere varsler</a>
+</li>
+                                    
+<li>
+    <a href="../migrere/" class="dropdown-item">Migrere fra AVRO</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../konsumere/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#komme-i-gang-med-varsler" class="nav-link">Komme i gang med varsler</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#varseltyper" class="nav-link">Varseltyper</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#ekstern-varsling" class="nav-link">Ekstern varsling</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#overvaking-av-varsler" class="nav-link">Overvåking av varsler</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#kafka-schemas-og-buildere" class="nav-link">Kafka, schemas og buildere</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#oppretting-av-varsel" class="nav-link">Oppretting av varsel</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#inaktivering-av-varsel" class="nav-link">Inaktivering av varsel</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="komme-i-gang-med-varsler">Komme i gang med varsler</h1>
+<p><em>For brukeropplevelsen er det viktig at du bruker riktig type varsel. Ta gjerne en ekstrasjekk
+med <a href="https://tms-dokumentasjon.intern.nav.no/innholdsguide">innholdsguiden vår</a>.</em></p>
+<ol>
+<li>Kafka tilgang: Opprett en pull-request mot topic <code>aapen-brukervarsel-v1</code>
+   i <a href="https://github.com/navikt/min-side-brukervarsel-topic-iac">min-side-brukervarsel-topic-iac</a>.</li>
+<li>Koble på topicene.</li>
+<li>Send event!</li>
+</ol>
+<h2 id="varseltyper">Varseltyper</h2>
+<table>
+<thead>
+<tr>
+<th>type</th>
+<th>beskrivelse</th>
+<th>Deaktiveres av</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Beskjed</td>
+<td>For korte påminnelser eller oppdatering av status</td>
+<td>Bruker, produsent, eller min side hvis aktivFremTil dato er satt og dato er passert.</td>
+</tr>
+<tr>
+<td>Oppgave</td>
+<td>For noe som må bli utført</td>
+<td>Produsent når oppgaven er utført ( inaktiver-event), eller av min side hvis aktivFremTil dato er satt eller varslet har vært aktivt i mer enn ett år.</td>
+</tr>
+<tr>
+<td>Innboks</td>
+<td>For varsler om digitale innbokser andre steder i NAV</td>
+<td>Produsent</td>
+</tr>
+</tbody>
+</table>
+<p><strong>NB! Det er viktig å huske å sende inaktiver-event for oppgave-varsler. hvis ikke vil det se ut for personen som at oppgaven ikke er utført.</strong></p>
+<p>Alle varsler slettes 1 år etter mottaksdato.</p>
+<h2 id="ekstern-varsling">Ekstern varsling</h2>
+<p>Produsent kan velge om bruker også skal varsles via eksterne kanaler (sms og epost). Produsent kan velge preferert kanal,
+og hvorvidt standardtekst skal overskrives. </p>
+<p>Standardtekst er av typen: <code>Hei! Du har fått en ny &lt;varseltype&gt; fra NAV. Logg inn på NAV for å se hva varselet gjelder. Vennlig hilsen NAV</code></p>
+<p>Eksterne varseltekster skal ikke inneholde lenker. Det er også produsentens ansvar å ikke sende sensitiv informasjon på
+epost og sms.</p>
+<h3 id="revarsling">Revarsling</h3>
+<p>Varsler med typen oppgave eller innboks får automatisk revarsling dersom varselet ikke er ferdigstilt etter et
+bestemt antall dager. Oppgaver blir revarsler etter 7 dager, og innboks blir revarslet etter 4 dager.</p>
+<h3 id="overskriving-av-standardtekster">Overskriving av standardtekster</h3>
+<p>Dersom en velger å overskrive standardtekster for epost/sms, er det anbefalt å overskrive samtlige tekster, selv om
+kun 1 kanal er preferert. Dette er fordi bruker kan motta varsler via annen kanal enn preferansen.</p>
+<h2 id="overvaking-av-varsler">Overvåking av varsler</h2>
+<p>Produsenter kan lytte på topic <code>aapen-varsel-hendelse-v1</code> for å følge med på status på varsler.</p>
+<p>Per i dag er det kun mulig å lytte på når varsler aktiveres/inaktiveres. Det vil etter hvert bli mulig å lytte på
+status for eksern varslign og andre typer hendelser.</p>
+<p>Produsenter som ønsker å lytte på status for ekstern varsling har også mulighet til å lytte direkte
+på topic <a href="https://github.com/navikt/dokumenthandtering-iac/tree/master">aapen-dok-notifikasjon-status</a> tilørende team dokumenthåndtering.</p>
+<h2 id="kafka-schemas-og-buildere">Kafka, schemas og buildere</h2>
+<p>Min side varsler bruker ikke lenger Avro for schema-validering og serialisering. Produsenter sender eventer direkte på
+json-format. Vi tilbyr to sett med buildere for henholdsvis java- og kotlin-prosjekter. Det er ikke strengt nødvendig å 
+bruke disse, men sterkt anbefalt. Builderne sørger for at format er riktig og har gjør forhåndsvalidering av innhold. 
+Det er også anbefalt å bruke varselId som kafka-nøkkel, for å opprettholde kronologi per enkelt varsel.</p>
+<p>Builderne finnes i følgende bibliotek:</p>
+<h3 id="github-maven-repository">Github Maven repository</h3>
+<ul>
+<li>kotlin: no.nav.tms.varsel:kotlin-builder:1.0.0</li>
+<li>java: no.nav.tms.varsel:java-builder:1.0.0</li>
+</ul>
+<p>Husk å legge til autentisert repository <code>https://maven.pkg.github.com/navikt/tms-varsel-authority</code></p>
+<h2 id="oppretting-av-varsel">Oppretting av varsel</h2>
+<p>For å gi varsel til bruker sender en et opprett-varsel event.</p>
+<h3 id="opprett-varsel-felter">Opprett-varsel felter</h3>
+<table>
+<thead>
+<tr>
+<th>felt</th>
+<th>påkrevd</th>
+<th>beskrivelse</th>
+<th>restriksjoner</th>
+<th>tillegginfo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>type</td>
+<td>ja</td>
+<td>Type på varsel (beskjed, oppgave, innboks)</td>
+<td>Må være én av <code>beskjed</code>, <code>oppgave</code>, <code>innboks</code></td>
+<td></td>
+</tr>
+<tr>
+<td>varselId</td>
+<td>ja</td>
+<td>Id til varselet. Produsenten bruker samme Id til å inaktivere varsel</td>
+<td>Må være UUID eller ULID</td>
+<td></td>
+</tr>
+<tr>
+<td>ident</td>
+<td>ja</td>
+<td>Fodselsnummer (evt. d-nummer eller tilsvarende) til mottaker av varsel</td>
+<td>Må ha 11 siffer</td>
+<td></td>
+</tr>
+<tr>
+<td>tekster</td>
+<td>ja, minst 1</td>
+<td>Teksten som faktisk vises i varselet med språkkode.</td>
+<td>Dersom flere tekster på ulike språk er gitt må én tekst være satt som default</td>
+<td>Språkkode må følge ISO-639 (typen <code>no</code>, <code>nb</code>, <code>en</code>...)</td>
+</tr>
+<tr>
+<td>link</td>
+<td>ikke for beskjed</td>
+<td>Lenke som blir aktivert når en person trykker på varselet i varselbjella eller på min side</td>
+<td>Komplett URL, inkludert <code>https</code> protokoll.</td>
+<td></td>
+</tr>
+<tr>
+<td>sensitivitet</td>
+<td>ja</td>
+<td>påkrevd level-of-assurance for å kunne se innhold i varsel</td>
+<td>Én av <code>high</code>, <code>substantial</code></td>
+<td><code>high</code> og <code>substantial</code> tilsvarer det som tidligere var henholdvis nivå <code>4</code> og <code>3</code>. Hvis personen har varsler med sensitivitet <code>high</code>, men er logget inn med LoA <code>substantial</code>, vil hen se type varsel, men ikke innholdet.</td>
+</tr>
+<tr>
+<td>aktivFremTil</td>
+<td>nei</td>
+<td>Tidspunkt for når varslet skal inaktiverer automatisk av systemet</td>
+<td>Tidspunkt med tidssone. <code>UTC</code> eller <code>Z</code> er anbefalt</td>
+<td>Støttes ikke for Innboks-varsler</td>
+</tr>
+<tr>
+<td>eksternVarsling</td>
+<td>nei</td>
+<td>Om det skal sendes sms og/eller epost til mottaker</td>
+<td>Kan kun velge preferert kanal <code>SMS</code> eller <code>EPOST</code>.</td>
+<td>Dersom ekstern varslingstekst ikke er satt blir det sendt en standardtekst.</td>
+</tr>
+<tr>
+<td>produsent</td>
+<td>ja</td>
+<td>Teknisk kilde til varsel-eventet</td>
+<td>Ingen spesielle</td>
+<td>Buildere vil forsøke å hente dette automatisk basert på nais-miljøvariabler. Der disse ikke er tilgjengelige må produsent settes manuelt.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="json-format">Json-format</h3>
+<pre><code class="language-json">{
+   &quot;@event_name&quot;: &quot;opprett&quot;,
+   &quot;type&quot;: &quot;&lt;type&gt;&quot;,
+   &quot;varselId&quot;: &quot;&lt;varselId&gt;&quot;,
+   &quot;ident&quot;: &quot;&lt;ident&gt;&quot;,
+   &quot;tekster&quot;: [
+      {
+         &quot;spraakkode&quot;: &quot;&lt;spraakkode&gt;&quot;,
+         &quot;tekst&quot;: &quot;&lt;tekst&gt;&quot;,
+         &quot;default&quot;: true
+      }
+   ],
+   &quot;link&quot;: &quot;&lt;link&gt;&quot;,
+   &quot;sensitivitet&quot;: &quot;&lt;sensitivitet&gt;&quot;,
+   &quot;aktivFremTil&quot;: &quot;&lt;aktivFremTil&gt;&quot;,
+   &quot;eksternVarsling&quot;: {
+      &quot;prefererteKanaler&quot;: [&quot;SMS&quot;, &quot;EPOST&quot;],
+      &quot;smsVarslingstekst&quot;: &quot;&lt;smsTekst&gt;&quot;,
+      &quot;epostVarslingstittel&quot;: &quot;epostTittel&quot;,
+      &quot;epostVarslingstekst&quot;: &quot;epostTekst&quot;
+   },
+   &quot;produsent&quot;: {
+      &quot;cluster&quot;: &quot;&lt;cluster&gt;&quot;,
+      &quot;namespace&quot;: &quot;&lt;namespace&gt;&quot;,
+      &quot;appnavn&quot;: &quot;&lt;appnavn&gt;&quot;
+   }
+}
+</code></pre>
+<h3 id="eksempel-med-buildere">Eksempel med buildere</h3>
+<p>Eksempel på oppretting av Oppgave-varsel for bruker <code>12345678901</code> med id <code>aabbccdd-abcd-1234-5678-abcdef123456</code>. </p>
+<p>Varselet skal: 
+- ha sensitivitet <code>high</code>
+- lenke til <code>https://www.nav.no</code>
+- løpe ut 14 dager etter oppretting
+- ha en norsk (default) og en engelsk tekst
+- varsles på sms med standardtekst.</p>
+<h4 id="med-kotlin-builder">Med kotlin-builder</h4>
+<pre><code class="language-kotlin">val kafkaValueJson = VarselActionBuilder.opprett {
+   type = Varseltype.Oppgave
+   varselId = &quot;aabbccdd-abcd-1234-5678-abcdef123456&quot;
+   sensitivitet = Sensitivitet.High
+   ident = &quot;12345678901&quot;
+   tekster += Tekst(
+      spraakkode = &quot;nb&quot;,
+      tekst = &quot;Norsk tekst&quot;,
+      default = true
+   )
+   tekster += Tekst(
+      spraakkode = &quot;en&quot;,
+      tekst = &quot;English text&quot;,
+      default = false
+   )
+   link = &quot;https://www.nav.no&quot;
+   aktivFremTil = ZonedDateTime.now(ZoneId.of(&quot;Z&quot;)).plusDays(14)
+   eksternVarsling = EksternVarslingBestilling(prefererteKanaler = listOf(EksternKanal.SMS))
+}
+</code></pre>
+<h4 id="med-java-builder">Med java-builder</h4>
+<pre><code class="language-java">String kafkaValueJson = OpprettVarselBuilder.newInstance()
+   .withType(Varseltype.Oppgave)
+   .withVarselId(&quot;aabbccdd-abcd-1234-5678-abcdef123456&quot;)
+   .withSensitivitet(Sensitivitet.High)
+   .withIdent(&quot;12345678901&quot;)
+   .withTekst(&quot;nb&quot;, &quot;Norsk tekst&quot;, true)
+   .withTekst(&quot;en&quot;, &quot;English text&quot;, false)
+   .withLink(&quot;https://www.nav.no&quot;)
+   .withAktivFremTil(ZonedDateTime.now(ZoneId.of(&quot;Z&quot;)).plusDays(14))
+   .withEksternVarsling(EksternKanal.SMS)
+   .build();
+</code></pre>
+<h2 id="inaktivering-av-varsel">Inaktivering av varsel</h2>
+<p>Oppgave- og innboks-varsler inaktiveres av produsent. Dette gjør en ved å sende et inaktiver-event.</p>
+<h3 id="inaktiver-varsel-felter">Inaktiver-varsel felter</h3>
+<table>
+<thead>
+<tr>
+<th>felt</th>
+<th>påkrevd</th>
+<th>beskrivelse</th>
+<th>tillegginfo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>varselId</td>
+<td>ja</td>
+<td>Id til varselet som skal inaktiveres</td>
+<td></td>
+</tr>
+<tr>
+<td>produsent</td>
+<td>ja</td>
+<td>Teknisk kilde til varsel-eventet</td>
+<td>Buildere vil forsøke å hente dette automatisk basert på nais-miljøvariabler. Der disse ikke er tilgjengelige må produsent settes manuelt.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="json-format_1">Json-format</h3>
+<pre><code class="language-json">{
+   &quot;@event_name&quot;: &quot;inaktiver&quot;,
+   &quot;varselId&quot;: &quot;&lt;varselId&gt;&quot;,
+   &quot;produsent&quot;: {
+      &quot;cluster&quot;: &quot;&lt;cluster&gt;&quot;,
+      &quot;namespace&quot;: &quot;&lt;namespace&gt;&quot;,
+      &quot;appnavn&quot;: &quot;&lt;appnavn&gt;&quot;
+   }
+}
+</code></pre>
+<h3 id="eksempel-med-buildere_1">Eksempel med buildere</h3>
+<p>Eksempel på inaktivering av varsel med id <code>aabbccdd-abcd-1234-5678-abcdef123456</code>.</p>
+<h4 id="med-kotlin-builder_1">Med kotlin-builder</h4>
+<pre><code class="language-kotlin">val kafkaValueJson = VarselActionBuilder.inaktiver {
+   varselId = &quot;aabbccdd-abcd-1234-5678-abcdef123456&quot;
+}
+</code></pre>
+<h4 id="med-java-builder_1">Med java-builder</h4>
+<pre><code class="language-java">String kafkaValueJson = InaktiverVarselBuilder.newInstance()
+   .withVarselId(&quot;aabbccdd-abcd-1234-5678-abcdef123456&quot;)
+   .build();
+</code></pre></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../../js/jquery-3.6.0.min.js"></script>
+        <script src="../../js/bootstrap.min.js"></script>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../js/base.js"></script>
+        <script src="../../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

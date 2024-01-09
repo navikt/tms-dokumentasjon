@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://tms-dokumentasjon.intern.nav.no/utkast/">
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Utkast - Min side utvikler-docs</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
+        <link href="../styles.css" rel="stylesheet">
+        <link href="../styles/container.css" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">Min side utvikler-docs</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem active">
+                                <a href="./" class="nav-link">Utkast</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../microfrontend/" class="nav-link">Microforntend</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Varsler <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../varsler/" class="dropdown-item">Varsler</a>
+</li>
+                                    
+<li>
+    <a href="../varsler/produsere/" class="dropdown-item">Produsere varsler</a>
+</li>
+                                    
+<li>
+    <a href="../varsler/konsumere/" class="dropdown-item">Konsumere varsler</a>
+</li>
+                                    
+<li>
+    <a href="../varsler/migrere/" class="dropdown-item">Migrere fra AVRO</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" class="nav-link disabled">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../microfrontend/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#utkast-pa-min-side" class="nav-link">Utkast på min side</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#nice-hvordan-kan-mitt-team-fa-vare-ting-pa-utkast-sida" class="nav-link">Nice! Hvordan kan mitt team få våre ting på utkast-sida?</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#kafka" class="nav-link">Kafka</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#observability" class="nav-link">Observability</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#amplitude-malinger" class="nav-link">Amplitude målinger</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<p><img alt="alt text" src="../katt/katt-utkast.svg" title="Title" /></p>
+<h1 id="utkast-pa-min-side">Utkast på min side</h1>
+<p><em>– en enklere inngang til påbegynte søknader og dokument-innsendinger</em> \
+Utkast er underside av min side (tilgjengelig på <code>&lt;navurl&gt;/minside/utkast</code>) der bruker
+skal kunne finne søknader og dokument-innsendinger hen har begynt å fylle ut, men ikke sendt inn enda.<br></p>
+<ul>
+<li>Utkast er bruker-initiert</li>
+<li>Det kan være innsendinger eller søknader som en person har startet på, men ikke sendt inn.</li>
+<li>Et utkast er <em>i øyeblikket ikke en del av en persons interaksjon med NAV</em>, selv om det kan bli det.</li>
+<li>Eksempel:  En påbegynt søknad. Den kan sendes inn, eller en bruker kan velge å ikke sende den inn.</li>
+</ul>
+<h2 id="nice-hvordan-kan-mitt-team-fa-vare-ting-pa-utkast-sida">Nice! Hvordan kan mitt team få våre ting på utkast-sida?</h2>
+<p>Koble på <a href="https://github.com/navikt/min-side-utkast-topic-iac">min-side-utkast-iac-topicet</a> og kjør på! \
+<em>utkast støtter tre hendelser: created, updated, og deleted</em>
+1. Send en created-melding når en bruker har lagra ett utkast
+2. Send en updated-melding hvis url-en eller tittelen til utkastet har endret seg.
+3. Send en deleted melding når bruker enten har sendt inn eller hvis utkastet har blitt slettet enten av bruker eller systemet.</p>
+<h2 id="kafka">Kafka</h2>
+<p><strong>topic</strong>: aapen-utkast-v1 \
+<strong>tilgang</strong>: <a href="https://github.com/navikt/min-side-utkast-topic-iac">min-side-utkast-iac-topic</a> \
+<strong>hendelser</strong>: <code>created</code>, <code>updated</code>, <code>deleted</code></p>
+<h3 id="meldingsformat">meldingsformat</h3>
+<h4 id="create-og-update">create og update</h4>
+<pre><code class="language-json">{
+  &quot;@event_name&quot;: &quot;&lt;operasjon&gt;&quot;,
+  &quot;utkastId&quot;: &quot;&lt;uuid&gt;&quot;,
+  &quot;ident&quot;: &quot;&lt;fnr eller lignende&gt;&quot;,
+  &quot;link&quot;: &quot;&lt;link til utkast&gt;&quot;,
+  &quot;tittel&quot;: &quot;&lt;tittel på utkast&gt;&quot;,
+  &quot;tittel_i18n&quot;: {
+    &quot;&lt;språkkode&gt;&quot;: &quot;oversatt tittel&quot;
+  },
+  &quot;metrics&quot;: {
+    &quot;skjemanavn&quot;: &quot;&lt;skjema navn&gt;&quot;,
+    &quot;skjemakode&quot;: &quot;&lt;NAV skjemakode&gt;&quot;
+  }
+}
+</code></pre>
+<p><strong>obligatoriske felt</strong>: <code>@event_name</code>, <code>utkastId</code>, <code>"ident"</code>,<code>"tittel"</code></p>
+<h4 id="delete">delete</h4>
+<pre><code class="language-json">{
+  &quot;@event_name&quot;: &quot;deleted&quot;,
+  &quot;utkastId&quot;: &quot;&lt;uuid&gt;&quot;
+}
+</code></pre>
+<p>Det finnes også et <a href="https://github.com/navikt/tms-utkast/pkgs/container/tms-utkast%2Ftms-utkast">message-builder bibliotek</a> som lager meldingene for deg.
+NB! Det er kun ting som <strong>ikke er innsendt</strong> som skal ligge på utkast-siden.</p>
+<h2 id="observability">Observability</h2>
+<p>Hendelser blir logget til kibana med customfelter for filtrering \
+Alle utkast: <code>x_contenttype:"utkast"</code> \
+Spesifikt utkast: <code>x_minside_id :"&lt;utkastid&gt;"</code> </p>
+<h2 id="amplitude-malinger">Amplitude målinger</h2>
+<p><a href="https://github.com/navikt/tms-utkast-mikrofrontend">Utkast-frontenden</a> logger
+ett <a href="https://github.com/navikt/analytics-taxonomy/tree/main/events/skjema%20%C3%A5pnet">skjema åpent</a> 
+event med <code>url</code> som payload til amplitude når bruker klikker på ett utkast. Om teamet ditt ønsker å få med feltene 
+<code>skjemakode</code> og <code>skjemanavn</code> må metricsfeltet være tilstede og komplett i create-meldingen</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../js/jquery-3.6.0.min.js"></script>
+        <script src="../js/bootstrap.min.js"></script>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js"></script>
+        <script src="../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://tms-dokumentasjon.intern.nav.no/microfrontend/">
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Microforntend - Min side utvikler-docs</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
+        <link href="../styles.css" rel="stylesheet">
+        <link href="../styles/container.css" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">Min side utvikler-docs</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href="../utkast/" class="nav-link">Utkast</a>
+                            </li>
+                            <li class="navitem active">
+                                <a href="./" class="nav-link">Microforntend</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Varsler <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../varsler/" class="dropdown-item">Varsler</a>
+</li>
+                                    
+<li>
+    <a href="../varsler/produsere/" class="dropdown-item">Produsere varsler</a>
+</li>
+                                    
+<li>
+    <a href="../varsler/konsumere/" class="dropdown-item">Konsumere varsler</a>
+</li>
+                                    
+<li>
+    <a href="../varsler/migrere/" class="dropdown-item">Migrere fra AVRO</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../utkast/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../varsler/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="2"><a href="#nice-hvordan-kan-mitt-team-fa-en-mikrofrontend-pa-min-side" class="nav-link">Nice! Hvordan kan mitt team få en mikrofrontend på min side?</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#sprak" class="nav-link">Språk</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#shared-dependencies" class="nav-link">Shared dependencies</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#faq" class="nav-link">FAQ</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#observability" class="nav-link">Observability</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<p><img alt="alt text" src="../katt/katt-utkast.svg" title="Title" /></p>
+<p>Mikrofrontends gir teamene mulighet til å presentere den viktigste informasjonen til brukerne sine på Min side, som et
+lite butikkvindu inn til teamenes egne løsninger. Dette gjøres gjennom at mikrofrontenden blir bygget til ESM og
+deretter hentes inn som en remote ES-Modul.</p>
+<h2 id="nice-hvordan-kan-mitt-team-fa-en-mikrofrontend-pa-min-side">Nice! Hvordan kan mitt team få en mikrofrontend på min side?</h2>
+<h3 id="1-lag-en-mikrofrontend">1. Lag en mikrofrontend!</h3>
+<p>Om du vil bruke et template finnes det <a href="https://github.com/navikt/tms-mikrofrontend-template-vitets">ett for typescript</a> og 
+   <a href="https://github.com/navikt/tms-mikrofrontend-template-vitejs">ett for javascript</a></p>
+<h3 id="2-sett-opp-oppdatering-av-url-til-den-gjeldene-javascript-koden">2. Sett opp oppdatering av url til den gjeldene javascript-koden</h3>
+<ol>
+<li>Be om å få installert min-side-repo-authenticator</li>
+<li>Legg inn action-secrets PRIVATE_KEY og APP_ID (disse får du fra min-side teamet)</li>
+<li>Legg inn oppdateringsworkflow i github workflows mappa til prosjektet</li>
+</ol>
+<pre><code class="language-yaml">name: Update microfrontend-manifest
+on: &lt;ønsket hook&gt;
+
+jobs:
+  trigger_manifest_update:
+    uses: navikt/tms-deploy/.github/workflows/oppdater-mikrofrontend-manifest.yaml@main
+    with:
+      cluster: &quot;&lt;cluster: dev-gcp eller prod-gcp&gt;&quot;
+      id: &quot;&lt;microfrontend_id&gt;&quot;
+      url: &quot;&lt;url til js-kode i cdn&gt;&quot;
+    secrets: inherit
+ ```
+
+#### Hvordan vet jeg hva urlen til javascriptet er?
+Om du bruker `navikt/frontend/actions/cdn-upload/v1@main`:
+
+1. Hent path fra cdn-upload outputs(`${{ &lt;steps/jobs&gt;.&lt;id til cdn-upload step eller job&gt;.outputs.uploaded }}`)
+2. Legg til host (`https://cdn.nav.no`)
+```bash
+files=&quot;${{ &lt;steps/jobs&gt;.&lt;id til cdn-upload step eller job&gt;.outputs.uploaded }}&quot;
+cdn_path=$(echo $files|cut -d &quot;,&quot; -f &lt;index til js-url i liste&gt;)
+cdn_url=&quot;https://cdn.nav.no/$cdn_path&quot;
+</code></pre>
+<p>Eksempel finnes i
+<a href="https://github.com/navikt/tms-mikrofrontend-selector/tree/main/.github/workflows/manifest-triggere">workflows-mappa til tms-mikrofrontend-selector</a>
+NB: Urlen skal være til <strong>js-koden</strong>, ikke json-manifest.</p>
+<h3 id="3-koble-til-lsningen">3. Koble til løsningen</h3>
+<ol>
+<li>Opprett et issue i <a href="https://github.com/navikt/tms-min-side">tms-min-side repoet</a>, be om å få lagt inn
+  mikrofrontenden i kode og avtal en <code>&lt;microfrontendId&gt;</code></li>
+<li>Koble på <a href="https://github.com/navikt/min-side-microfrontend-topic-iac">min-side-microfrontend-topicet</a></li>
+</ol>
+<p>## Enable/disable </p>
+<p>Om en mikrofrontend vises avhenger av om den er enablet for en gitt bruker. Dette setter du ved å sende en melding på
+  microfrontend-topicet.</p>
+<p>### Enable-melding når en bruker skal se mikrofrontenden</p>
+<pre><code class="language-json">{
+    &quot;@action&quot;: &quot;enable&quot;,
+    &quot;ident&quot;: &lt;ident for bruker: fnr/dnr&gt;,
+    &quot;microfrontend_id&quot;: &lt;microfrontendId&gt;,
+    &quot;sensitivitet&quot;: &lt;nivå som kreves for å se innholdet i mikrofrontenden, gyldige verdier: substantial og high&gt;,
+    &quot;@initiated_by&quot;: &lt;ditt-team&gt;
+}
+</code></pre>
+<p>### Disable-melding når bruker ikke skal se mikrofrontenden lenger</p>
+<pre><code class="language-json">{
+    &quot;@action&quot;:  &quot;disable&quot;,
+    &quot;ident&quot;: &lt;ident for bruker: fnr/dnr&gt;,
+    &quot;microfrontend_id&quot;: &lt;microfrontendId&gt;,
+    &quot;@initiated_by&quot;:&lt;ditt-team&gt;
+}
+</code></pre>
+<h3 id="meldingsbygger-bibliotek">Meldingsbygger-bibliotek</h3>
+<p>Det er tilgjengelig på <a href="https://github.com/navikt/tms-mikrofrontend-selector/packages/1875650">github packages</a></p>
+<h2 id="sprak">Språk</h2>
+<p>Vi bruker språkvelgeren i Dekoratøren. For å vite hvilket språk man skal vise så sender vi et event via session storage.
+Man kan enkelt sette opp en provider som vi har
+gjort <a href="https://github.com/navikt/tms-utkast-mikrofrontend/blob/main/src/provider/LanguageProvider.tsx">her</a>.</p>
+<h2 id="shared-dependencies">Shared dependencies</h2>
+<p>For å unngå å ha for store bundles så deler vi noen dependencies på tvers av apper. Disse hentes ned en gang ved første
+page load fra en CDN og caches i browseren. Foreløpig ligger react, react-dom og ds-css i CDNen.</p>
+<p>CSSen fra designsystemet hentes i skallet til Min side. Denne skal deles på tvers og ikke bundles med i mikrofrontenden.
+Vi bør ligge på samme major versjon, veilendende versjon
+ligger <a href="https://github.com/navikt/tms-min-side/blob/main/index.html">her</a>.</p>
+<h2 id="faq">FAQ</h2>
+<h3 id="hva-br-jeg-velge-som-mikrofrontend-id">Hva bør jeg velge som mikrofrontend-id?</h3>
+<p><code>&lt;område&gt;.&lt;tjenste&gt;</code> er et bra utgangspunkt, prøv å holde det så generelt som mulig, men gjenkjenbart.</p>
+<h3 id="hvordan-skal-mikrofrontenden-se-ut">Hvordan skal mikrofrontenden se ut?</h3>
+<p>Vi bruker en modifisert versjon av designsystemet. Ta kontakt med oss for å se hvordan en ny mikrofrontend kan passe inn
+i Min side.</p>
+<h3 id="hvordan-fungerer-amplitude">Hvordan fungerer amplitude?</h3>
+<p>Amplitude fungerer som vanlig (
+se <a href="https://github.com/navikt/aap-min-side-microfrontend/blob/main/src/utils/amplitude.ts">AAP sin mikrofrontend</a>).
+Dere kan fritt logge de eventene dere vil, men for å sette opp målinger på tvers i Amplitude har vi disse føringene
+på <a href="https://github.com/navikt/analytics-taxonomy/tree/main/events/navigere">navigasjonseventer</a>:</p>
+<ul>
+<li>komponent: tekstlig representasjon av komponenten det ble trykket på.</li>
+</ul>
+<p>Videre anbefaler vi å følge <a href="https://github.com/navikt/analytics-taxonomy">taksonominen</a> i NAV.</p>
+<h3 id="hva-er-sensitivitet">Hva er sensitivitet?</h3>
+<p>Feltet <code>sensitivitet</code> i enablemeldingen korresponderer direkte til
+de <a href="https://docs.digdir.no/docs/idporten/oidc/oidc_protocol_id_token#acr-values">nye acr-veridene</a> i IDporten token.</p>
+<ul>
+<li>Om informasjonen som vises krever <code>idporten-loa-high</code> innlogging skal <code>sensitivitet</code> settes til <code>high</code>. </li>
+<li>Om informasjonen kan vises uavhengig av innloggingsnivå skal <code>sensitivitet</code> settes til <code>substantial</code>.</li>
+</ul>
+<p>Om sensitivitet ikke er spesifisert i kafka-meldingen settes det alltid til <code>high</code> hos oss.
+Om en person logger inn med <code>idporten-loa-substantial</code> og det finnes mikrofrontender som personen kan se
+på <code>idporten-loa-high</code> vil bruker få beskjed om dette og link til en "stepup"
+login. Se også <a href="https://docs.nais.io/security/auth/idporten/#security-levels">NAIS docs</a> for mer info om acr-verdiene</p>
+<h2 id="observability">Observability</h2>
+<p>Hendelser blir logget til kibana med customfelter for filtrering \
+Alle microfrontends: <code>x_contenttype:"microfrontend</code> \
+Spesifik microfrontend: <code>x_minside_id :"&lt;microfrontendid&gt;"</code> </p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../js/jquery-3.6.0.min.js"></script>
+        <script src="../js/bootstrap.min.js"></script>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js"></script>
+        <script src="../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
