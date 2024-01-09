@@ -1,0 +1,10 @@
+site_name: Min side utvikler-docs
+site_url: https://tms-dokumentasjon.intern.nav.no #TODO fikse forskjellige url-er
+nav:
+  - Forside: index.md
+  - Utkast: utkast.md
+  - Microforntend: microfrontend.md
+  - Varsler: varsler/index.md
+plugins:
+  - search
+  - external-markdown
