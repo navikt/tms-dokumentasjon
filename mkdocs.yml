@@ -1,15 +1,16 @@
 site_name: Min side utvikler-docs
 nav:
   - Utkast: utkast.md
-  - Microforntend: microfrontend.md
+  - Microfrontend: microfrontend.md
   - Varsler:
       - Varsler: varsler/index.md
       - Produsere varsler: varsler/produsere.md
       - Konsumere varsler: varsler/konsumere.md
       - Migrere fra AVRO: varsler/migrere.md
+  - Innholdsguide: guide.md
 
 extra_css:
-  - styles.css
+  - styles/styles.css
   - styles/container.css
 
 plugins:
