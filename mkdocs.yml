@@ -16,3 +16,6 @@ extra_css:
 plugins:
   - search
   - external-markdown
+theme:
+  name: mkdocs
+  navigation_depth: 3
