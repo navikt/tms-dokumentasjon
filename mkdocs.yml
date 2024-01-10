@@ -8,6 +8,7 @@ nav:
       - Konsumere varsler: varsler/konsumere.md
       - Migrere fra AVRO: varsler/migrere.md
   - Innholdsguide: guide.md
+not_in_nav: index.md
 
 extra_css:
   - styles/styles.css
@@ -19,3 +20,5 @@ plugins:
 theme:
   name: mkdocs
   navigation_depth: 3
+markdown_extensions:
+  nl2br: { }
