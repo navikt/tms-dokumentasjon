@@ -1,3 +1,6 @@
+---
+  toc: false
+---
 # Varsler på min side
 
 Varsler gjør det mulig å sende beskjeder og oppgaver til en bruker som vises i varselbjella og

@@ -1,3 +1,6 @@
+---
+  toc: false
+---
 # Innholdsguide
 
 Usikker på hvilken type innholdet ditt er?

@@ -1,3 +1,6 @@
+---
+  toc: false
+---
 ![alt text](./katt/katt-pc.svg "Title")
 
 # Utvikler docs
