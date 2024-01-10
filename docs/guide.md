@@ -1,7 +1,7 @@
 # Innholdsguide
 
 Usikker på hvilken type innholdet ditt er?
-Sjekk ut figma-veilederen vår!
+Sjekk ut [figma-veilederen vår](https://www.figma.com/file/0dMvVxZCX3esQILTeQH0st/%E2%9C%85-Slik-bruker-du-min-side-produkter?type=whiteboard&node-id=0-1)!
 
 <iframe
 title={"Figma fil: slik bruker du mine sider-produkter"}

@@ -3,7 +3,7 @@ nav:
   - Utkast: utkast.md
   - Microfrontend: microfrontend.md
   - Varsler:
-      - Varsler: varsler/index.md
+      - Oversikt: varsler/index.md
       - Produsere varsler: varsler/produsere.md
       - Konsumere varsler: varsler/konsumere.md
       - Migrere fra AVRO: varsler/migrere.md
@@ -16,3 +16,6 @@ extra_css:
 plugins:
   - search
   - external-markdown
+theme:
+  name: mkdocs
+  navigation_depth: 3
