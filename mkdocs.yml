@@ -13,6 +13,7 @@ not_in_nav: index.md
 extra_css:
   - styles/styles.css
   - styles/container.css
+  - styles/blocks.css
 
 plugins:
   - search

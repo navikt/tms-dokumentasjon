@@ -1,2 +1,19 @@
 {% extends "base.html" %}
 {% block next_prev %}{% endblock %}
+{%- block content %}
+<div class="col-md-3">{% include "toc.html" %}</div>
+<div class="col-md-9" role="main">{% include "content.html" %}</div>
+{%- endblock %}
+{%- block footer %}
+<div class="footer">
+    <div class="footer-content">
+        <p>Min side på slack</p>
+        <ul>
+            <li><a href="https://nav-it.slack.com/archives/C9CJ794PP">team-personbruker</a></li>
+            <li><a href="https://nav-it.slack.com/archives/CR61BPH7G">minside-varsler</a></li>
+            <li><a href="https://nav-it.slack.com/archives/C04E3K5MMMY">minside-utkast</a></li>
+            <li><a href="https://nav-it.slack.com/archives/C04V21LT27P">minside-microfrontends</a></li>
+        </ul>
+    </div>
+</div>
+{%- endblock %}
