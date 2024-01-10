@@ -128,8 +128,8 @@
                     <div class="col-md-9" role="main">
 
 <h1 id="utkast-pa-min-side">Utkast på min side</h1>
-<p><em>– en enklere inngang til påbegynte søknader og dokument-innsendinger</em> \
-Utkast er underside av min side (tilgjengelig på <code>&lt;navurl&gt;/minside/utkast</code>) der bruker
+<p><em>– en enklere inngang til påbegynte søknader og dokument-innsendinger</em> \<br />
+Utkast er underside av min side (tilgjengelig på <code>&lt;navurl&gt;/minside/utkast</code>) der bruker<br />
 skal kunne finne søknader og dokument-innsendinger hen har begynt å fylle ut, men ikke sendt inn enda.<br></p>
 <ul>
 <li>Utkast er bruker-initiert</li>
@@ -138,14 +138,14 @@ skal kunne finne søknader og dokument-innsendinger hen har begynt å fylle ut, 
 <li>Eksempel:  En påbegynt søknad. Den kan sendes inn, eller en bruker kan velge å ikke sende den inn.</li>
 </ul>
 <h2 id="hvordan-fungerer-det">Hvordan fungerer det?</h2>
-<p>Koble på <a href="https://github.com/navikt/min-side-utkast-topic-iac">min-side-utkast-iac-topicet</a> og kjør på! \
-<em>utkast støtter tre hendelser: created, updated, og deleted</em>
-1. Send en created-melding når en bruker har lagra ett utkast
-2. Send en updated-melding hvis url-en eller tittelen til utkastet har endret seg.
+<p>Koble på <a href="https://github.com/navikt/min-side-utkast-topic-iac">min-side-utkast-iac-topicet</a> og kjør på! \<br />
+<em>utkast støtter tre hendelser: created, updated, og deleted</em><br />
+1. Send en created-melding når en bruker har lagra ett utkast<br />
+2. Send en updated-melding hvis url-en eller tittelen til utkastet har endret seg.<br />
 3. Send en deleted melding når bruker enten har sendt inn eller hvis utkastet har blitt slettet enten av bruker eller systemet.</p>
 <h2 id="kafka">Kafka</h2>
-<p><strong>topic</strong>: aapen-utkast-v1 \
-<strong>tilgang</strong>: <a href="https://github.com/navikt/min-side-utkast-topic-iac">min-side-utkast-iac-topic</a> \
+<p><strong>topic</strong>: aapen-utkast-v1 \<br />
+<strong>tilgang</strong>: <a href="https://github.com/navikt/min-side-utkast-topic-iac">min-side-utkast-iac-topic</a> \<br />
 <strong>hendelser</strong>: <code>created</code>, <code>updated</code>, <code>deleted</code></p>
 <h3 id="meldingsformat">meldingsformat</h3>
 <h4 id="create-og-update">create og update</h4>
@@ -171,16 +171,16 @@ skal kunne finne søknader og dokument-innsendinger hen har begynt å fylle ut, 
   &quot;utkastId&quot;: &quot;&lt;uuid&gt;&quot;
 }
 </code></pre>
-<p>Det finnes også et <a href="https://github.com/navikt/tms-utkast/pkgs/container/tms-utkast%2Ftms-utkast">message-builder bibliotek</a> som lager meldingene for deg.
+<p>Det finnes også et <a href="https://github.com/navikt/tms-utkast/pkgs/container/tms-utkast%2Ftms-utkast">message-builder bibliotek</a> som lager meldingene for deg.<br />
 NB! Det er kun ting som <strong>ikke er innsendt</strong> som skal ligge på utkast-siden.</p>
 <h2 id="observability">Observability</h2>
-<p>Hendelser blir logget til kibana med customfelter for filtrering \
-Alle utkast: <code>x_contenttype:"utkast"</code> \
+<p>Hendelser blir logget til kibana med customfelter for filtrering \<br />
+Alle utkast: <code>x_contenttype:"utkast"</code> \<br />
 Spesifikt utkast: <code>x_minside_id :"&lt;utkastid&gt;"</code> </p>
 <h2 id="amplitude-malinger">Amplitude målinger</h2>
-<p><a href="https://github.com/navikt/tms-utkast-mikrofrontend">Utkast-frontenden</a> logger
-ett <a href="https://github.com/navikt/analytics-taxonomy/tree/main/events/skjema%20%C3%A5pnet">skjema åpent</a> 
-event med <code>url</code> som payload til amplitude når bruker klikker på ett utkast. Om teamet ditt ønsker å få med feltene 
+<p><a href="https://github.com/navikt/tms-utkast-mikrofrontend">Utkast-frontenden</a> logger<br />
+ett <a href="https://github.com/navikt/analytics-taxonomy/tree/main/events/skjema%20%C3%A5pnet">skjema åpent</a> <br />
+event med <code>url</code> som payload til amplitude når bruker klikker på ett utkast. Om teamet ditt ønsker å få med feltene <br />
 <code>skjemakode</code> og <code>skjemanavn</code> må metricsfeltet være tilstede og komplett i create-meldingen</p>
 <p><img alt="Katten min som gjemmer seg bak ett papir med skrift på" src="../katt/katt-utkast.svg" title="Title" /></p></div>
             </div>

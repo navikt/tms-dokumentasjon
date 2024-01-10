@@ -168,10 +168,10 @@
                     <div class="col-md-9" role="main">
 
 <h1 id="komme-i-gang-med-varsler">Komme i gang med varsler</h1>
-<p><em>For brukeropplevelsen er det viktig at du bruker riktig type varsel. Ta gjerne en ekstrasjekk
+<p><em>For brukeropplevelsen er det viktig at du bruker riktig type varsel. Ta gjerne en ekstrasjekk<br />
 med <a href="https://tms-dokumentasjon.intern.nav.no/innholdsguide">innholdsguiden vår</a>.</em></p>
 <ol>
-<li>Kafka tilgang: Opprett en pull-request mot topic <code>aapen-brukervarsel-v1</code>
+<li>Kafka tilgang: Opprett en pull-request mot topic <code>aapen-brukervarsel-v1</code><br />
    i <a href="https://github.com/navikt/min-side-brukervarsel-topic-iac">min-side-brukervarsel-topic-iac</a>.</li>
 <li>Koble på topicene.</li>
 <li>Send event!</li>
@@ -206,27 +206,27 @@ med <a href="https://tms-dokumentasjon.intern.nav.no/innholdsguide">innholdsguid
 <p><strong>NB! Det er viktig å huske å sende inaktiver-event for oppgave-varsler. hvis ikke vil det se ut for personen som at oppgaven ikke er utført.</strong></p>
 <p>Alle varsler slettes 1 år etter mottaksdato.</p>
 <h2 id="ekstern-varsling">Ekstern varsling</h2>
-<p>Produsent kan velge om bruker også skal varsles via eksterne kanaler (sms og epost). Produsent kan velge preferert kanal,
+<p>Produsent kan velge om bruker også skal varsles via eksterne kanaler (sms og epost). Produsent kan velge preferert kanal,<br />
 og hvorvidt standardtekst skal overskrives. </p>
 <p>Standardtekst er av typen: <code>Hei! Du har fått en ny &lt;varseltype&gt; fra NAV. Logg inn på NAV for å se hva varselet gjelder. Vennlig hilsen NAV</code></p>
-<p>Eksterne varseltekster skal ikke inneholde lenker. Det er også produsentens ansvar å ikke sende sensitiv informasjon på
+<p>Eksterne varseltekster skal ikke inneholde lenker. Det er også produsentens ansvar å ikke sende sensitiv informasjon på<br />
 epost og sms.</p>
 <h3 id="revarsling">Revarsling</h3>
-<p>Varsler med typen oppgave eller innboks får automatisk revarsling dersom varselet ikke er ferdigstilt etter et
+<p>Varsler med typen oppgave eller innboks får automatisk revarsling dersom varselet ikke er ferdigstilt etter et<br />
 bestemt antall dager. Oppgaver blir revarsler etter 7 dager, og innboks blir revarslet etter 4 dager.</p>
 <h3 id="overskriving-av-standardtekster">Overskriving av standardtekster</h3>
-<p>Dersom en velger å overskrive standardtekster for epost/sms, er det anbefalt å overskrive samtlige tekster, selv om
+<p>Dersom en velger å overskrive standardtekster for epost/sms, er det anbefalt å overskrive samtlige tekster, selv om<br />
 kun 1 kanal er preferert. Dette er fordi bruker kan motta varsler via annen kanal enn preferansen.</p>
 <h2 id="overvaking-av-varsler">Overvåking av varsler</h2>
 <p>Produsenter kan lytte på topic <code>aapen-varsel-hendelse-v1</code> for å følge med på status på varsler.</p>
-<p>Per i dag er det kun mulig å lytte på når varsler aktiveres/inaktiveres. Det vil etter hvert bli mulig å lytte på
+<p>Per i dag er det kun mulig å lytte på når varsler aktiveres/inaktiveres. Det vil etter hvert bli mulig å lytte på<br />
 status for eksern varslign og andre typer hendelser.</p>
-<p>Produsenter som ønsker å lytte på status for ekstern varsling har også mulighet til å lytte direkte
+<p>Produsenter som ønsker å lytte på status for ekstern varsling har også mulighet til å lytte direkte<br />
 på topic <a href="https://github.com/navikt/dokumenthandtering-iac/tree/master">aapen-dok-notifikasjon-status</a> tilørende team dokumenthåndtering.</p>
 <h2 id="kafka-schemas-og-buildere">Kafka, schemas og buildere</h2>
-<p>Min side varsler bruker ikke lenger Avro for schema-validering og serialisering. Produsenter sender eventer direkte på
-json-format. Vi tilbyr to sett med buildere for henholdsvis java- og kotlin-prosjekter. Det er ikke strengt nødvendig å 
-bruke disse, men sterkt anbefalt. Builderne sørger for at format er riktig og har gjør forhåndsvalidering av innhold. 
+<p>Min side varsler bruker ikke lenger Avro for schema-validering og serialisering. Produsenter sender eventer direkte på<br />
+json-format. Vi tilbyr to sett med buildere for henholdsvis java- og kotlin-prosjekter. Det er ikke strengt nødvendig å <br />
+bruke disse, men sterkt anbefalt. Builderne sørger for at format er riktig og har gjør forhåndsvalidering av innhold. <br />
 Det er også anbefalt å bruke varselId som kafka-nøkkel, for å opprettholde kronologi per enkelt varsel.</p>
 <p>Builderne finnes i følgende bibliotek:</p>
 <h3 id="github-maven-repository">Github Maven repository</h3>
@@ -345,11 +345,11 @@ Det er også anbefalt å bruke varselId som kafka-nøkkel, for å opprettholde k
 </code></pre>
 <h3 id="eksempel-med-buildere">Eksempel med buildere</h3>
 <p>Eksempel på oppretting av Oppgave-varsel for bruker <code>12345678901</code> med id <code>aabbccdd-abcd-1234-5678-abcdef123456</code>. </p>
-<p>Varselet skal: 
-- ha sensitivitet <code>high</code>
-- lenke til <code>https://www.nav.no</code>
-- løpe ut 14 dager etter oppretting
-- ha en norsk (default) og en engelsk tekst
+<p>Varselet skal: <br />
+- ha sensitivitet <code>high</code><br />
+- lenke til <code>https://www.nav.no</code><br />
+- løpe ut 14 dager etter oppretting<br />
+- ha en norsk (default) og en engelsk tekst<br />
 - varsles på sms med standardtekst.</p>
 <h4 id="med-kotlin-builder">Med kotlin-builder</h4>
 <pre><code class="language-kotlin">val kafkaValueJson = VarselActionBuilder.opprett {
