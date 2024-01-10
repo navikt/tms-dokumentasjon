@@ -42,7 +42,7 @@ jobs:
             ${{ runner.os }}-pip-
 
       - name: Install dependencies
-        run: python3 -m pip install mkdocs mkdocs-embed-external-markdown
+        run: python3 -m pip install mkdocs mkdocs-embed-external-markdown mkdocs-i18n
 
       - run: mkdocs build
 

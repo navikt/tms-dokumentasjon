@@ -20,5 +20,6 @@ plugins:
 theme:
   name: mkdocs
   navigation_depth: 3
+  locale: nb
 markdown_extensions:
   nl2br: { }
