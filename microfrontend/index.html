@@ -43,7 +43,7 @@
                                 <ul class="dropdown-menu">
                                     
 <li>
-    <a href="../varsler/" class="dropdown-item">Varsler</a>
+    <a href="../varsler/" class="dropdown-item">Oversikt</a>
 </li>
                                     
 <li>
@@ -98,28 +98,60 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
         <ul class="nav flex-column">
             
+            <li class="nav-item" data-level="1"><a href="#microfrontends-pa-min-side" class="nav-link">Microfrontends på min side</a>
+              <ul class="nav flex-column">
             <li class="nav-item" data-level="2"><a href="#nice-hvordan-kan-mitt-team-fa-en-mikrofrontend-pa-min-side" class="nav-link">Nice! Hvordan kan mitt team få en mikrofrontend på min side?</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#1-lag-en-mikrofrontend" class="nav-link">1. Lag en mikrofrontend!</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            
+            <li class="nav-item" data-level="3"><a href="#2-sett-opp-oppdatering-av-url-til-den-gjeldene-javascript-koden" class="nav-link">2. Sett opp oppdatering av url til den gjeldene javascript-koden</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="3"><a href="#3-koble-til-lsningen" class="nav-link">3. Koble til løsningen</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="3"><a href="#meldingsbygger-bibliotek" class="nav-link">Meldingsbygger-bibliotek</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
             <li class="nav-item" data-level="2"><a href="#sprak" class="nav-link">Språk</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            
             <li class="nav-item" data-level="2"><a href="#shared-dependencies" class="nav-link">Shared dependencies</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            
             <li class="nav-item" data-level="2"><a href="#faq" class="nav-link">FAQ</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#hva-br-jeg-velge-som-mikrofrontend-id" class="nav-link">Hva bør jeg velge som mikrofrontend-id?</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            
+            <li class="nav-item" data-level="3"><a href="#hvordan-skal-mikrofrontenden-se-ut" class="nav-link">Hvordan skal mikrofrontenden se ut?</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="3"><a href="#hvordan-fungerer-amplitude" class="nav-link">Hvordan fungerer amplitude?</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="3"><a href="#hva-er-sensitivitet" class="nav-link">Hva er sensitivitet?</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
             <li class="nav-item" data-level="2"><a href="#observability" class="nav-link">Observability</a>
               <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
         </ul>
@@ -127,7 +159,7 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<p><img alt="alt text" src="../katt/katt-utkast.svg" title="Title" /></p>
+<h1 id="microfrontends-pa-min-side">Microfrontends på min side</h1>
 <p>Mikrofrontends gir teamene mulighet til å presentere den viktigste informasjonen til brukerne sine på Min side, som et
 lite butikkvindu inn til teamenes egne løsninger. Dette gjøres gjennom at mikrofrontenden blir bygget til ESM og
 deretter hentes inn som en remote ES-Modul.</p>
@@ -234,7 +266,8 @@ login. Se også <a href="https://docs.nais.io/security/auth/idporten/#security-l
 <h2 id="observability">Observability</h2>
 <p>Hendelser blir logget til kibana med customfelter for filtrering \
 Alle microfrontends: <code>x_contenttype:"microfrontend</code> \
-Spesifik microfrontend: <code>x_minside_id :"&lt;microfrontendid&gt;"</code> </p></div>
+Spesifik microfrontend: <code>x_minside_id :"&lt;microfrontendid&gt;"</code> </p>
+<p><img alt="Katten Min som sitter på ett garnnøste" src="../katt/katt-n%C3%B8ste.svg" title="Nøstekatt" /></p></div>
             </div>
         </div>
 
