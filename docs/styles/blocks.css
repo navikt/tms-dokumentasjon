@@ -15,3 +15,20 @@
 .footer ul{
     list-style: '#';
 }
+
+.custom-toc .bg-secondary{
+background-color: var(--background-color)!important;
+}
+
+.custom-toc .card {
+    border-right: var(--divider-color) solid 0.5px;
+    border-radius: 0;
+    border-left: none;
+    border-top: none;
+    border-bottom: none;
+}
+
+.no-toc-page {
+    max-width: 800px;
+    margin: 0 auto 0 auto;
+}
