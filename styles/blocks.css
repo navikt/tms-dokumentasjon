@@ -15,6 +15,7 @@
 
 .footer ul {
     list-style: '#';
+    color: var(--a-text-action);
 }
 
 .custom-toc .bg-secondary {
