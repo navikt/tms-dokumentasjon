@@ -14,6 +14,8 @@ extra_css:
   - styles/styles.css
   - styles/container.css
   - styles/blocks.css
+extra_javascript:
+  - scripts/override_navbar-background.js
 
 plugins:
   - search

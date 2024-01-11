@@ -1,13 +1,13 @@
 {% extends "base.html" %}
+
 {% block next_prev %}{% endblock %}
 {%- block content %}
 {% if 'toc' not in page.meta or page.meta.toc != false %}
 <div class="col-md-3">{% include "toc.html" %}</div>
-<div class="col-md-9" role="main">{% include "content.html" %}</div>
+<div class="col-md-9 tms-theme" role="main">{% include "content.html" %}</div>
 {% else %}
 <div class="col-md-12 no-toc-page" role="main">{% include "content.html" %}</div>
 {% endif %}
-
 {%- endblock %}
 {%- block footer %}
 <div class="footer">

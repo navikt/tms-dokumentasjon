@@ -1,23 +1,24 @@
 @import "styles.css";
 
 .footer {
-    border-top: solid var(--footer-color) 1px;
+    border-top: solid var(--divider-color-subtle);;
     color: var(--default-text);
     padding-top: 10px;
     padding-bottom: 20px;
 }
-.footer-content{
+
+.footer-content {
     text-align: left;
     width: 400px;
     margin: 0 auto 0 auto;
 }
 
-.footer ul{
+.footer ul {
     list-style: '#';
 }
 
-.custom-toc .bg-secondary{
-background-color: var(--background-color)!important;
+.custom-toc .bg-secondary {
+    background-color: var(--background-color) !important;
 }
 
 .custom-toc .card {
@@ -32,3 +33,9 @@ background-color: var(--background-color)!important;
     max-width: 800px;
     margin: 0 auto 0 auto;
 }
+
+.tms-navbar {
+    background-color: var(--background-color);
+    border-bottom: solid var(--divider-color-subtle);
+}
+
