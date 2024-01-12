@@ -1,5 +1,13 @@
 @import "styles.css";
 
+.tms-navbar a,
+.tms-navbar a:visited {
+    padding: 5px;
+    margin-left: 10px;
+    color: var(--text-800);
+    font-size: 16px;
+}
+
 footer {
     width: 100%;
     min-height: 15vh;
@@ -20,6 +28,7 @@ footer a {
     display: block;
     color: white;
     margin: 5px auto 0 auto;
+    text-decoration: none;
 }
 
 footer h2 {
@@ -33,6 +42,10 @@ footer h2 {
 
 footer ul {
     list-style: '#';
+}
+
+.custom-toc a{
+    text-decoration: none;
 }
 
 .custom-toc .bg-secondary {
