@@ -21,6 +21,10 @@
 
 }
 
+a {
+    text-decoration: underline;
+}
+
 body {
     font-family: Hack, monospace !important;
     font-size: 18px;
