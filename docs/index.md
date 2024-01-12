@@ -1,5 +1,6 @@
 ---
   toc: false
+  custom_class: home
 ---
 ![alt text](./katt/katt-pc.svg "Title")
 

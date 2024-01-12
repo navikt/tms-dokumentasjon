@@ -1,24 +1,20 @@
 {% extends "base.html" %}
-
 {% block next_prev %}{% endblock %}
 {%- block content %}
 {% if 'toc' not in page.meta or page.meta.toc != false %}
 <div class="col-md-3">{% include "toc.html" %}</div>
 <div class="col-md-9 tms-theme" role="main">{% include "content.html" %}</div>
 {% else %}
-<div class="col-md-12 no-toc-page" role="main">{% include "content.html" %}</div>
+<div class="col-md-12 no-toc-page {{ page.meta.custom_class }}" role="main">{% include "content.html" %}</div>
 {% endif %}
 {%- endblock %}
 {%- block footer %}
 <div class="footer">
-    <div class="footer-content">
-        <p>Min side på slack</p>
-        <ul>
-            <li><a href="https://nav-it.slack.com/archives/C9CJ794PP">team-personbruker</a></li>
-            <li><a href="https://nav-it.slack.com/archives/CR61BPH7G">minside-varsler</a></li>
-            <li><a href="https://nav-it.slack.com/archives/C04E3K5MMMY">minside-utkast</a></li>
-            <li><a href="https://nav-it.slack.com/archives/C04V21LT27P">minside-microfrontends</a></li>
-        </ul>
-    </div>
+    <section>
+        <h2 id="slack">Min side på slack</h2>
+        <a href="https://nav-it.slack.com/archives/C9CJ794PP">#team-personbruker</a>
+        <a href="https://nav-it.slack.com/archives/CR61BPH7G">#brukernotifikasjoner</a>
+        <a href="https://nav-it.slack.com/archives/C04E3K5MMMY">#utkast</a>
+    </section>
 </div>
 {%- endblock %}
