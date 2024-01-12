@@ -1,21 +1,38 @@
 @import "styles.css";
 
-.footer {
-    border-top: solid var(--divider-color-subtle);;
-    color: var(--default-text);
+footer {
+    width: 100%;
+    min-height: 15vh;
+    background-color: var(--footer-color);
+    color: white;
+    text-align: left;
     padding-top: 10px;
     padding-bottom: 20px;
+    margin: 0;
+
 }
 
-.footer-content {
-    text-align: left;
-    width: 400px;
-    margin: 0 auto 0 auto;
+footer a {
+    max-width: 800px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    display: block;
+    color: white;
+    margin: 5px auto 0 auto;
 }
 
-.footer ul {
+footer h2 {
+    color: white;
+    max-width: 800px;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 24px;
+    margin: 40px auto 15px auto;
+}
+
+footer ul {
     list-style: '#';
-    color: var(--a-text-action);
 }
 
 .custom-toc .bg-secondary {
@@ -37,6 +54,5 @@
 
 .tms-navbar {
     background-color: var(--background-color);
-    border-bottom: solid var(--divider-color-subtle);
 }
 
