@@ -44,7 +44,7 @@ footer ul {
     list-style: '#';
 }
 
-.custom-toc a{
+.custom-toc a {
     text-decoration: none;
 }
 
@@ -60,6 +60,12 @@ footer ul {
     border-bottom: none;
 }
 
+
+.bs-sidebar .nav > li > a.active, .bs-sidebar .nav > li > a.active {
+    font-weight: bold;
+}
+
+
 .no-toc-page {
     max-width: 800px;
     margin: 0 auto 0 auto;
@@ -69,3 +75,16 @@ footer ul {
     background-color: var(--background-color);
 }
 
+.tms-navbar ul {
+    margin: 0 auto;
+}
+
+.tms-navbar .active-nav {
+    text-decoration: none;
+    color: var(--text-800);
+    font-weight: 600;
+}
+
+.tms-navbar .container > a:first-child {
+    text-decoration: none;
+}

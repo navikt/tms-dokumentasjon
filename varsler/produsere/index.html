@@ -91,66 +91,30 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
         <ul class="nav flex-column">
             
-    <li class="nav-item" data-level="1"><a href="#komme-i-gang-med-varsler" class="nav-link">Komme i gang med varsler</a>
+    <li class="nav-item"><a href="#komme-i-gang-med-varsler" class="nav-link">Komme i gang med varsler</a>
         <ul class="nav flex-column">
-    <li class="nav-item" data-level="2"><a href="#varseltyper" class="nav-link">Varseltyper</a>
-        <ul class="nav flex-column">
-        </ul>
-    </li>
-    <li class="nav-item" data-level="2"><a href="#ekstern-varsling" class="nav-link">Ekstern varsling</a>
-        <ul class="nav flex-column">
-    <li class="nav-item" data-level="3"><a href="#revarsling" class="nav-link">Revarsling</a>
+    <li class="nav-item"><a href="#varseltyper" class="nav-link">Varseltyper</a>
         <ul class="nav flex-column">
         </ul>
     </li>
-    <li class="nav-item" data-level="3"><a href="#overskriving-av-standardtekster" class="nav-link">Overskriving av standardtekster</a>
+    <li class="nav-item"><a href="#ekstern-varsling" class="nav-link">Ekstern varsling</a>
         <ul class="nav flex-column">
         </ul>
     </li>
-        </ul>
-    </li>
-    <li class="nav-item" data-level="2"><a href="#overvaking-av-varsler" class="nav-link">Overvåking av varsler</a>
+    <li class="nav-item"><a href="#kafka-schemas-og-buildere" class="nav-link">Kafka, schemas og buildere</a>
         <ul class="nav flex-column">
         </ul>
     </li>
-    <li class="nav-item" data-level="2"><a href="#kafka-schemas-og-buildere" class="nav-link">Kafka, schemas og buildere</a>
-        <ul class="nav flex-column">
-    <li class="nav-item" data-level="3"><a href="#github-maven-repository" class="nav-link">Github Maven repository</a>
+    <li class="nav-item"><a href="#oppretting-av-varsel" class="nav-link">Oppretting av varsel</a>
         <ul class="nav flex-column">
         </ul>
     </li>
-        </ul>
-    </li>
-    <li class="nav-item" data-level="2"><a href="#oppretting-av-varsel" class="nav-link">Oppretting av varsel</a>
-        <ul class="nav flex-column">
-    <li class="nav-item" data-level="3"><a href="#opprett-varsel-felter" class="nav-link">Opprett-varsel felter</a>
+    <li class="nav-item"><a href="#inaktivering-av-varsel" class="nav-link">Inaktivering av varsel</a>
         <ul class="nav flex-column">
         </ul>
     </li>
-    <li class="nav-item" data-level="3"><a href="#json-format" class="nav-link">Json-format</a>
+    <li class="nav-item"><a href="#overvaking-av-varsler" class="nav-link">Overvåking av varsler</a>
         <ul class="nav flex-column">
-        </ul>
-    </li>
-    <li class="nav-item" data-level="3"><a href="#eksempel-med-buildere" class="nav-link">Eksempel med buildere</a>
-        <ul class="nav flex-column">
-        </ul>
-    </li>
-        </ul>
-    </li>
-    <li class="nav-item" data-level="2"><a href="#inaktivering-av-varsel" class="nav-link">Inaktivering av varsel</a>
-        <ul class="nav flex-column">
-    <li class="nav-item" data-level="3"><a href="#inaktiver-varsel-felter" class="nav-link">Inaktiver-varsel felter</a>
-        <ul class="nav flex-column">
-        </ul>
-    </li>
-    <li class="nav-item" data-level="3"><a href="#json-format_1" class="nav-link">Json-format</a>
-        <ul class="nav flex-column">
-        </ul>
-    </li>
-    <li class="nav-item" data-level="3"><a href="#eksempel-med-buildere_1" class="nav-link">Eksempel med buildere</a>
-        <ul class="nav flex-column">
-        </ul>
-    </li>
         </ul>
     </li>
         </ul>
@@ -161,7 +125,7 @@
 <div class="col-md-9 tms-theme" role="main">
 
 <h1 id="komme-i-gang-med-varsler">Komme i gang med varsler</h1>
-<p><em>For brukeropplevelsen er det viktig at du bruker riktig type varsel. Ta gjerne en ekstrasjekk med <a href="https://tms-dokumentasjon.intern.nav.no/innholdsguide">innholdsguiden vår</a>.</em></p>
+<p><em>For brukeropplevelsen er det viktig at du bruker riktig type varsel. Ta gjerne en ekstrasjekk med <a href="https://navikt.github.io/tms-dokumentasjon/guide/">innholdsguiden vår</a>.</em></p>
 <ol>
 <li>Kafka tilgang: Opprett en pull-request mot topic <code>aapen-brukervarsel-v1</code><br />
    i <a href="https://github.com/navikt/min-side-brukervarsel-topic-iac">min-side-brukervarsel-topic-iac</a>.</li>
@@ -204,13 +168,9 @@
 <h3 id="revarsling">Revarsling</h3>
 <p>Varsler med typen oppgave eller innboks får automatisk revarsling dersom varselet ikke er ferdigstilt etter et bestemt antall dager. Oppgaver blir revarsler etter 7 dager, og innboks blir revarslet etter 4 dager.</p>
 <h3 id="overskriving-av-standardtekster">Overskriving av standardtekster</h3>
-<p>Dersom en velger å overskrive standardtekster for epost/sms, er det anbefalt å overskrive samtlige tekster, selv om kun 1 kanal er preferert. Dette er fordi bruker kan motta varsler via annen kanal enn preferansen.</p>
-<h2 id="overvaking-av-varsler">Overvåking av varsler</h2>
-<p>Produsenter kan lytte på topic <code>aapen-varsel-hendelse-v1</code> for å følge med på status på varsler.</p>
-<p>Per i dag er det kun mulig å lytte på når varsler aktiveres/inaktiveres. Det vil etter hvert bli mulig å lytte på status for eksern varslign og andre typer hendelser.</p>
-<p>Produsenter som ønsker å lytte på status for ekstern varsling har også mulighet til å lytte direkte på topic <a href="https://github.com/navikt/dokumenthandtering-iac/tree/master">aapen-dok-notifikasjon-status</a> tilørende team dokumenthåndtering.</p>
+<p>Dersom en velger å overskrive standardtekster for epost/sms, er det anbefalt å overskrive samtlige tekster. Dette er fordi bruker kan motta varsler via annen kanal enn preferansen.</p>
 <h2 id="kafka-schemas-og-buildere">Kafka, schemas og buildere</h2>
-<p>Min side varsler bruker ikke lenger Avro for schema-validering og serialisering. Produsenter sender eventer direkte på json-format. Vi tilbyr to sett med buildere for henholdsvis java- og kotlin-prosjekter. Det er ikke strengt nødvendig å bruke disse, men sterkt anbefalt. Builderne sørger for at format er riktig og har gjør forhåndsvalidering av innhold. Det er også anbefalt å bruke varselId som kafka-nøkkel, for å opprettholde kronologi per enkelt varsel.</p>
+<p>Min side varsler bruker ikke lenger Avro for schema-validering og serialisering. Produsenter sender eventer direkte på json-format. Vi tilbyr to sett med buildere for henholdsvis java- og kotlin-prosjekter. Det er ikke strengt nødvendig å bruke disse, men sterkt anbefalt. Builderne sørger for at format er riktig og gjør forhåndsvalidering av innhold. Det er også anbefalt å bruke varselId som kafka-nøkkel, for å opprettholde kronologi per enkelt varsel.</p>
 <p>Builderne finnes i følgende bibliotek:</p>
 <h3 id="github-maven-repository">Github Maven repository</h3>
 <ul>
@@ -417,6 +377,68 @@
 <pre><code class="language-java">String kafkaValueJson = InaktiverVarselBuilder.newInstance()
    .withVarselId(&quot;aabbccdd-abcd-1234-5678-abcdef123456&quot;)
    .build();
+</code></pre>
+<h2 id="overvaking-av-varsler">Overvåking av varsler</h2>
+<h3 id="logging">Logging</h3>
+<p>Hendelser blir logget til kibana med custom felter for filtrering</p>
+<p>Alle varsler: <code>x_contenttype:"varsel"</code><br />
+Sendt fra bestemt team: <code>x_initiated_by: "&lt;namespace&gt;"</code><br />
+Spesifikt varsel: <code>x_minside_id :"&lt;varselId&gt;"</code></p>
+<h3 id="kafka">Kafka</h3>
+<p>Produsenter kan lytte på topic <code>aapen-varsel-hendelse-v1</code> for å følge med på status på varsler. Hendelser som kan skje for varsler er <code>opprettet</code>, <code>inaktivert</code>, <code>slettet</code> og <code>eksternStatusOppdatert</code>.</p>
+<h4 id="opprettet-inaktivert-og-slettet">Opprettet, inaktivert, og slettet</h4>
+<p>Beskriver intern endring i status for et varsel.</p>
+<ul>
+<li><code>opprettet</code>: Opprett-varsel event er validert og varsel er opprettet i database.</li>
+<li><code>inaktivert</code>: Varsel er inaktivert av f. eks. produsent eller bruker selv.</li>
+<li><code>slettet</code>: Varsel er slettet og ikke lenger synlig for bruker eller saksbehandler.</li>
+</ul>
+<p>Eksempel for oppgave-varsel først opprettet av <code>team-test:demo-app</code> med id <code>11223344-aaaa-bbbb-cccc-112233445566</code>.</p>
+<pre><code class="language-json">{
+  &quot;@event_name&quot;: &quot;&lt;opprettet|inaktivert|slettet&gt;&quot;,
+  &quot;varseltype&quot;: &quot;oppgave&quot;,
+  &quot;varselId&quot;: &quot;11223344-aaaa-bbbb-cccc-112233445566&quot;,
+  &quot;namespace&quot;: &quot;team-test&quot;,
+  &quot;appnavn&quot;: &quot;demo-app&quot;
+}
+</code></pre>
+<h4 id="ekstern-status-oppdatert">Ekstern status oppdatert</h4>
+<p>Beskriver ekstern endring i status for et varsel (sms og epost). Kommer med ulike 3 statuser.</p>
+<ul>
+<li><code>bestilt</code>: Bestilling av varsling på sms/epost er mottatt av distribusjonsystem.</li>
+<li><code>sendt</code>: Ekstern varsling er bekreftet sendt via bestemt kanal (sms eller epost), og om det er renotifikasjon.</li>
+<li><code>feilet</code>: Ekstern varsling feilet. Kommer med feilmelding.</li>
+</ul>
+<p>Eksempler:</p>
+<pre><code class="language-json">{
+  &quot;@event_name&quot;: &quot;eksternStatusOppdatert&quot;,
+  &quot;status&quot;: &quot;bestilt&quot;,
+  &quot;varseltype&quot;: &quot;oppgave&quot;,
+  &quot;varselId&quot;: &quot;11223344-aaaa-bbbb-cccc-112233445566&quot;,
+  &quot;namespace&quot;: &quot;team-test&quot;,
+  &quot;appnavn&quot;: &quot;demo-app&quot;
+}
+</code></pre>
+<pre><code class="language-json">{
+  &quot;@event_name&quot;: &quot;eksternStatusOppdatert&quot;,
+  &quot;status&quot;: &quot;sendt&quot;,
+  &quot;varseltype&quot;: &quot;oppgave&quot;,
+  &quot;varselId&quot;: &quot;11223344-aaaa-bbbb-cccc-112233445566&quot;,
+  &quot;kanal&quot;: &quot;SMS&quot;,
+  &quot;renotifikasjon&quot;: false,
+  &quot;namespace&quot;: &quot;team-test&quot;,
+  &quot;appnavn&quot;: &quot;demo-app&quot;
+}
+</code></pre>
+<pre><code class="language-json">{
+  &quot;@event_name&quot;: &quot;eksternStatusOppdatert&quot;,
+  &quot;status&quot;: &quot;feilet&quot;,
+  &quot;varseltype&quot;: &quot;oppgave&quot;,
+  &quot;varselId&quot;: &quot;11223344-aaaa-bbbb-cccc-112233445566&quot;,
+  &quot;feilmelding&quot;: &quot;mottaker har reservert seg mot digital kommunikasjon&quot;,
+  &quot;namespace&quot;: &quot;team-test&quot;,
+  &quot;appnavn&quot;: &quot;demo-app&quot;
+}
 </code></pre></div>
 
             </div>

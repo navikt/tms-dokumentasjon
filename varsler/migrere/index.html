@@ -91,13 +91,21 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
         <ul class="nav flex-column">
             
-    <li class="nav-item" data-level="1"><a href="#migrere-fra-avro" class="nav-link">Migrere fra AVRO</a>
+    <li class="nav-item"><a href="#migrere-fra-avro" class="nav-link">Migrere fra AVRO</a>
         <ul class="nav flex-column">
-    <li class="nav-item" data-level="2"><a href="#topic" class="nav-link">Topic</a>
+    <li class="nav-item"><a href="#topic" class="nav-link">Topic</a>
         <ul class="nav flex-column">
         </ul>
     </li>
-    <li class="nav-item" data-level="2"><a href="#endringer-i-meldingene" class="nav-link">Endringer i meldingene</a>
+    <li class="nav-item"><a href="#buildere-og-avro" class="nav-link">Buildere og avro</a>
+        <ul class="nav flex-column">
+        </ul>
+    </li>
+    <li class="nav-item"><a href="#endringer-i-meldingene" class="nav-link">Endringer i meldingene</a>
+        <ul class="nav flex-column">
+        </ul>
+    </li>
+    <li class="nav-item"><a href="#eksempel" class="nav-link">Eksempel</a>
         <ul class="nav flex-column">
         </ul>
     </li>
@@ -110,23 +118,115 @@
 
 <h1 id="migrere-fra-avro">Migrere fra AVRO</h1>
 <h2 id="topic">Topic</h2>
-<p>Alle meldinger skal produseres til <strong>det samme topicet</strong><br />
+<p>Produsenter trenger kun å forholde seg til ett topic for å opprette og inaktivere varsler.<br />
 opprett pr i <a href="https://github.com/navikt/min-side-brukervarsel-topic-iac">github-repository</a>. </p>
+<h2 id="buildere-og-avro">Buildere og avro</h2>
+<p>Vi bruker ikke lenger avro for å validere schema. Varsel-eventer sendes som json-string, med varsel-id som nøkkel. </p>
 <h2 id="endringer-i-meldingene">Endringer i meldingene</h2>
-<p>En del felter er fjernet, se <a href="https://tms-dokumentasjon.intern.nav.no/varsler/produsere">produsere varsler</a> for nytt format og meldingsbyggere</p>
+<p>Se <a href="https://navikt.github.io/tms-dokumentasjon/varsler/produsere/">produsere varsler</a> for dokumentasjon av nytt format.</p>
 <h4 id="meldingstyper">meldingstyper</h4>
-<p>Tidligere har det vært fire meldingstyper (beskjed, oppgave, innboks, done). Disse er nå slått sammen til <br />
-2 objekter; opprett og inaktiver. Varseltypen spesifiseres i opprett-eventet.</p>
-<h4 id="feltnavn">feltnavn</h4>
+<p>Tidligere har det vært fire meldingstyper (beskjed, oppgave, innboks, done). Disse er nå slått sammen til to objekter: opprett og inaktiver. Varseltypen spesifiseres i opprett-eventet.</p>
+<h4 id="endring-av-feltnavn">endring av feltnavn</h4>
 <ul>
-<li>eventId -&gt; varselId</li>
-<li>sikkerhetsnivaa -&gt; sensitivitet (3 -&gt; substantial, 4 -&gt; high)</li>
-<li>synligFremTil -&gt; aktivFremTil</li>
-<li>fodselsnummer -&gt; ident</li>
+<li><code>eventId</code> -&gt; <code>varselId</code></li>
+<li><code>sikkerhetsnivaa</code> -&gt; <code>sensitivitet</code> (3 -&gt; substantial, 4 -&gt; high)</li>
+<li><code>synligFremTil</code> -&gt; <code>aktivFremTil</code></li>
+<li><code>fodselsnummer</code> -&gt; <code>ident</code></li>
 </ul>
-<h4 id="tekst">tekst:</h4>
-<p>Det er anbefalt å legge til tekst for flere språk, alle tekster må ha en språkkode.<br />
-Om det er tekst på flere språk, må 1 være satt som default.</p></div>
+<h4 id="deprekerte-felter">deprekerte felter</h4>
+<p><code>grupperingsId</code> og <code>tidspunkt</code> er fjernet.</p>
+<h4 id="tekst">tekst</h4>
+<p>Alle tekster må ha en språkkode. Det er anbefalt å legge til tekst for flere språk.<br />
+Om det er tekst på flere språk, må én være satt som default.</p>
+<h2 id="eksempel">Eksempel</h2>
+<p>Et system sender varsler til brukere til gammelt topic med avro, og skal migreres.</p>
+<p>Varslene har:<br />
+- type oppgave<br />
+- sikkerhetsnivå 4<br />
+- lenke til <code>https://www.nav.no</code><br />
+- frist 14 dager etter oppretting<br />
+- teksten "Dette er et oppgave-varsel"<br />
+- ekstern varsling på sms med teksten "Dette er en sms om oppgave"</p>
+<h4 id="gammelt-oppsett-med-avro-builder">Gammelt oppsett med avro-builder</h4>
+<pre><code class="language-kotlin">val gammeltOppgaveTopic = &quot;min-side.aapen-brukernotifikasjon-oppgave-v1&quot;
+
+val kafkaProps = Properties().apply {
+    put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, KafkaAvroSerializer::class.java)
+    put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, KafkaAvroSerializer::class.java)
+    // ...
+}
+
+val kafkaProducer = KafkaProducer&lt;NokkelInput, OppgaveInput&gt;(kafkaProps)
+
+val oppgaveId = UUID.randomUUID().toString()
+
+val nokkelInput = NokkelInputBuilder()
+    .withEventId(oppgaveId)
+    .withGrupperingsId(&quot;123&quot;)
+    .withFodselsnummer(fodselsnummer)
+    .withNamespace(&quot;test-team&quot;)
+    .withAppnavn(&quot;demo-app&quot;)
+    .build()
+
+val oppgaveInput = OppgaveInputBuilder()
+    .withTidspunkt(LocalDateTime.now())
+    .withSynligFremTil(LocalDateTime.now().plusDays(14))
+    .withTekst(&quot;Dette er et oppgave-varsel&quot;)
+    .withLink(URL(&quot;https://www.nav.no&quot;))
+    .withSikkerhetsnivaa(4)
+    .withEksternVarsling(true)
+    .withSmsVarslingstekst(&quot;Dette er en sms om oppgave&quot;)
+    .withPrefererteKanaler(&quot;SMS&quot;)
+
+kafkaProducer.send(ProducerRecord(gammeltOppgaveTopic, nokkelInput, oppgaveInput))
+// ...
+val gammeltDoneTopic = &quot;min-side.aapen-brukernotifikasjon-done-v1&quot;
+
+val done = DoneInputBuilder()
+    .withTidspunkt(now())
+
+kafkaProducer.send(ProducerRecord(gammeltDoneTopic, nokkel, done))
+</code></pre>
+<h4 id="nytt-oppsett-med-kotlin-builder">Nytt oppsett med kotlin-builder</h4>
+<pre><code class="language-kotlin">
+val nyttVarselTopic = &quot;min-side.aapen-brukervarsel-v1&quot;
+
+val kafkaProps = Properties().apply {
+    put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer::class.java)
+    put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer::class.java)
+    // ...
+}
+
+val kafkaProducer = KafkaProducer&lt;String, String&gt;(kafkaProps)
+
+val oppgaveId = UUID.randomUUID().toString()
+
+val opprettVarsel = VarselActionBuilder.opprett {
+    type = Varseltype.Oppgave
+    varselId = oppgaveId
+    sensitivitet = Sensitivitet.High
+    ident = fodselsnummer
+    tekst = Tekst(
+        spraakkode = &quot;nb&quot;,
+        tekst = &quot;Dette er et oppgave-varsel&quot;,
+        default = true
+    )
+    link = &quot;https://www.nav.no&quot;
+    aktivFremTil = ZonedDateTime.now().plusDays(14)
+    eksternVarsling = EksternVarslingBestilling(
+        prefererteKanaler = listOf(EksternKanal.SMS),
+        smsVarslingstekst = &quot;Dette er en sms om oppgave&quot;,
+    )
+}
+
+kafkaProducer.send(ProducerRecord(nyttVarselTopic, varselId, opprettVarsel))
+// ...
+val inaktiverVarsel = VarselActionBuilder.inaktiver {
+    varselId = oppgaveId
+}
+
+kafkaProducer.send(ProducerRecord(nyttVarselTopic, varselId, inaktiverVarsel))
+</code></pre></div>
 
             </div>
         </div>
