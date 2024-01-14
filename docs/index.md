@@ -2,7 +2,7 @@
   toc: false
   custom_class: home
 ---
-![alt text](./katt/katt-pc.svg "Title")
+![Katten min sitter og jobber på en PC](./katt/katt-pc.svg "PC-katt")
 
 # Utvikler docs
 Her finner du teknisk informasjon om hvordan teamet ditt kan få inn innhold på min side. Ta gjerne en titt på innholdsguiden før du setter i gang!

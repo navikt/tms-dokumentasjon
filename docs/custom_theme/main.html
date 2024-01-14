@@ -2,10 +2,19 @@
 {% block next_prev %}{% endblock %}
 {%- block content %}
 {% if 'toc' not in page.meta or page.meta.toc != false %}
-<div class="col-md-3">{% include "toc.html" %}</div>
+<div class="col-md-3">{% include "toc.html" %}
+    {% if 'github' in page.meta and page.meta.toc != false %}
+    <div class="octocat">
+        <a href="{{ page.meta.github}}">
+            <img class="octocat-img" src="/img/github-mark.png"/>
+        </a>
+    </div>
+    {% endif %}
+</div>
 <div class="col-md-9 tms-theme" role="main">{% include "content.html" %}</div>
 {% else %}
-<div class="col-md-12 no-toc-page {{ page.meta.custom_class }}" role="main">{% include "content.html" %}</div>
+<div class="col-md-12 no-toc-page {{ page.meta.custom_class }}" role="main">{% include "content.html" %}
+</div>
 {% endif %}
 {%- endblock %}
 {%- block footer %}

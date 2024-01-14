@@ -12,9 +12,7 @@
     --cat-color: var(--background-color);
     --text-subtle: var(--a-text-subtle);
     --divider-color-subtle: var(--a-border-subtle);
-    --list-border: var(--a-border-subtle)
-
-    /*
+    --list-border: var(--a-border-subtle) /*
         color: var(--a-text-subtle);
     border-bottom: var(--a-text-subtle) solid 1px;
     */
@@ -40,10 +38,14 @@ div[role=main] {
 }
 
 h1 {
-    color: var(--default-text)
+    color: var(--text-800);
+    font-size: 2em;
+    margin-block-start: 0.67em;
+    margin-block-end: 0.67em;
+    font-weight: bold;
 }
 
-img{
+img {
     border: none !important;
 }
 
@@ -55,5 +57,26 @@ nav a:visited {
     font-size: 16px;
 }
 
+.octocat {
+    text-align: center;
+    width: 100%;
+    height: 32px;
+    padding-top: 20px;
+    padding-right: 20px;
+}
+
+.octocat-img {
+    width: 32px;
+    height: 32px;
+}
+
+@media (max-width: 765px) {
+    .octocat {
+        margin-left: 4px;
+        text-align: left;
+        padding-top: 3px;
+    }
+
+}
 
 

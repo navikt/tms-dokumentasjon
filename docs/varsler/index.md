@@ -1,5 +1,7 @@
 ---
   toc: false
+  github: https://github.com/navikt/tms-mikrofrontend-selector/blob/main/howto.md
+
 ---
 # Varsler på min side
 
