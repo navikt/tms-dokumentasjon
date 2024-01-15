@@ -9,6 +9,7 @@ on:
   repository_dispatch:
     types: "rebuild_doc"
   workflow_dispatch:
+
 permissions:
   contents: write
   packages: write
