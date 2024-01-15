@@ -97,15 +97,15 @@
         <ul class="nav flex-column">
         </ul>
     </li>
-    <li class="nav-item"><a href="#enabledisable" class="nav-link">Enable/disable</a>
+    <li class="nav-item"><a href="#1-klon-repo" class="nav-link">1. Klon repo:</a>
         <ul class="nav flex-column">
         </ul>
     </li>
-    <li class="nav-item"><a href="#sprak" class="nav-link">Språk</a>
+    <li class="nav-item"><a href="#2-sett-opp-oppdatering-av-url-til-den-gjeldene-javascript-koden" class="nav-link">2. Sett opp oppdatering av url til den gjeldene javascript-koden</a>
         <ul class="nav flex-column">
         </ul>
     </li>
-    <li class="nav-item"><a href="#shared-dependencies" class="nav-link">Shared dependencies</a>
+    <li class="nav-item"><a href="#3-koble-til-lsningen" class="nav-link">3. Koble til løsningen</a>
         <ul class="nav flex-column">
         </ul>
     </li>
@@ -129,9 +129,9 @@
 <p>Vår microfrontendrigg består av tre deler. Mikrofrontenden som lastes opp til frontend-plattform sin CDN, min side som viser microfrontendene, og Kafka-backenden for å aktivere og deaktivere mikrofrontends for spesifikke brukere. Selve mikrofrontenden blir bygget til ESM, lastet opp til CDN og hentes deretter inn som en remote ES-Modul.</p>
 <h2 id="hvordan-kan-mitt-team-fa-en-microfrontend-pa-min-side">Hvordan kan mitt team få en microfrontend på min side?</h2>
 <p>Oppsett med bruk av template:</p>
-<h3 id="1-klon-repo">1. Klon repo:</h3>
+<h2 id="1-klon-repo">1. Klon repo:</h2>
 <p>Her finner du vårt template for <a href="https://github.com/navikt/tms-mikrofrontend-template-vitets">typescript</a>. Vi har laget en walktrough av hvordan en utfyller template under. Ønsker du å gjøre det på egen måte er [dette] listen med ting som må være på plass.</p>
-<h3 id="2-sett-opp-oppdatering-av-url-til-den-gjeldene-javascript-koden">2. Sett opp oppdatering av url til den gjeldene javascript-koden</h3>
+<h2 id="2-sett-opp-oppdatering-av-url-til-den-gjeldene-javascript-koden">2. Sett opp oppdatering av url til den gjeldene javascript-koden</h2>
 <p>Opplasting til CDN og uthenting av adressen hvor ES-modulen hentes fra gjøres gjennom vår workflow. For å få tilgang til å kjøre workflowen, kontakt Min side teamet på #minside-microfrontends og be oss om følgende:</p>
 <ol>
 <li>Be om å få installert min-side-repo-authenticator i repoet</li>
@@ -167,13 +167,13 @@ cdn_url=&quot;https://cdn.nav.no/$cdn_path&quot;
 <p>Eksempel finnes i<br />
 <a href="https://github.com/navikt/tms-mikrofrontend-selector/tree/main/.github/workflows/manifest-triggere">workflows-mappa til tms-mikrofrontend-selector</a><br />
 NB: Urlen skal være til <strong>js-koden</strong>, ikke json-manifest.</p>
-<h3 id="3-koble-til-lsningen">3. Koble til løsningen</h3>
+<h2 id="3-koble-til-lsningen">3. Koble til løsningen</h2>
 <ol>
 <li><microfrontendId> skal samsvare med navnet på frontendrepoet</li>
 <li>Koble på <a href="https://github.com/navikt/min-side-microfrontend-topic-iac">min-side-microfrontend-topicet</a></li>
 <li>Du kan nå sende oss Enable/Disable meldinger via Kafka for å skru av og på microfrontenden for spesifikke brukere</li>
 </ol>
-<h2 id="enabledisable">Enable/disable</h2>
+<h3 id="enabledisable">Enable/disable</h3>
 <p>Om en microfrontend vises avhenger av om den er enablet for en gitt bruker. Dette setter du ved å sende en melding på<br />
   microfrontend-topicet.</p>
 <h3 id="enable-melding-nar-en-bruker-skal-se-mikrofrontenden">Enable-melding når en bruker skal se mikrofrontenden</h3>
@@ -195,11 +195,11 @@ NB: Urlen skal være til <strong>js-koden</strong>, ikke json-manifest.</p>
 </code></pre>
 <h3 id="meldingsbygger-bibliotek">Meldingsbygger-bibliotek</h3>
 <p>Det er tilgjengelig på <a href="https://github.com/navikt/tms-mikrofrontend-selector/packages/1875650">github packages</a></p>
-<h2 id="sprak">Språk</h2>
+<h3 id="sprak">Språk</h3>
 <p>Vi bruker språkvelgeren i Dekoratøren. For å vite hvilket språk man skal vise så sender vi et event via session storage.<br />
 Man kan enkelt sette opp en provider som vi har<br />
 gjort <a href="https://github.com/navikt/tms-utkast-mikrofrontend/blob/main/src/provider/LanguageProvider.tsx">her</a>.</p>
-<h2 id="shared-dependencies">Shared dependencies</h2>
+<h3 id="shared-dependencies">Shared dependencies</h3>
 <p>For å unngå å ha for store bundles så deler vi noen dependencies på tvers av apper. Disse hentes ned en gang ved første<br />
 page load fra en CDN og caches i browseren. Foreløpig ligger react, react-dom og ds-css i CDNen.</p>
 <p>CSSen fra designsystemet hentes i skallet til Min side. Denne skal deles på tvers og ikke bundles med i mikrofrontenden.<br />
