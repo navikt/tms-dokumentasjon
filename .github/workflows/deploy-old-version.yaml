@@ -27,7 +27,6 @@ jobs:
           echo "IMAGE_TAG=$IMAGE_TAG" >> $GITHUB_ENV
 
   deploy-prod:
-    if: github.ref == 'refs/heads/main'
     runs-on: "ubuntu-latest"
     needs: "build"
     steps:
