@@ -93,7 +93,7 @@
             
     <li class="nav-item"><a href="#microfrontends-pa-min-side" class="nav-link">Microfrontends på min side</a>
         <ul class="nav flex-column">
-    <li class="nav-item"><a href="#nice-hvordan-kan-mitt-team-fa-en-mikrofrontend-pa-min-side" class="nav-link">Nice! Hvordan kan mitt team få en mikrofrontend på min side?</a>
+    <li class="nav-item"><a href="#hvordan-kan-mitt-team-fa-en-mikrofrontend-pa-min-side" class="nav-link">Hvordan kan mitt team få en mikrofrontend på min side?</a>
         <ul class="nav flex-column">
         </ul>
     </li>
@@ -102,14 +102,6 @@
         </ul>
     </li>
     <li class="nav-item"><a href="#shared-dependencies" class="nav-link">Shared dependencies</a>
-        <ul class="nav flex-column">
-        </ul>
-    </li>
-    <li class="nav-item"><a href="#faq" class="nav-link">FAQ</a>
-        <ul class="nav flex-column">
-        </ul>
-    </li>
-    <li class="nav-item"><a href="#observability" class="nav-link">Observability</a>
         <ul class="nav flex-column">
         </ul>
     </li>
@@ -129,17 +121,20 @@
 <div class="col-md-9 tms-theme" role="main">
 
 <h1 id="microfrontends-pa-min-side">Microfrontends på min side</h1>
-<p>Mikrofrontends gir teamene mulighet til å presentere den viktigste informasjonen til brukerne sine på Min side, som et<br />
-lite butikkvindu inn til teamenes egne løsninger. Dette gjøres gjennom at mikrofrontenden blir bygget til ESM og<br />
-deretter hentes inn som en remote ES-Modul.</p>
-<h2 id="nice-hvordan-kan-mitt-team-fa-en-mikrofrontend-pa-min-side">Nice! Hvordan kan mitt team få en mikrofrontend på min side?</h2>
-<h3 id="1-lag-en-mikrofrontend">1. Lag en mikrofrontend!</h3>
-<p>Om du vil bruke et template finnes det <a href="https://github.com/navikt/tms-mikrofrontend-template-vitets">ett for typescript</a> og <br />
-<a href="https://github.com/navikt/tms-mikrofrontend-template-vitejs">ett for javascript</a></p>
+<p>Mikrofrontendene brukt på min side kommer i form av små bokser med forskjellig funksjonalitet og innhold teamene ønsker å presentere til en spesifikk gruppe brukere. Vi stiller visse <a href="https://aksel.nav.no/god-praksis/artikler/retningslinjer-for-design-av-mikrofrontends">designkrav</a> til utformingen av mikrofrontendene, for å ivareta en god helhetlig brukeropplevelse. Det overordnede konseptet er at bruker skal finne igjen mye av sitt mest relevante innhold og av innganger gruppert og løftet på min side.</p>
+<p>Vår mikrofrontendrigg består av tre deler. Mikrofrontenden som lastes opp til frontend-plattform sin CDN, min side som viser mikrofrontendene, og Kafka-backenden for å aktivere og deaktivere mikrofrontends for spesifikke brukere. Selve mikrofrontenden blir bygget til ESM, lastet opp til CDN og hentes deretter inn som en remote ES-Modul.</p>
+<h2 id="hvordan-kan-mitt-team-fa-en-mikrofrontend-pa-min-side">Hvordan kan mitt team få en mikrofrontend på min side?</h2>
+<p>Oppsett med bruk av template:</p>
+<h3 id="1-klon-repo">1. Klon repo:</h3>
+<p>Her finner du vårt template for <a href="https://github.com/navikt/tms-mikrofrontend-template-vitets">typescript</a>. Vi har laget en walktrough av hvordan en utfyller template under. Ønsker du å gjøre det på egen måte er [dette] listen med ting som må være på plass.</p>
 <h3 id="2-sett-opp-oppdatering-av-url-til-den-gjeldene-javascript-koden">2. Sett opp oppdatering av url til den gjeldene javascript-koden</h3>
+<p>Opplasting til CDN og uthenting av adressen hvor ES-modulen hentes fra gjøres gjennom vår workflow. For å få tilgang til å kjøre workflowen, kontakt Min side teamet på #minside-microfrontends og be oss om følgende:</p>
 <ol>
-<li>Be om å få installert min-side-repo-authenticator</li>
-<li>Legg inn action-secrets PRIVATE_KEY og APP_ID (disse får du fra min-side teamet)</li>
+<li>Be om å få installert min-side-repo-authenticator i repoet</li>
+<li>Få utdelt PRIVATE_KEY og APP_ID som legges inn som action-secrets i repoet</li>
+</ol>
+<p>Når dette er lagt inn har repoet nå tilgang til å kjøre workflowen</p>
+<ol>
 <li>Legg inn oppdateringsworkflow i github workflows mappa til prosjektet</li>
 </ol>
 <pre><code class="language-yaml">name: Update microfrontend-manifest
@@ -170,9 +165,9 @@ cdn_url=&quot;https://cdn.nav.no/$cdn_path&quot;
 NB: Urlen skal være til <strong>js-koden</strong>, ikke json-manifest.</p>
 <h3 id="3-koble-til-lsningen">3. Koble til løsningen</h3>
 <ol>
-<li>Opprett et issue i <a href="https://github.com/navikt/tms-min-side">tms-min-side repoet</a>, be om å få lagt inn<br />
-  mikrofrontenden i kode og avtal en <code>&lt;microfrontendId&gt;</code></li>
+<li><microfrontendId> skal samsvare med navnet på frontendrepoet</li>
 <li>Koble på <a href="https://github.com/navikt/min-side-microfrontend-topic-iac">min-side-microfrontend-topicet</a></li>
+<li>Du kan nå sende oss Enable/Disable meldinger via Kafka for å skru av og på microfrontenden for spesifikke brukere</li>
 </ol>
 <p>## Enable/disable </p>
 <p>Om en mikrofrontend vises avhenger av om den er enablet for en gitt bruker. Dette setter du ved å sende en melding på<br />
@@ -206,21 +201,8 @@ page load fra en CDN og caches i browseren. Foreløpig ligger react, react-dom o
 <p>CSSen fra designsystemet hentes i skallet til Min side. Denne skal deles på tvers og ikke bundles med i mikrofrontenden.<br />
 Vi bør ligge på samme major versjon, veilendende versjon<br />
 ligger <a href="https://github.com/navikt/tms-min-side/blob/main/index.html">her</a>.</p>
-<h2 id="faq">FAQ</h2>
-<h3 id="hva-br-jeg-velge-som-mikrofrontend-id">Hva bør jeg velge som mikrofrontend-id?</h3>
-<p><code>&lt;område&gt;.&lt;tjenste&gt;</code> er et bra utgangspunkt, prøv å holde det så generelt som mulig, men gjenkjenbart.</p>
-<h3 id="hvordan-skal-mikrofrontenden-se-ut">Hvordan skal mikrofrontenden se ut?</h3>
-<p>Vi bruker en modifisert versjon av designsystemet. Ta kontakt med oss for å se hvordan en ny mikrofrontend kan passe inn<br />
-i Min side.</p>
-<h3 id="hvordan-fungerer-amplitude">Hvordan fungerer amplitude?</h3>
-<p>Amplitude fungerer som vanlig (<br />
-se <a href="https://github.com/navikt/aap-min-side-microfrontend/blob/main/src/utils/amplitude.ts">AAP sin mikrofrontend</a>).<br />
-Dere kan fritt logge de eventene dere vil, men for å sette opp målinger på tvers i Amplitude har vi disse føringene<br />
-på <a href="https://github.com/navikt/analytics-taxonomy/tree/main/events/navigere">navigasjonseventer</a>:</p>
-<ul>
-<li>komponent: tekstlig representasjon av komponenten det ble trykket på.</li>
-</ul>
-<p>Videre anbefaler vi å følge <a href="https://github.com/navikt/analytics-taxonomy">taksonominen</a> i NAV.</p>
+<h3 id="hvordan-bruke-amplitude-i-mikrofrontenden">Hvordan bruke amplitude i mikrofrontenden?</h3>
+<p>Amplitude fungerer som vanlig (se <a href="https://github.com/navikt/aap-min-side-microfrontend/blob/main/src/utils/amplitude.ts">AAP sin mikrofrontend</a>). Dere kan fritt logge de eventene dere vil, men for at vi skal kunne foreta målinger for Min side som helhet er det påkrevd at trykk på mikrofrontenden sender et navigere event med feltet komponent: <microfrontendId>. Videre anbefaler vi å følge <a href="https://github.com/navikt/analytics-taxonomy">taksonominen</a> i NAV.</p>
 <h3 id="hva-er-sensitivitet">Hva er sensitivitet?</h3>
 <p>Feltet <code>sensitivitet</code> i enablemeldingen korresponderer direkte til<br />
 de <a href="https://docs.digdir.no/docs/idporten/oidc/oidc_protocol_id_token#acr-values">nye acr-veridene</a> i IDporten token.</p>
@@ -232,10 +214,6 @@ de <a href="https://docs.digdir.no/docs/idporten/oidc/oidc_protocol_id_token#acr
 Om en person logger inn med <code>idporten-loa-substantial</code> og det finnes mikrofrontender som personen kan se<br />
 på <code>idporten-loa-high</code> vil bruker få beskjed om dette og link til en "stepup"<br />
 login. Se også <a href="https://docs.nais.io/security/auth/idporten/#security-levels">NAIS docs</a> for mer info om acr-verdiene</p>
-<h2 id="observability">Observability</h2>
-<p>Hendelser blir logget til kibana med customfelter for filtrering \<br />
-Alle microfrontends: <code>x_contenttype:"microfrontend</code> \<br />
-Spesifik microfrontend: <code>x_minside_id :"&lt;microfrontendid&gt;"</code> </p>
 <p><img alt="Katten Min som sitter på ett garnnøste" src="../katt/katt-n%C3%B8ste.svg" title="Nøstekatt" /></p></div>
 
             </div>
