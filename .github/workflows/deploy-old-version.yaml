@@ -1,4 +1,4 @@
-name: "Build and deploy"
+name: "Build and deploy old version"
 on:
   workflow_dispatch:
 permissions:
