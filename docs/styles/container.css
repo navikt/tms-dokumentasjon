@@ -32,14 +32,14 @@
   font-size: 20px;
   line-height: 24px;
   color: var(--text-800);
-  margin-top: 44px
+  margin-top: 44px;
 }
 
 .container h4 {
   font-size: 18px;
   line-height: 24px;
   color: var(--text-600);
-  margin-bottom: 10px
+  margin-bottom: 10px;
 }
 
 .container p {
