@@ -202,7 +202,9 @@ page load fra en CDN og caches i browseren. Foreløpig ligger react, react-dom o
 Vi bør ligge på samme major versjon, veilendende versjon<br />
 ligger <a href="https://github.com/navikt/tms-min-side/blob/main/index.html">her</a>.</p>
 <h3 id="hvordan-bruke-amplitude-i-mikrofrontenden">Hvordan bruke amplitude i mikrofrontenden?</h3>
-<p>Amplitude fungerer som vanlig (se <a href="https://github.com/navikt/aap-min-side-microfrontend/blob/main/src/utils/amplitude.ts">AAP sin mikrofrontend</a>). Dere kan fritt logge de eventene dere vil, men for at vi skal kunne foreta målinger for Min side som helhet er det påkrevd at trykk på mikrofrontenden sender et navigere event med feltet komponent: <microfrontendId>. Videre anbefaler vi å følge <a href="https://github.com/navikt/analytics-taxonomy">taksonominen</a> i NAV.</p>
+<p>Amplitude fungerer som vanlig (se <a href="https://github.com/navikt/aap-min-side-microfrontend/blob/main/src/utils/amplitude.ts">AAP sin mikrofrontend</a>). Dere kan fritt logge de eventene dere vil, men for at vi skal kunne foreta målinger for Min side som helhet er det påkrevd at trykk på mikrofrontenden sender et navigere event med feltet <br />
+<code>komponent: &lt;microfrontendId&gt;</code>.</p>
+<p>Videre anbefaler vi å følge <a href="https://github.com/navikt/analytics-taxonomy">taksonominen</a> i NAV.</p>
 <h3 id="hva-er-sensitivitet">Hva er sensitivitet?</h3>
 <p>Feltet <code>sensitivitet</code> i enablemeldingen korresponderer direkte til<br />
 de <a href="https://docs.digdir.no/docs/idporten/oidc/oidc_protocol_id_token#acr-values">nye acr-veridene</a> i IDporten token.</p>
