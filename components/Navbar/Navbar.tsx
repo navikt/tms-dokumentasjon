@@ -6,7 +6,7 @@ interface NavBarProps {
 }
 
 const Navbar = ({currentLocation}: NavBarProps) =>
-    <div>
+    <>
         <p>
             Vi har flytta! Oppdatert dokumentasjon finner du på <a
             href="https://navikt.github.io/tms-dokumentasjon/"> Github pages </a>
@@ -27,6 +27,6 @@ const Navbar = ({currentLocation}: NavBarProps) =>
                 <Link id="kattenmin" href={"/katt"}>Mjau</Link>
             </div>
         </nav>
-    </div>
+    </>
 
 export default Navbar
