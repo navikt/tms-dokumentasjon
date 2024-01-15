@@ -93,7 +93,11 @@
             
     <li class="nav-item"><a href="#microfrontends-pa-min-side" class="nav-link">Microfrontends på min side</a>
         <ul class="nav flex-column">
-    <li class="nav-item"><a href="#hvordan-kan-mitt-team-fa-en-mikrofrontend-pa-min-side" class="nav-link">Hvordan kan mitt team få en mikrofrontend på min side?</a>
+    <li class="nav-item"><a href="#hvordan-kan-mitt-team-fa-en-microfrontend-pa-min-side" class="nav-link">Hvordan kan mitt team få en microfrontend på min side?</a>
+        <ul class="nav flex-column">
+        </ul>
+    </li>
+    <li class="nav-item"><a href="#enabledisable" class="nav-link">Enable/disable</a>
         <ul class="nav flex-column">
         </ul>
     </li>
@@ -121,9 +125,9 @@
 <div class="col-md-9 tms-theme" role="main">
 
 <h1 id="microfrontends-pa-min-side">Microfrontends på min side</h1>
-<p>Mikrofrontendene brukt på min side kommer i form av små bokser med forskjellig funksjonalitet og innhold teamene ønsker å presentere til en spesifikk gruppe brukere. Vi stiller visse <a href="https://aksel.nav.no/god-praksis/artikler/retningslinjer-for-design-av-mikrofrontends">designkrav</a> til utformingen av mikrofrontendene, for å ivareta en god helhetlig brukeropplevelse. Det overordnede konseptet er at bruker skal finne igjen mye av sitt mest relevante innhold og av innganger gruppert og løftet på min side.</p>
-<p>Vår mikrofrontendrigg består av tre deler. Mikrofrontenden som lastes opp til frontend-plattform sin CDN, min side som viser mikrofrontendene, og Kafka-backenden for å aktivere og deaktivere mikrofrontends for spesifikke brukere. Selve mikrofrontenden blir bygget til ESM, lastet opp til CDN og hentes deretter inn som en remote ES-Modul.</p>
-<h2 id="hvordan-kan-mitt-team-fa-en-mikrofrontend-pa-min-side">Hvordan kan mitt team få en mikrofrontend på min side?</h2>
+<p>Microfrontendene brukt på min side kommer i form av små bokser med forskjellig funksjonalitet og innhold teamene ønsker å presentere til en spesifikk gruppe brukere. Vi stiller visse <a href="https://aksel.nav.no/god-praksis/artikler/retningslinjer-for-design-av-mikrofrontends">designkrav</a> til utformingen av microfrontendene, for å ivareta en god helhetlig brukeropplevelse. Det overordnede konseptet er at bruker skal finne igjen mye av sitt mest relevante innhold og av innganger gruppert og løftet på min side.</p>
+<p>Vår microfrontendrigg består av tre deler. Mikrofrontenden som lastes opp til frontend-plattform sin CDN, min side som viser microfrontendene, og Kafka-backenden for å aktivere og deaktivere mikrofrontends for spesifikke brukere. Selve mikrofrontenden blir bygget til ESM, lastet opp til CDN og hentes deretter inn som en remote ES-Modul.</p>
+<h2 id="hvordan-kan-mitt-team-fa-en-microfrontend-pa-min-side">Hvordan kan mitt team få en microfrontend på min side?</h2>
 <p>Oppsett med bruk av template:</p>
 <h3 id="1-klon-repo">1. Klon repo:</h3>
 <p>Her finner du vårt template for <a href="https://github.com/navikt/tms-mikrofrontend-template-vitets">typescript</a>. Vi har laget en walktrough av hvordan en utfyller template under. Ønsker du å gjøre det på egen måte er [dette] listen med ting som må være på plass.</p>
@@ -169,10 +173,10 @@ NB: Urlen skal være til <strong>js-koden</strong>, ikke json-manifest.</p>
 <li>Koble på <a href="https://github.com/navikt/min-side-microfrontend-topic-iac">min-side-microfrontend-topicet</a></li>
 <li>Du kan nå sende oss Enable/Disable meldinger via Kafka for å skru av og på microfrontenden for spesifikke brukere</li>
 </ol>
-<p>## Enable/disable </p>
-<p>Om en mikrofrontend vises avhenger av om den er enablet for en gitt bruker. Dette setter du ved å sende en melding på<br />
+<h2 id="enabledisable">Enable/disable</h2>
+<p>Om en microfrontend vises avhenger av om den er enablet for en gitt bruker. Dette setter du ved å sende en melding på<br />
   microfrontend-topicet.</p>
-<p>### Enable-melding når en bruker skal se mikrofrontenden</p>
+<h3 id="enable-melding-nar-en-bruker-skal-se-mikrofrontenden">Enable-melding når en bruker skal se mikrofrontenden</h3>
 <pre><code class="language-json">{
     &quot;@action&quot;: &quot;enable&quot;,
     &quot;ident&quot;: &lt;ident for bruker: fnr/dnr&gt;,
@@ -181,7 +185,7 @@ NB: Urlen skal være til <strong>js-koden</strong>, ikke json-manifest.</p>
     &quot;@initiated_by&quot;: &lt;ditt-team&gt;
 }
 </code></pre>
-<p>### Disable-melding når bruker ikke skal se mikrofrontenden lenger</p>
+<h3 id="disable-melding-nar-bruker-ikke-skal-se-mikrofrontenden-lenger">Disable-melding når bruker ikke skal se mikrofrontenden lenger</h3>
 <pre><code class="language-json">{
     &quot;@action&quot;:  &quot;disable&quot;,
     &quot;ident&quot;: &lt;ident for bruker: fnr/dnr&gt;,
