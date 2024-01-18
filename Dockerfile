@@ -24,7 +24,7 @@ ENV ACCESS_TOKEN=$READ_TOKEN
 RUN npm run build
 
 # Production image, copy all the files and run next
-FROM node:16-alpine AS runner
+FROM node:18-alpine AS runner
 WORKDIR /app
 ARG READ_TOKEN
 
