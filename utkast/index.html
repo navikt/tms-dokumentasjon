@@ -135,10 +135,12 @@ Utkast er en underside av min side (tilgjengelig på <code>&lt;navurl&gt;/minsid
 </ul>
 <h2 id="hvordan-fungerer-det">Hvordan fungerer det?</h2>
 <p>Koble på <a href="https://github.com/navikt/min-side-utkast-topic-iac">min-side-utkast-iac-topicet</a> og kjør på!<br />
-<em>utkast støtter tre hendelser: created, updated, og deleted</em><br />
-1. Send en created-melding når en bruker har lagret et utkast<br />
-2. Send en updated-melding hvis url-en eller tittelen til utkastet har endret seg.<br />
-3. Send en deleted melding når bruker enten har sendt inn, eller hvis utkastet har blitt slettet enten av bruker eller systemet.</p>
+<em>utkast støtter tre hendelser: created, updated, og deleted</em></p>
+<ol>
+<li>Send en created-melding når en bruker har lagret et utkast</li>
+<li>Send en updated-melding hvis url-en eller tittelen til utkastet har endret seg.</li>
+<li>Send en deleted melding når bruker enten har sendt inn, eller hvis utkastet har blitt slettet enten av bruker eller systemet.</li>
+</ol>
 <h2 id="kafka">Kafka</h2>
 <p><strong>topic</strong>: aapen-utkast-v1<br />
 <strong>tilgang</strong>: <a href="https://github.com/navikt/min-side-utkast-topic-iac">min-side-utkast-iac-topic</a><br />
