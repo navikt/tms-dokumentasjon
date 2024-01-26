@@ -1,0 +1,36 @@
+.custom-toc{
+  position: sticky;
+  top: 60px;
+  
+}
+
+.custom-toc h2{
+  font-size: 18px;
+  margin: 0px;
+  padding-left: 8px;
+  font-weight: bold;
+}
+
+.custom-toc ul{
+  padding-left: 12px;
+}
+
+.flex-column{
+  list-style: none;
+}
+
+.toc-item a{
+  display: flex;
+  color: #000;
+  text-decoration: none;
+  padding: 2px 8px;
+}
+
+.toc-item a:hover{
+  color: #000;
+  background: #ECEEF0;
+}
+
+a.active {
+  box-shadow: 0 0 0 3px #000;
+}

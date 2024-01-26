@@ -1,0 +1,18 @@
+.footer-wrapper {
+  color: white;
+  background-color: #000;
+  padding: 64px 108px;
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-wrapper a,
+.footer-wrapper h2 {
+  color: #fff;
+  line-height: 170%; /* 30.6px */
+  letter-spacing: 0.5px;
+}
+
+.footer-wrapper h2 {
+  font-weight: 700; 
+}

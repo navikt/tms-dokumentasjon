@@ -1,0 +1,24 @@
+.row {
+  padding-left: 108px;
+}
+
+.content-wrapper {
+  display: flex;
+  color: #000;
+  line-height: 28px; /* 155.556% */
+  gap: 108px;
+  position: relative;
+}
+
+.page-content {
+  max-width: 708px;
+  flex-grow: 1;
+}
+
+.page-content-toc {
+  padding-top: 90px;
+  padding-bottom: 10px;
+  padding: auto;
+  max-width: 25%;
+  min-width: 200px;
+}
