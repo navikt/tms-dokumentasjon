@@ -11,6 +11,3 @@ Inaktiverte varsler vil fortsatt være tilgjengelig på [tidligere varsler siden
 * [Produsere varsel-hendelser](produsere.md)
 * [Konsumere varsel](konsumere.md)
 * [Migrere fra AVRO-topic](migrere.md)
-
-![Katten min gjemmer si en bjelle](../katt/katt-varsler.svg "Title")
-
