@@ -1,0 +1,51 @@
+.navbar {
+  margin-left: 36px;
+  margin-right: 36px;
+}
+
+.navbar a {
+  color: #000;
+  line-height: 28px; /* 155.556% */
+}
+.active .nav-link{
+  text-decoration-line: none;
+}
+.nav-link:hover {
+  color: #0066ff;
+}
+
+a.nav-homepage{
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration-line: none;
+}
+
+.nav-homepage:hover .outerCircle {
+  fill: #0066ff;
+}
+
+.nav-homepage:hover .innerCircle {
+  fill: black;
+}
+
+.navbar-toggler{
+  display: none;
+}
+
+.navbar .container{
+  display: flex;
+  justify-content: space-between;
+}
+
+ul.navbar-nav{
+  display: flex;
+  gap: 32px;
+  flex-direction: row;
+  justify-content:flex-end;
+  list-style: none;
+}
+
+ul.ml-auto {
+  display: none;
+}

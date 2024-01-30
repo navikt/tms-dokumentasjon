@@ -9,14 +9,10 @@
         
         <link rel="shortcut icon" href="img/favicon.ico">
         <title>Min side utvikler-docs</title>
-        <link href="css/bootstrap.min.css" rel="stylesheet">
-        <link href="css/font-awesome.min.css" rel="stylesheet">
-        <link href="css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
-        <link href="styles/styles.css" rel="stylesheet">
-        <link href="styles/container.css" rel="stylesheet">
-        <link href="styles/blocks.css" rel="stylesheet">
-        <link href="styles/pages.css" rel="stylesheet">
+<link href="styles/styles.css" rel="stylesheet">
+<link href="styles/container.css" rel="stylesheet">
+<link href="styles/blocks.css" rel="stylesheet">
+<link href="styles/pages.css" rel="stylesheet">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
         <script>hljs.highlightAll();</script> 
     </head>
@@ -24,7 +20,17 @@
     <body class="homepage">
         <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
-                <a class="navbar-brand" href=".">Min side utvikler-docs</a>
+<a href="." class="nav-homepage">
+    <svg class="nav-homepage-icon" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28"
+        fill="none">
+        <circle class="outerCircle" cx="14" cy="14" r="13.25" stroke="black" stroke-width="1.5" />
+        <circle class="innerCircle" cx="14" cy="14" r="7.25" stroke="black" stroke-width="1.5" />
+        <circle cx="9" cy="10" r="2.25" fill="white" stroke="black" stroke-width="1.5" />
+    </svg>
+    <p>
+        Utvikler-docs
+    </p>
+</a>
                 <!-- Expander button -->
                 <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
                     <span class="navbar-toggler-icon"></span>
@@ -32,46 +38,35 @@
 
                 <!-- Expanded navigation -->
                 <div id="navbar-collapse" class="navbar-collapse collapse">
-                        <!-- Main navigation -->
-                        <ul class="nav navbar-nav">
-                            <li class="navitem">
-                                <a href="guide/" class="nav-link">Innholdsguide</a>
-                            </li>
-                            <li class="navitem">
-                                <a href="utkast/" class="nav-link">Utkast</a>
-                            </li>
-                            <li class="navitem">
-                                <a href="microfrontend/" class="nav-link">Microfrontend</a>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Varsler <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    
-<li>
-    <a href="varsler/" class="dropdown-item">Oversikt</a>
-</li>
-                                    
-<li>
-    <a href="varsler/produsere/" class="dropdown-item">Produsere varsler</a>
-</li>
-                                    
-<li>
-    <a href="varsler/konsumere/" class="dropdown-item">Konsumere varsler</a>
-</li>
-                                    
-<li>
-    <a href="varsler/migrere/" class="dropdown-item">Migrere fra AVRO</a>
-</li>
-                                </ul>
-                            </li>
-                        </ul>
+<!-- Main navigation -->
+<div class¨>
+    <ul class="nav navbar-nav">
+        <li class="navitem">
+            <a href="guide/" class="nav-link">Innholdsguide</a>
+        </li>
+        <li class="navitem">
+            <a href="utkast/" class="nav-link">Utkast</a>
+        </li>
+        <li class="navitem">
+            <a href="microfrontend/" class="nav-link">Microfrontend</a>
+        </li>
+        <li class="dropdown">
+            <a href="varsler/" class="nav-link">Varsler <b class="caret"></b></a>
+        </li>
+        <li class="nav-item">
+            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                Søk
+            </a>
+        </li>
+    </ul>
+</div>
 
                     <ul class="nav navbar-nav ml-auto">
-                        <li class="nav-item">
-                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
-                                <i class="fa fa-search"></i> Søk
-                            </a>
-                        </li>
+        <li class="nav-item">
+            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                Søk
+            </a>
+        </li>
                     </ul>
                 </div>
             </div>
@@ -79,27 +74,25 @@
 
         <div class="container">
             <div class="row">
+<div class="content-wrapper">
+    <div class="page-content" role="main">
 
-<div class="col-md-12 no-toc-page home" role="main">
-
-<p><img alt="Katten min sitter og jobber på en PC" src="katt/katt-pc.svg" title="PC-katt" /></p>
 <h1 id="utvikler-docs">Utvikler docs</h1>
-<p>Her finner du teknisk informasjon om hvordan teamet ditt kan få inn innhold på min side. Ta gjerne en titt på innholdsguiden før du setter i gang!</p>
-<p>Se dokumentasjon på <a href="https://aksel.nav.no/god-praksis/artikler/hva-moter-brukerne-som-logger-inn-pa-navno?tema=innholdsarbeid">Aksel</a> for eksempler og mer om hvordan de forskjellige produktene skal brukes.</p>
+<p>Her finner du teknisk informasjon om hvordan teamet ditt kan få inn innhold på min side.</p>
+<p>Ta gjerne en titt på innholdsguiden før du setter i gang! Og se dokumentasjon på <a href="https://aksel.nav.no/god-praksis/artikler/hva-moter-brukerne-som-logger-inn-pa-navno?tema=innholdsarbeid">Aksel</a>  for eksempler og mer om hvordan de forskjellige produktene skal brukes.</p></div>
+    
+    
 </div>
-
             </div>
         </div>
 
         <footer class="col-md-12">
-<div class="footer">
-    <section>
-        <h2 id="slack">Min side på slack</h2>
-        <a href="https://nav-it.slack.com/archives/C9CJ794PP">#team-personbruker</a>
-        <a href="https://nav-it.slack.com/archives/CR61BPH7G">#brukernotifikasjoner</a>
-        <a href="https://nav-it.slack.com/archives/C04E3K5MMMY">#utkast</a>
-    </section>
-</div>
+<section class="footer-wrapper">
+    <h2 id="slack">Min side på slack</h2>
+    <a href="https://nav-it.slack.com/archives/C9CJ794PP">#team-personbruker</a>
+    <a href="https://nav-it.slack.com/archives/CR61BPH7G">#brukernotifikasjoner</a>
+    <a href="https://nav-it.slack.com/archives/C04E3K5MMMY">#utkast</a>
+</section>
         </footer>
         <script src="js/jquery-3.6.0.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
@@ -177,5 +170,5 @@
 
 <!--
 MkDocs version : 1.5.3
-Build Date UTC : 2024-01-30 08:00:35.407911+00:00
+Build Date UTC : 2024-01-30 08:10:57.794994+00:00
 -->

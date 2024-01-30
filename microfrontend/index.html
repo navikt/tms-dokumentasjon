@@ -9,14 +9,10 @@
         
         <link rel="shortcut icon" href="../img/favicon.ico">
         <title>Microfrontend - Min side utvikler-docs</title>
-        <link href="../css/bootstrap.min.css" rel="stylesheet">
-        <link href="../css/font-awesome.min.css" rel="stylesheet">
-        <link href="../css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
-        <link href="../styles/styles.css" rel="stylesheet">
-        <link href="../styles/container.css" rel="stylesheet">
-        <link href="../styles/blocks.css" rel="stylesheet">
-        <link href="../styles/pages.css" rel="stylesheet">
+<link href="../styles/styles.css" rel="stylesheet">
+<link href="../styles/container.css" rel="stylesheet">
+<link href="../styles/blocks.css" rel="stylesheet">
+<link href="../styles/pages.css" rel="stylesheet">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
         <script>hljs.highlightAll();</script> 
     </head>
@@ -24,7 +20,17 @@
     <body>
         <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
-                <a class="navbar-brand" href="..">Min side utvikler-docs</a>
+<a href=".." class="nav-homepage">
+    <svg class="nav-homepage-icon" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28"
+        fill="none">
+        <circle class="outerCircle" cx="14" cy="14" r="13.25" stroke="black" stroke-width="1.5" />
+        <circle class="innerCircle" cx="14" cy="14" r="7.25" stroke="black" stroke-width="1.5" />
+        <circle cx="9" cy="10" r="2.25" fill="white" stroke="black" stroke-width="1.5" />
+    </svg>
+    <p>
+        Utvikler-docs
+    </p>
+</a>
                 <!-- Expander button -->
                 <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
                     <span class="navbar-toggler-icon"></span>
@@ -32,46 +38,35 @@
 
                 <!-- Expanded navigation -->
                 <div id="navbar-collapse" class="navbar-collapse collapse">
-                        <!-- Main navigation -->
-                        <ul class="nav navbar-nav">
-                            <li class="navitem">
-                                <a href="../guide/" class="nav-link">Innholdsguide</a>
-                            </li>
-                            <li class="navitem">
-                                <a href="../utkast/" class="nav-link">Utkast</a>
-                            </li>
-                            <li class="navitem active">
-                                <a href="./" class="nav-link">Microfrontend</a>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Varsler <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    
-<li>
-    <a href="../varsler/" class="dropdown-item">Oversikt</a>
-</li>
-                                    
-<li>
-    <a href="../varsler/produsere/" class="dropdown-item">Produsere varsler</a>
-</li>
-                                    
-<li>
-    <a href="../varsler/konsumere/" class="dropdown-item">Konsumere varsler</a>
-</li>
-                                    
-<li>
-    <a href="../varsler/migrere/" class="dropdown-item">Migrere fra AVRO</a>
-</li>
-                                </ul>
-                            </li>
-                        </ul>
+<!-- Main navigation -->
+<div class¨>
+    <ul class="nav navbar-nav">
+        <li class="navitem">
+            <a href="../guide/" class="nav-link">Innholdsguide</a>
+        </li>
+        <li class="navitem">
+            <a href="../utkast/" class="nav-link">Utkast</a>
+        </li>
+        <li class="navitem active">
+            <a href="./" class="nav-link">Microfrontend</a>
+        </li>
+        <li class="dropdown">
+            <a href="../varsler/" class="nav-link">Varsler <b class="caret"></b></a>
+        </li>
+        <li class="nav-item">
+            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                Søk
+            </a>
+        </li>
+    </ul>
+</div>
 
                     <ul class="nav navbar-nav ml-auto">
-                        <li class="nav-item">
-                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
-                                <i class="fa fa-search"></i> Søk
-                            </a>
-                        </li>
+        <li class="nav-item">
+            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                Søk
+            </a>
+        </li>
                     </ul>
                 </div>
             </div>
@@ -79,50 +74,8 @@
 
         <div class="container">
             <div class="row">
-
-<div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix custom-toc" role="complementary">
-    <div class="navbar-header">
-        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Innholdsfortegnelse">
-            <span class="fa fa-angle-down"></span>
-        </button>
-    </div>
-
-    
-    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
-        <ul class="nav flex-column">
-            
-    <li class="nav-item"><a href="#microfrontends-pa-min-side" class="nav-link">Microfrontends på min side</a>
-        <ul class="nav flex-column">
-    <li class="nav-item"><a href="#hvordan-kan-mitt-team-fa-en-microfrontend-pa-min-side" class="nav-link">Hvordan kan mitt team få en microfrontend på min side?</a>
-        <ul class="nav flex-column">
-        </ul>
-    </li>
-    <li class="nav-item"><a href="#1-klon-repo" class="nav-link">1. Klon repo:</a>
-        <ul class="nav flex-column">
-        </ul>
-    </li>
-    <li class="nav-item"><a href="#2-sett-opp-oppdatering-av-url-til-den-gjeldene-javascript-koden" class="nav-link">2. Sett opp oppdatering av url til den gjeldene javascript-koden</a>
-        <ul class="nav flex-column">
-        </ul>
-    </li>
-    <li class="nav-item"><a href="#3-koble-til-lsningen" class="nav-link">3. Koble til løsningen</a>
-        <ul class="nav flex-column">
-        </ul>
-    </li>
-        </ul>
-    </li>
-        </ul>
-    </div>
-</div>
-    
-    <div class="octocat">
-        <a href="https://github.com/navikt/tms-mikrofrontend-selector/blob/main/howto.md">
-            <img class="octocat-img" src="/img/github-mark.png"/>
-        </a>
-    </div>
-    
-</div>
-<div class="col-md-9 tms-theme" role="main">
+<div class="content-wrapper">
+    <div class="page-content" role="main">
 
 <h1 id="microfrontends-pa-min-side">Microfrontends på min side</h1>
 <p>Microfrontendene brukt på min side kommer i form av små bokser med forskjellig funksjonalitet og innhold teamene ønsker å presentere til en spesifikk gruppe brukere. Vi stiller visse <a href="https://aksel.nav.no/god-praksis/artikler/retningslinjer-for-design-av-mikrofrontends">designkrav</a> til utformingen av microfrontendene, for å ivareta en god helhetlig brukeropplevelse. Det overordnede konseptet er at bruker skal finne igjen mye av sitt mest relevante innhold og av innganger gruppert og løftet på min side.</p>
@@ -219,21 +172,46 @@ de <a href="https://docs.digdir.no/docs/idporten/oidc/oidc_protocol_id_token#acr
 <p>Om sensitivitet ikke er spesifisert i kafka-meldingen settes det alltid til <code>high</code> hos oss.<br />
 Om en person logger inn med <code>idporten-loa-substantial</code> og det finnes mikrofrontender som personen kan se<br />
 på <code>idporten-loa-high</code> vil bruker få beskjed om dette og link til en "stepup"<br />
-login. Se også <a href="https://docs.nais.io/security/auth/idporten/#security-levels">NAIS docs</a> for mer info om acr-verdiene</p>
-<p><img alt="Katten Min som sitter på ett garnnøste" src="../katt/katt-n%C3%B8ste.svg" title="Nøstekatt" /></p></div>
-
+login. Se også <a href="https://docs.nais.io/security/auth/idporten/#security-levels">NAIS docs</a> for mer info om acr-verdiene</p></div>
+    
+    <div class="page-content-toc"><div class="bs-sidebar custom-toc" role="complementary">
+  <h2>
+    Innhold på siden
+  </h2>
+    
+  <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+    <ul class="nav flex-column toc-item"> 
+  <li class="nav-item x">
+    <a href="#microfrontends-pa-min-side" class="nav-link toc-item">Microfrontends på min side</a>
+  <li class="nav-item x">
+    <a href="#hvordan-kan-mitt-team-fa-en-microfrontend-pa-min-side" class="nav-link toc-item">Hvordan kan mitt team få en microfrontend på min side?</a>
+  </li>
+  <li class="nav-item x">
+    <a href="#1-klon-repo" class="nav-link toc-item">1. Klon repo:</a>
+  </li>
+  <li class="nav-item x">
+    <a href="#2-sett-opp-oppdatering-av-url-til-den-gjeldene-javascript-koden" class="nav-link toc-item">2. Sett opp oppdatering av url til den gjeldene javascript-koden</a>
+  </li>
+  <li class="nav-item x">
+    <a href="#3-koble-til-lsningen" class="nav-link toc-item">3. Koble til løsningen</a>
+  </li>
+  </li>
+    </ul>
+  </div>
+</div>
+    </div>
+    
+</div>
             </div>
         </div>
 
         <footer class="col-md-12">
-<div class="footer">
-    <section>
-        <h2 id="slack">Min side på slack</h2>
-        <a href="https://nav-it.slack.com/archives/C9CJ794PP">#team-personbruker</a>
-        <a href="https://nav-it.slack.com/archives/CR61BPH7G">#brukernotifikasjoner</a>
-        <a href="https://nav-it.slack.com/archives/C04E3K5MMMY">#utkast</a>
-    </section>
-</div>
+<section class="footer-wrapper">
+    <h2 id="slack">Min side på slack</h2>
+    <a href="https://nav-it.slack.com/archives/C9CJ794PP">#team-personbruker</a>
+    <a href="https://nav-it.slack.com/archives/CR61BPH7G">#brukernotifikasjoner</a>
+    <a href="https://nav-it.slack.com/archives/C04E3K5MMMY">#utkast</a>
+</section>
         </footer>
         <script src="../js/jquery-3.6.0.min.js"></script>
         <script src="../js/bootstrap.min.js"></script>
