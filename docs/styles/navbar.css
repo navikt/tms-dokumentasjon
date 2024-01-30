@@ -23,14 +23,17 @@ a.nav-homepage{
 
 .nav-homepage:hover .outerCircle {
   fill: #0066ff;
+  stroke: none;
 }
 
 .nav-homepage:hover .innerCircle {
   fill: black;
+  stroke: none;
 }
 
 .navbar-toggler{
   display: none;
+  stroke: none;
 }
 
 .navbar .container{
