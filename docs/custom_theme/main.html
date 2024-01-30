@@ -1,29 +1,116 @@
 {% extends "base.html" %}
-{% block next_prev %}{% endblock %}
+{% set class = "" %}
+{%- block styles %}
+{%- for path in config.extra_css %}
+<link href="{{ path|url }}" rel="stylesheet">
+{%- endfor %}
+{%- endblock %}
+
+{%- block site_name %}
+<a href="{{ nav.homepage.url|url }}" class="nav-homepage">
+    <svg class="nav-homepage-icon" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28"
+        fill="none">
+        <circle class="outerCircle" cx="14" cy="14" r="13.25" stroke="black" stroke-width="1.5" />
+        <circle class="innerCircle" cx="14" cy="14" r="7.25" stroke="black" stroke-width="1.5" />
+        <circle cx="9" cy="10" r="2.25" fill="white" stroke="black" stroke-width="1.5" />
+    </svg>
+    <p>
+        Utvikler-docs
+    </p>
+</a>
+{%- endblock %}
+
+{%- if nav|length>1 or (page and (page.next_page or page.previous_page)) or config.repo_url %}
+<!-- Expander button -->
+<button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+    <span class="navbar-toggler-icon"></span>
+</button>
+{%- endif %}
+
+<!-- Expanded navigation -->
+{%- block site_nav %}
+{%- if nav|length>1 %}
+<!-- Main navigation -->
+<div class¨>
+    <ul class="nav navbar-nav">
+        {%- for nav_item in nav %}
+        {%- if nav_item.children %}
+        <li class="dropdown{% if nav_item.active %} active{% endif %}">
+            <a href="{{nav_item.children[0].url | url}}" class="nav-link">{{ nav_item.title }} <b class="caret"></b></a>
+        </li>
+        {%- else %}
+        <li class="navitem{% if nav_item.active %} active{% endif %}">
+            <a href="{{ nav_item.url|url }}" class="nav-link">{{ nav_item.title }}</a>
+        </li>
+        {%- endif %}
+        {%- endfor %}
+        {%- block search_button %}
+        {%- if 'search' in config.plugins %}
+        <li class="nav-item">
+            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                {% trans %}Search{% endtrans %}
+            </a>
+        </li>
+        {%- endif %}
+        {%- endblock %}
+    </ul>
+</div>
+{%- endif %}
+{%- endblock %}
+{%- block next_prev %}
+{%- endblock %}
+{%- block repo %}
+{%- if page and page.edit_url %}
+<li class="nav-item">
+    <a href="{{ page.edit_url }}" class="nav-link">
+        {%- if config.repo_name == 'GitHub' -%}
+        <i class="fa fa-github"></i> {% trans repo_name=config.repo_name %}Edit on
+        {{ repo_name }}{% endtrans %}
+        {%- elif config.repo_name == 'Bitbucket' -%}
+        <i class="fa fa-bitbucket"></i> {% trans repo_name=config.repo_name %}Edit on
+        {{ repo_name }}{% endtrans %}
+        {%- elif config.repo_name == 'GitLab' -%}
+        <i class="fa fa-gitlab"></i> {% trans repo_name=config.repo_name %}Edit on
+        {{ repo_name }}{% endtrans %}
+        {%- elif config.repo_name -%}
+        {% trans repo_name=config.repo_name%}Edit on {{ repo_name }}{% endtrans %}
+        {% else %}
+        {% trans repo_name=config.repo_name%}Edit{% endtrans %}
+        {%- endif -%}
+    </a>
+</li>
+{%- elif config.repo_url %}
+<li class="nav-item">
+    <a href="{{ config.repo_url }}" class="nav-link">
+        {%- if config.repo_name == 'GitHub' -%}
+        <i class="fa fa-github"></i> {{ config.repo_name }}
+        {%- elif config.repo_name == 'Bitbucket' -%}
+        <i class="fa fa-bitbucket"></i> {{ config.repo_name }}
+        {%- elif config.repo_name == 'GitLab' -%}
+        <i class="fa fa-gitlab"></i> {{ config.repo_name }}
+        {%- else -%}
+        {{ config.repo_name }}
+        {%- endif -%}
+    </a>
+</li>
+{%- endif %}
+{%- endblock %}
+
 {%- block content %}
-{% if 'toc' not in page.meta or page.meta.toc != false %}
-<div class="col-md-3">{% include "toc.html" %}
-    {% if 'github' in page.meta and page.meta.toc != false %}
-    <div class="octocat">
-        <a href="{{ page.meta.github}}">
-            <img class="octocat-img" src="/img/github-mark.png"/>
-        </a>
+<div class="content-wrapper">
+    <div class="page-content" role="main">{% include "content.html" %}</div>
+    {% if 'toc' not in page.meta or page.meta.toc != false %}
+    <div class="page-content-toc">{% include "toc.html" %}
     </div>
+    {% else %}
     {% endif %}
 </div>
-<div class="col-md-9 tms-theme" role="main">{% include "content.html" %}</div>
-{% else %}
-<div class="col-md-12 no-toc-page {{ page.meta.custom_class }}" role="main">{% include "content.html" %}
-</div>
-{% endif %}
 {%- endblock %}
 {%- block footer %}
-<div class="footer">
-    <section>
-        <h2 id="slack">Min side på slack</h2>
-        <a href="https://nav-it.slack.com/archives/C9CJ794PP">#team-personbruker</a>
-        <a href="https://nav-it.slack.com/archives/CR61BPH7G">#brukernotifikasjoner</a>
-        <a href="https://nav-it.slack.com/archives/C04E3K5MMMY">#utkast</a>
-    </section>
-</div>
+<section class="footer-wrapper">
+    <h2 id="slack">Min side på slack</h2>
+    <a href="https://nav-it.slack.com/archives/C9CJ794PP">#team-personbruker</a>
+    <a href="https://nav-it.slack.com/archives/CR61BPH7G">#brukernotifikasjoner</a>
+    <a href="https://nav-it.slack.com/archives/C04E3K5MMMY">#utkast</a>
+</section>
 {%- endblock %}
