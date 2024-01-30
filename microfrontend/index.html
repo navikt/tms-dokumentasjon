@@ -102,7 +102,8 @@ Veilendende versjon ligger <a href="https://github.com/navikt/tms-min-side/blob/
 <h3 id="enabledisable">Enable/disable</h3>
 <p>Om en microfrontend vises avhenger av om den er enablet for en gitt bruker. Dette setter du ved å sende en melding på<br />
   microfrontend-topicet.</p>
-<h3 id="enable-melding-nar-en-bruker-skal-se-mikrofrontenden">Enable-melding når en bruker skal se mikrofrontenden</h3>
+<h3 id="enable-melding">Enable-melding</h3>
+<p>Enable-melding sender du for å vise microfrontenden til en bruker.</p>
 <pre><code class="language-json">{
     &quot;@action&quot;: &quot;enable&quot;,
     &quot;ident&quot;: &lt;ident for bruker: fnr/dnr&gt;,
@@ -111,7 +112,8 @@ Veilendende versjon ligger <a href="https://github.com/navikt/tms-min-side/blob/
     &quot;@initiated_by&quot;: &lt;ditt-team&gt;
 }
 </code></pre>
-<h3 id="disable-melding-nar-bruker-ikke-skal-se-mikrofrontenden-lenger">Disable-melding når bruker ikke skal se mikrofrontenden lenger</h3>
+<h3 id="disable-melding">Disable-melding</h3>
+<p>Disable-melding sender du for å slutte å vise microfrontenden til en bruker.</p>
 <pre><code class="language-json">{
     &quot;@action&quot;:  &quot;disable&quot;,
     &quot;ident&quot;: &lt;ident for bruker: fnr/dnr&gt;,
