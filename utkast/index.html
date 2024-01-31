@@ -13,6 +13,7 @@
 <link href="../styles/container.css" rel="stylesheet">
 <link href="../styles/blocks.css" rel="stylesheet">
 <link href="../styles/pages.css" rel="stylesheet">
+<link href="../styles/toc.css" rel="stylesheet">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
         <script>hljs.highlightAll();</script> 
     </head>
@@ -132,29 +133,62 @@ Spesifikt utkast: <code>x_minside_id :"&lt;utkastid&gt;"</code> </p>
 <p><a href="https://github.com/navikt/tms-utkast-mikrofrontend">Utkast-frontenden</a> logger et <a href="https://github.com/navikt/analytics-taxonomy/tree/main/events/skjema%20%C3%A5pnet">skjema åpent</a>-event med <code>url</code> som payload til amplitude når bruker klikker på ett utkast. Om teamet ditt ønsker å få med feltene <code>skjemakode</code> og <code>skjemanavn</code> må metricsfeltet være tilstede og komplett i create-meldingen</p></div>
     
     <div class="page-content-toc"><div class="bs-sidebar custom-toc" role="complementary">
-  <h2>
-    Innhold på siden
-  </h2>
-    
-  <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
-    <ul class="nav flex-column toc-item"> 
-  <li class="nav-item x">
-    <a href="#utkast-pa-min-side" class="nav-link toc-item">Utkast på min side</a>
-  <li class="nav-item x">
-    <a href="#hvordan-fungerer-det" class="nav-link toc-item">Hvordan fungerer det?</a>
-  </li>
-  <li class="nav-item x">
-    <a href="#kafka" class="nav-link toc-item">Kafka</a>
-  </li>
-  <li class="nav-item x">
-    <a href="#observability" class="nav-link toc-item">Observability</a>
-  </li>
-  <li class="nav-item x">
-    <a href="#amplitude-malinger" class="nav-link toc-item">Amplitude målinger</a>
-  </li>
-  </li>
-    </ul>
-  </div>
+  <h2>Innhold på siden</h2>
+   
+  <ul class="toc-list-depth-1">
+    <li class="toc-item toc-item-depth-1">
+      <a
+      href="#utkast-pa-min-side"
+      class="nav-link"
+      >Utkast på min side</a
+    >
+    </li> 
+  <ul class="toc-list-depth-2">
+    <li class="toc-item toc-item-depth-2">
+      <a
+      href="#hvordan-fungerer-det"
+      class="nav-link"
+      >Hvordan fungerer det?</a
+    >
+    </li>
+  </ul> 
+  <ul class="toc-list-depth-2">
+    <li class="toc-item toc-item-depth-2">
+      <a
+      href="#kafka"
+      class="nav-link"
+      >Kafka</a
+    >
+    </li> 
+  <ul class="toc-list-depth-3">
+    <li class="toc-item toc-item-depth-3">
+      <a
+      href="#meldingsformat"
+      class="nav-link"
+      >meldingsformat</a
+    >
+    </li>  
+  </ul>
+  </ul> 
+  <ul class="toc-list-depth-2">
+    <li class="toc-item toc-item-depth-2">
+      <a
+      href="#observability"
+      class="nav-link"
+      >Observability</a
+    >
+    </li>
+  </ul> 
+  <ul class="toc-list-depth-2">
+    <li class="toc-item toc-item-depth-2">
+      <a
+      href="#amplitude-malinger"
+      class="nav-link"
+      >Amplitude målinger</a
+    >
+    </li>
+  </ul>
+  </ul>
 </div>
     </div>
     

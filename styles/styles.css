@@ -7,7 +7,6 @@
 @import "search.css";
 @import "footer.css";
 @import "page-content.css";
-@import "toc.css";
 @import "search-modal.css";
 
 
@@ -26,6 +25,7 @@
   );
   --h-margin-bottom: 24px;
   --h-margin-top: 64px;
+  --default-border-radius: 4px
 }
 
 body {

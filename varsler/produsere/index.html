@@ -13,6 +13,7 @@
 <link href="../../styles/container.css" rel="stylesheet">
 <link href="../../styles/blocks.css" rel="stylesheet">
 <link href="../../styles/pages.css" rel="stylesheet">
+<link href="../../styles/toc.css" rel="stylesheet">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
         <script>hljs.highlightAll();</script> 
     </head>
@@ -395,35 +396,170 @@ Spesifikt varsel: <code>x_minside_id :"&lt;varselId&gt;"</code></p>
 </code></pre></div>
     
     <div class="page-content-toc"><div class="bs-sidebar custom-toc" role="complementary">
-  <h2>
-    Innhold på siden
-  </h2>
-    
-  <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
-    <ul class="nav flex-column toc-item"> 
-  <li class="nav-item x">
-    <a href="#komme-i-gang-med-varsler" class="nav-link toc-item">Komme i gang med varsler</a>
-  <li class="nav-item x">
-    <a href="#varseltyper" class="nav-link toc-item">Varseltyper</a>
-  </li>
-  <li class="nav-item x">
-    <a href="#ekstern-varsling" class="nav-link toc-item">Ekstern varsling</a>
-  </li>
-  <li class="nav-item x">
-    <a href="#kafka-schemas-og-buildere" class="nav-link toc-item">Kafka, schemas og buildere</a>
-  </li>
-  <li class="nav-item x">
-    <a href="#oppretting-av-varsel" class="nav-link toc-item">Oppretting av varsel</a>
-  </li>
-  <li class="nav-item x">
-    <a href="#inaktivering-av-varsel" class="nav-link toc-item">Inaktivering av varsel</a>
-  </li>
-  <li class="nav-item x">
-    <a href="#overvaking-av-varsler" class="nav-link toc-item">Overvåking av varsler</a>
-  </li>
-  </li>
-    </ul>
-  </div>
+  <h2>Innhold på siden</h2>
+   
+  <ul class="toc-list-depth-1">
+    <li class="toc-item toc-item-depth-1">
+      <a
+      href="#komme-i-gang-med-varsler"
+      class="nav-link"
+      >Komme i gang med varsler</a
+    >
+    </li> 
+  <ul class="toc-list-depth-2">
+    <li class="toc-item toc-item-depth-2">
+      <a
+      href="#varseltyper"
+      class="nav-link"
+      >Varseltyper</a
+    >
+    </li>
+  </ul> 
+  <ul class="toc-list-depth-2">
+    <li class="toc-item toc-item-depth-2">
+      <a
+      href="#ekstern-varsling"
+      class="nav-link"
+      >Ekstern varsling</a
+    >
+    </li> 
+  <ul class="toc-list-depth-3">
+    <li class="toc-item toc-item-depth-3">
+      <a
+      href="#revarsling"
+      class="nav-link"
+      >Revarsling</a
+    >
+    </li>
+  </ul> 
+  <ul class="toc-list-depth-3">
+    <li class="toc-item toc-item-depth-3">
+      <a
+      href="#overskriving-av-standardtekster"
+      class="nav-link"
+      >Overskriving av standardtekster</a
+    >
+    </li>
+  </ul>
+  </ul> 
+  <ul class="toc-list-depth-2">
+    <li class="toc-item toc-item-depth-2">
+      <a
+      href="#kafka-schemas-og-buildere"
+      class="nav-link"
+      >Kafka, schemas og buildere</a
+    >
+    </li> 
+  <ul class="toc-list-depth-3">
+    <li class="toc-item toc-item-depth-3">
+      <a
+      href="#github-maven-repository"
+      class="nav-link"
+      >Github Maven repository</a
+    >
+    </li>
+  </ul>
+  </ul> 
+  <ul class="toc-list-depth-2">
+    <li class="toc-item toc-item-depth-2">
+      <a
+      href="#oppretting-av-varsel"
+      class="nav-link"
+      >Oppretting av varsel</a
+    >
+    </li> 
+  <ul class="toc-list-depth-3">
+    <li class="toc-item toc-item-depth-3">
+      <a
+      href="#opprett-varsel-felter"
+      class="nav-link"
+      >Opprett-varsel felter</a
+    >
+    </li>
+  </ul> 
+  <ul class="toc-list-depth-3">
+    <li class="toc-item toc-item-depth-3">
+      <a
+      href="#json-format"
+      class="nav-link"
+      >Json-format</a
+    >
+    </li>
+  </ul> 
+  <ul class="toc-list-depth-3">
+    <li class="toc-item toc-item-depth-3">
+      <a
+      href="#eksempel-med-buildere"
+      class="nav-link"
+      >Eksempel med buildere</a
+    >
+    </li>  
+  </ul>
+  </ul> 
+  <ul class="toc-list-depth-2">
+    <li class="toc-item toc-item-depth-2">
+      <a
+      href="#inaktivering-av-varsel"
+      class="nav-link"
+      >Inaktivering av varsel</a
+    >
+    </li> 
+  <ul class="toc-list-depth-3">
+    <li class="toc-item toc-item-depth-3">
+      <a
+      href="#inaktiver-varsel-felter"
+      class="nav-link"
+      >Inaktiver-varsel felter</a
+    >
+    </li>
+  </ul> 
+  <ul class="toc-list-depth-3">
+    <li class="toc-item toc-item-depth-3">
+      <a
+      href="#json-format_1"
+      class="nav-link"
+      >Json-format</a
+    >
+    </li>
+  </ul> 
+  <ul class="toc-list-depth-3">
+    <li class="toc-item toc-item-depth-3">
+      <a
+      href="#eksempel-med-buildere_1"
+      class="nav-link"
+      >Eksempel med buildere</a
+    >
+    </li>  
+  </ul>
+  </ul> 
+  <ul class="toc-list-depth-2">
+    <li class="toc-item toc-item-depth-2">
+      <a
+      href="#overvaking-av-varsler"
+      class="nav-link"
+      >Overvåking av varsler</a
+    >
+    </li> 
+  <ul class="toc-list-depth-3">
+    <li class="toc-item toc-item-depth-3">
+      <a
+      href="#logging"
+      class="nav-link"
+      >Logging</a
+    >
+    </li>
+  </ul> 
+  <ul class="toc-list-depth-3">
+    <li class="toc-item toc-item-depth-3">
+      <a
+      href="#kafka"
+      class="nav-link"
+      >Kafka</a
+    >
+    </li>  
+  </ul>
+  </ul>
+  </ul>
 </div>
     </div>
     

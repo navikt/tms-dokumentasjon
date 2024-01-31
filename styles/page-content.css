@@ -16,8 +16,8 @@
 }
 
 .page-content-toc {
-  padding-top: 90px;
-  padding-bottom: 10px;
+  margin-top: 90px;
+  margin-bottom: 10px;
   padding: auto;
   max-width: 25%;
   min-width: 200px;
