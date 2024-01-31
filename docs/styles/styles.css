@@ -2,12 +2,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,400;0,600;1,300&display=swap");
 @import url("https://cdnjs.cloudflare.com/ajax/libs/hack-font/3.3.0/web/hack-subset.min.css");
 @import url("https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css");
-@import url("toc.css");
-@import "navbar.css";
-@import "search.css";
-@import "footer.css";
-@import "page-content.css";
-@import "search-modal.css";
 
 
 :root {
