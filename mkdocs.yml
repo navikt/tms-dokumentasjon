@@ -12,10 +12,11 @@ not_in_nav: index.md
 
 extra_css:
   - styles/styles.css
-  - styles/container.css
-  - styles/blocks.css
-  - styles/pages.css
+  - styles/navbar.css
+  - styles/page-content.css
   - styles/toc.css
+  - styles/search-modal.css
+  - styles/footer.css
 extra_javascript:
   - scripts/override_navbar-background.js
 
