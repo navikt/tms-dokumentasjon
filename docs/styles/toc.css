@@ -29,6 +29,7 @@ ul.toc-list-depth-3 {
 .custom-toc a {
   display: flex;
   padding: 2px 8px;
+  width: fit-content;
   margin: 0;
   color: #000;
   text-decoration: none;
