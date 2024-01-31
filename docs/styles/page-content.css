@@ -4,8 +4,6 @@
 
 .content-wrapper {
   display: flex;
-  color: #000;
-  line-height: 28px; /* 155.556% */
   gap: 108px;
   position: relative;
 }
