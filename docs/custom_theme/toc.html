@@ -1,17 +1,17 @@
 <div class="bs-sidebar custom-toc" role="complementary">
-  <h2>
-    Innhold på siden
-  </h2>
-    {% macro toc_item(item) %} {%- if item.level <= config.theme.navigation_depth
+  <h2>Innhold på siden</h2>
+  {% macro toc_item(item) %} {%- if item.level <= config.theme.navigation_depth
   %}
-  <li class="nav-item x">
-    <a href="{{ item.url }}" class="nav-link toc-item">{{ item.title }}</a>
-    {%- for child in item.children %} {{- toc_item(child) }} {%- endfor %}
-  </li>
-  {%- endif %} {%- endmacro %}
-  <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
-    <ul class="nav flex-column toc-item">
-      {%- for item in page.toc %} {{ toc_item(item) }} {%- endfor %}
-    </ul>
-  </div>
+  <ul class="toc-list-depth-{{ item.level }}">
+    <li class="toc-item toc-item-depth-{{ item.level }}">
+      <a
+      href="{{ item.url }}"
+      class="nav-link"
+      >{{ item.title }}</a
+    >
+    </li>
+    {%- for child in item.children %} {{toc_item(child) }} {%- endfor %}
+  </ul>
+  {%- endif %} {%- endmacro %} {%- for item in page.toc %} {{ toc_item(item) }}
+  {%- endfor %}
 </div>

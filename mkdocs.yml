@@ -15,6 +15,7 @@ extra_css:
   - styles/container.css
   - styles/blocks.css
   - styles/pages.css
+  - styles/toc.css
 extra_javascript:
   - scripts/override_navbar-background.js
 
@@ -23,7 +24,7 @@ plugins:
   - external-markdown
 theme:
   name: mkdocs
-  navigation_depth: 2
+  navigation_depth: 3
   locale: nb
   custom_dir: docs/custom_theme
 markdown_extensions:

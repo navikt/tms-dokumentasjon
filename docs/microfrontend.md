@@ -4,5 +4,3 @@
 
 # Microfrontends på min side
 {{ external_markdown('https://raw.githubusercontent.com/navikt/tms-mikrofrontend-selector/main/howto.md', '') }}
-
-
