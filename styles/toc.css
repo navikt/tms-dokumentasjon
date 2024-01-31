@@ -1,6 +1,8 @@
 .custom-toc {
   position: sticky;
   top: 90px;
+  font-size: 18px;
+  line-height: 180%;
 }
 
 .custom-toc h2 {
@@ -14,6 +16,7 @@
   padding: 0px;
   margin: 0px;
   font-size: 18px;
+  line-height: 180%;
   list-style: none;
 }
 

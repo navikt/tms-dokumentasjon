@@ -8,6 +8,7 @@
   --h-margin-bottom: 24px;
   --h-margin-top: 64px;
   --default-border-radius: 4px;
+  --table-border: black 1.5px solid;
 }
 
 body {
@@ -25,8 +26,7 @@ body {
   font-size: 18px;
   font-style: normal;
   font-weight: 400;
-  line-height: 170% ;
-
+  line-height: 170%;
 }
 
 footer {
@@ -78,7 +78,6 @@ li {
 
 .row h4 {
   font-size: 18px;
-
   font-weight: 700;
   margin-bottom: 12px;
 }
@@ -86,7 +85,7 @@ li {
 /* ingress */
 .row h1 + p {
   font-size: 24px;
-  margin-bottom: 64px;
+  margin-bottom: 60px;
   line-height: 160%;
 }
 
@@ -105,6 +104,7 @@ li {
 .row pre > code {
   max-width: 100%;
   font-size: 16px;
+  line-height: 170%;
 }
 
 .hljs-attr {
@@ -125,28 +125,30 @@ li {
 /* table */
 .row table {
   margin-top: 10px;
+  font-size: 16px;
+  line-height: 170%;
 }
 
 .container th {
-  border-bottom: var(--divider-color) 1px solid;
-  border-left: var(--divider-color) 1px solid;
-  border-top: var(--divider-color) 1px solid;
+  border-bottom: var(--table-border);
+  border-left: var(--table-border);
+  border-top: var(--table-border);
   padding: 8px;
   text-align: center;
 }
 
 .container td {
-  border-left: var(--divider-color) 1px solid;
-  border-bottom: var(--divider-color) 1px solid;
+  border-left: var(--table-border);
+  border-bottom: var(--table-border);
   padding: 10px;
 }
 
 .container tr td:last-child {
-  border-right: var(--divider-color) 1px solid;
+  border-right: var(--table-border);
 }
 
 .container tr th:last-child {
-  border-right: var(--divider-color) 1px solid;
+  border-right: var(--table-border);
 }
 
 .container table + h4 {
@@ -154,8 +156,4 @@ li {
 }
 .container table + h4 + p {
   margin-top: 10px;
-}
-
-tr:nth-child(odd) {
-  background-color: rgba(0, 0, 0, 0.05);
 }
