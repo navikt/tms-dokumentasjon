@@ -84,14 +84,13 @@
 <p>Microfrontendene brukt på min side kommer i form av små bokser med forskjellig funksjonalitet og innhold teamene ønsker å presentere til en spesifikk gruppe brukere. Det overordnede konseptet er at bruker skal finne igjen mye av sitt mest relevante innhold og av innganger gruppert og løftet på min side.</p>
 <p>Vår microfrontendrigg består av tre deler. Mikrofrontenden som lastes opp til frontend-plattform sin CDN, min side som viser microfrontendene, og Kafka-backenden for å aktivere og deaktivere mikrofrontends for spesifikke brukere. Selve mikrofrontenden blir bygget til ESM, lastet opp til CDN og hentes deretter inn som en remote ES-Modul.</p>
 <h2 id="sett-opp-microfrontend">Sett opp microfrontend</h2>
-<p>Følg readme til denne <a href="https://github.com/navikt/tms-microfrontend-template">templaten</a>.</p>
+<p>Bruk <a href="https://github.com/navikt/tms-microfrontend-template">denne</a> templaten og følg instruksjonene i readme-filen.</p>
 <h3 id="design">Design</h3>
 <p>Vi stiller visse <a href="https://aksel.nav.no/god-praksis/artikler/retningslinjer-for-design-av-mikrofrontends">designkrav</a> til utformingen av microfrontendene, for å ivareta en god helhetlig brukeropplevelse.</p>
 <h3 id="sprak">Språk</h3>
 <p>Alt innhold må være tilgjengelig på bokmål, nynorsk og engelsk. Språkhåndtering har vi allerede satt opp <a href="https://github.com/navikt/tms-microfrontend-template/blob/main/src/language/LanguageProvider.tsx">her</a>.</p>
 <h3 id="dependencies">Dependencies</h3>
-<p>Vi deler noen dependencies på tvers av apper. Per nå er det react og react-dom. DS-css blir også delt og bør ligge på samme major versjon.<br />
-Veilendende versjon ligger <a href="https://github.com/navikt/tms-min-side/blob/main/index.html">her</a>.</p>
+<p>Vi deler noen dependencies på tvers av apper. Per nå er det react og react-dom. DS-css blir også delt og bør ligge på samme major versjon. Veilendende versjon ligger <a href="https://github.com/navikt/tms-min-side/blob/main/index.html">her</a>.</p>
 <h3 id="amplitude">Amplitude</h3>
 <p>Amplitude fungerer som vanlig (se <a href="https://github.com/navikt/aap-min-side-microfrontend/blob/main/src/utils/amplitude.ts">AAP sin mikrofrontend</a>). Dere kan fritt logge de eventene dere vil, men for at vi skal kunne foreta målinger for Min side som helhet er det påkrevd at trykk på mikrofrontenden sender et navigere event med feltet <br />
 <code>komponent: &lt;microfrontendId&gt;</code>.</p>
