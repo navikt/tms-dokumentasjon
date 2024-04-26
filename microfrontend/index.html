@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="nb">
+<html lang="nb" data-bs-theme="light">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -34,7 +34,7 @@
     </p>
 </a>
                 <!-- Expander button -->
-                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
@@ -63,7 +63,7 @@
     </ul>
 </div>
 
-                    <ul class="nav navbar-nav ml-auto">
+                    <ul class="nav navbar-nav ms-md-auto">
         <li class="nav-item">
             <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
                 Søk
@@ -82,7 +82,8 @@
 <h1 id="microfrontends-pa-min-side">Microfrontends på min side</h1>
 <p>Personalisering med microfrontends.</p>
 <p>Microfrontendene brukt på min side kommer i form av små bokser med forskjellig funksjonalitet og innhold teamene ønsker å presentere til en spesifikk gruppe brukere. Det overordnede konseptet er at bruker skal finne igjen mye av sitt mest relevante innhold og av innganger gruppert og løftet på min side.</p>
-<p>Vår microfrontendrigg består av tre deler. Mikrofrontenden som lastes opp til frontend-plattform sin CDN, min side som viser microfrontendene, og Kafka-backenden for å aktivere og deaktivere mikrofrontends for spesifikke brukere. Selve mikrofrontenden blir bygget til ESM, lastet opp til CDN og hentes deretter inn som en remote ES-Modul.</p>
+<p>Vår microfrontendrigg består av tre deler. Mikrofrontenden som lastes opp til frontend-plattform sin CDN, min side som viser microfrontendene, og Kafka-backenden for å aktivere og deaktivere mikrofrontends for spesifikke brukere. Om Kafka ikke er et alternativ for ditt team, finnes det ett regelbasert alternativ som bruker informasjon fra SAF og/eller PDL til å avgjøre hvorvidt en mikrofrontend skal vises. Her er det mulig for ditt team å legge inn forslag til ønsket regel, ta kontakt med team min side for mer info.<br />
+Selve mikrofrontenden blir bygget til ESM, lastet opp til CDN og hentes deretter inn som en remote ES-Modul.</p>
 <h2 id="sett-opp-microfrontend">Sett opp microfrontend</h2>
 <p>Bruk <a href="https://github.com/navikt/tms-microfrontend-template">denne</a> templaten og følg instruksjonene i readme-filen.</p>
 <h3 id="design">Design</h3>
@@ -134,7 +135,15 @@ de <a href="https://docs.digdir.no/docs/idporten/oidc/oidc_protocol_id_token#acr
 <p>Om sensitivitet ikke er spesifisert i kafka-meldingen settes det alltid til <code>high</code> hos oss.<br />
 Om en person logger inn med <code>idporten-loa-substantial</code> og det finnes mikrofrontender som personen kan se<br />
 på <code>idporten-loa-high</code> vil bruker få beskjed om dette og link til en "stepup"<br />
-login. Se også <a href="https://docs.nais.io/security/auth/idporten/#security-levels">NAIS docs</a> for mer info om acr-verdiene</p></div>
+login. Se også <a href="https://docs.nais.io/security/auth/idporten/#security-levels">NAIS docs</a> for mer info om acr-verdiene</p>
+<h2 id="plassering">Plassering</h2>
+<p>Mikrofrontender fra team plaseres enten under seksjonen "Din oversikt", på toppen under varslene, eller nederst under "Kanskje aktuelt for deg"</p>
+<h3 id="din-oversikt">Din oversikt</h3>
+<p>I din oversikt skal bruker få spesifikk informasjon knyttet til hens forhold til NAV. Din oversikt støtter for øyeblikket kun kafkabaserte mikrofrontends.</p>
+<h4 id="produktkort">Produktkort</h4>
+<p>Produktkort er strengt talt ikke mikrofrontender, men regelbaserte lenker som peker til innloggede produktsider for ett område. Vi anbefaler heller å bruke kafka, siden dette er mer treffsikkert i forhold til brukers situasjon, men hvis kafka ikke er en mulighet kan dette være ett alternativ. </p>
+<h3 id="kanskje-aktuelt-for-deg">Kanskje aktuelt for deg</h3>
+<p>Under kanskje aktuelt for deg skal bruker få forslag til annet innhold som kan være relevant for hen, for eksempel andre stønader eller støttetjenester en bruker kan ha rett på gitt at hen har en spesifikk ytelse. Foreløbig er det kun regelbaserte mikrofrontender som vises i den her seksjonen.</p></div>
     
     <div class="page-content-toc"><div class="bs-sidebar custom-toc" role="complementary">
   <h2>Innhold på siden</h2>
@@ -245,6 +254,33 @@ login. Se også <a href="https://docs.nais.io/security/auth/idporten/#security-l
     >
     </li>
   </ul>
+  </ul> 
+  <ul class="toc-list-depth-2">
+    <li class="toc-item toc-item-depth-2">
+      <a
+      href="#plassering"
+      class="nav-link"
+      >Plassering</a
+    >
+    </li> 
+  <ul class="toc-list-depth-3">
+    <li class="toc-item toc-item-depth-3">
+      <a
+      href="#din-oversikt"
+      class="nav-link"
+      >Din oversikt</a
+    >
+    </li> 
+  </ul> 
+  <ul class="toc-list-depth-3">
+    <li class="toc-item toc-item-depth-3">
+      <a
+      href="#kanskje-aktuelt-for-deg"
+      class="nav-link"
+      >Kanskje aktuelt for deg</a
+    >
+    </li>
+  </ul>
   </ul>
   </ul>
 </div>
@@ -262,8 +298,7 @@ login. Se også <a href="https://docs.nais.io/security/auth/idporten/#security-l
     <a href="https://nav-it.slack.com/archives/C04E3K5MMMY">#utkast</a>
 </section>
         </footer>
-        <script src="../js/jquery-3.6.0.min.js"></script>
-        <script src="../js/bootstrap.min.js"></script>
+        <script src="../js/bootstrap.bundle.min.js"></script>
         <script>
             var base_url = "..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
@@ -277,7 +312,7 @@ login. Se også <a href="https://docs.nais.io/security/auth/idporten/#security-l
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="searchModalLabel">Søk</h4>
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Lukk</span></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Lukk"></button>
             </div>
             <div class="modal-body">
                 <p>Her kan du søke i disse dokumentene. Skriv søketeksten nedenfor.</p>
@@ -297,7 +332,7 @@ login. Se også <a href="https://docs.nais.io/security/auth/idporten/#security-l
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="keyboardModalLabel">Tastatursnarveier</h4>
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Lukk</span></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Lukk"></button>
             </div>
             <div class="modal-body">
               <table class="table">

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="nb">
+<html lang="nb" data-bs-theme="light">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -34,7 +34,7 @@
     </p>
 </a>
                 <!-- Expander button -->
-                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
@@ -63,7 +63,7 @@
     </ul>
 </div>
 
-                    <ul class="nav navbar-nav ml-auto">
+                    <ul class="nav navbar-nav ms-md-auto">
         <li class="nav-item">
             <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
                 Søk
@@ -138,8 +138,7 @@
     <a href="https://nav-it.slack.com/archives/C04E3K5MMMY">#utkast</a>
 </section>
         </footer>
-        <script src="../../js/jquery-3.6.0.min.js"></script>
-        <script src="../../js/bootstrap.min.js"></script>
+        <script src="../../js/bootstrap.bundle.min.js"></script>
         <script>
             var base_url = "../..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
@@ -153,7 +152,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="searchModalLabel">Søk</h4>
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Lukk</span></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Lukk"></button>
             </div>
             <div class="modal-body">
                 <p>Her kan du søke i disse dokumentene. Skriv søketeksten nedenfor.</p>
@@ -173,7 +172,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="keyboardModalLabel">Tastatursnarveier</h4>
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Lukk</span></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Lukk"></button>
             </div>
             <div class="modal-body">
               <table class="table">

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="nb">
+<html lang="nb" data-bs-theme="light">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -34,7 +34,7 @@
     </p>
 </a>
                 <!-- Expander button -->
-                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
@@ -63,7 +63,7 @@
     </ul>
 </div>
 
-                    <ul class="nav navbar-nav ml-auto">
+                    <ul class="nav navbar-nav ms-md-auto">
         <li class="nav-item">
             <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
                 Søk
@@ -132,7 +132,11 @@
 <li>kotlin: no.nav.tms.varsel:kotlin-builder:1.0.0</li>
 <li>java: no.nav.tms.varsel:java-builder:1.0.0</li>
 </ul>
-<p>Husk å legge til autentisert repository <code>https://maven.pkg.github.com/navikt/tms-varsel-authority</code></p>
+<p>Vi publiserer disse artifaktene til githubs package-repository. Husk å legge til én av disse repositories i ditt prosjekt:</p>
+<ul>
+<li><code>https://maven.pkg.github.com/navikt/tms-varsel-authority</code> (krever autentisering)</li>
+<li><code>https://github-package-registry-mirror.gc.nav.no/cached/maven-release</code> (NAIS sin mirror. Krever ingen autentisering) </li>
+</ul>
 <h2 id="oppretting-av-varsel">Oppretting av varsel</h2>
 <p>For å gi varsel til bruker sender en et opprett-varsel event.</p>
 <h3 id="opprett-varsel-felter">Opprett-varsel felter</h3>
@@ -333,6 +337,10 @@
    .withVarselId(&quot;aabbccdd-abcd-1234-5678-abcdef123456&quot;)
    .build();
 </code></pre>
+<h2 id="buildere-i-tester">Buildere i tester</h2>
+<p>Dersom produsent ikke er satt eksplisitt vil builderene forsøke å hente dette basert på miljøvariablene [<code>NAIS_CLUSTER_NAME</code>, <code>NAIS_NAMESPACE</code>, <code>NAIS_APP_NAME</code>].</p>
+<p>For apper som kjører på nais vil disse være satt automatisk. Hvis en ønsker å kjøre tester med automatisk henting av produsent,<br />
+kan en manuelt legge til disse variablene ved hjelp av <code>BuilderEnvironment.extend(&lt;map med variabler&gt;)</code>.</p>
 <h2 id="overvaking-av-varsler">Overvåking av varsler</h2>
 <h3 id="logging">Logging</h3>
 <p>Hendelser blir logget til kibana med custom felter for filtrering</p>
@@ -536,6 +544,15 @@ Spesifikt varsel: <code>x_minside_id :"&lt;varselId&gt;"</code></p>
   <ul class="toc-list-depth-2">
     <li class="toc-item toc-item-depth-2">
       <a
+      href="#buildere-i-tester"
+      class="nav-link"
+      >Buildere i tester</a
+    >
+    </li>
+  </ul> 
+  <ul class="toc-list-depth-2">
+    <li class="toc-item toc-item-depth-2">
+      <a
       href="#overvaking-av-varsler"
       class="nav-link"
       >Overvåking av varsler</a
@@ -576,8 +593,7 @@ Spesifikt varsel: <code>x_minside_id :"&lt;varselId&gt;"</code></p>
     <a href="https://nav-it.slack.com/archives/C04E3K5MMMY">#utkast</a>
 </section>
         </footer>
-        <script src="../../js/jquery-3.6.0.min.js"></script>
-        <script src="../../js/bootstrap.min.js"></script>
+        <script src="../../js/bootstrap.bundle.min.js"></script>
         <script>
             var base_url = "../..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
@@ -591,7 +607,7 @@ Spesifikt varsel: <code>x_minside_id :"&lt;varselId&gt;"</code></p>
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="searchModalLabel">Søk</h4>
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Lukk</span></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Lukk"></button>
             </div>
             <div class="modal-body">
                 <p>Her kan du søke i disse dokumentene. Skriv søketeksten nedenfor.</p>
@@ -611,7 +627,7 @@ Spesifikt varsel: <code>x_minside_id :"&lt;varselId&gt;"</code></p>
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="keyboardModalLabel">Tastatursnarveier</h4>
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Lukk</span></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Lukk"></button>
             </div>
             <div class="modal-body">
               <table class="table">
