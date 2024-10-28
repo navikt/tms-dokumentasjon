@@ -125,6 +125,39 @@
 <p>Dersom en velger å overskrive standardtekster for epost/sms, er det anbefalt å overskrive samtlige tekster. Dette er fordi bruker kan motta varsler via annen kanal enn preferansen.</p>
 <p>Eksterne varseltekster skal ikke inneholde lenker. Det er også produsentens ansvar å ikke sende sensitiv informasjon på epost og sms.</p>
 <p>Tekst i sms er begrenset til 160 tegn. Tittel for epost er maksimalt 40 tegn, og tekst er maksimalt 4000 tegn. Tekst i epost kan og bør inneholde markup.</p>
+<h3 id="utsatt-sending">Utsatt sending</h3>
+<p>Produsent kan velge om ekstern varsling skal utsettes til et gitt tidspunkt. Dersom det underliggende varselet inaktiveres før dette,<br />
+vil det ikke sendes ekstern varsling.</p>
+<p>Etter ekstern varsling er sendt gjelder vanlige regler for revarsling. Hvis en opprettet Oppgave med utsatt sending av ekstern varsling på 10 dager,<br />
+vil bruker evt revarsles etter ytterligere 7 dager - 17 dager etter varselet ble opprettet.</p>
+<h3 id="batching">Batching</h3>
+<p>Produsent kan bestemme om ekstern varsling kan holdes igjen og batches sammen med andre varsler som bestilles innen et gitt tidsrom. Hensikten med dette<br />
+er å skjerme bruker for støy i tilfeller der de ville fått mange sms-er og eposter over en kort periode. Eksterne varsler holdes igjen i opptil én time.</p>
+<p>Fra og med versjon 2.0.0 av builder må produsent selv ta stilling til om ekstern varsling kan batches eller ikke (gjelder ikke for utsatt sending). </p>
+<p>For varsler opprettet med eldre buildere, eller sendt til legacy-topics, gjelder følgende defaults:</p>
+<table>
+<thead>
+<tr>
+<th>type</th>
+<th>kan batches</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Beskjed</td>
+<td>Hvis sms-tekst og epost-tekst ikke er satt</td>
+</tr>
+<tr>
+<td>Oppgave</td>
+<td>Nei</td>
+</tr>
+<tr>
+<td>Innboks</td>
+<td>Nei</td>
+</tr>
+</tbody>
+</table>
+<p>Varsler med utsatt sending vil aldri batches.</p>
 <h2 id="kafka-schemas-og-buildere">Kafka, schemas og buildere</h2>
 <p>Min side varsler bruker ikke lenger Avro for schema-validering og serialisering. Produsenter sender eventer direkte på json-format. Vi tilbyr to sett med buildere for henholdsvis java- og kotlin-prosjekter. Det er ikke strengt nødvendig å bruke disse, men sterkt anbefalt. Builderne sørger for at format er riktig og gjør forhåndsvalidering av innhold. Det er også anbefalt å bruke varselId som kafka-nøkkel, for å opprettholde kronologi per enkelt varsel.</p>
 <p>Builderne finnes i følgende bibliotek:</p>
@@ -237,7 +270,8 @@
       &quot;prefererteKanaler&quot;: [&quot;SMS&quot;, &quot;EPOST&quot;],
       &quot;smsVarslingstekst&quot;: &quot;&lt;smsTekst&gt;&quot;,
       &quot;epostVarslingstittel&quot;: &quot;epostTittel&quot;,
-      &quot;epostVarslingstekst&quot;: &quot;epostTekst&quot;
+      &quot;epostVarslingstekst&quot;: &quot;epostTekst&quot;,
+      &quot;kanBatches&quot;: false
    },
    &quot;produsent&quot;: {
       &quot;cluster&quot;: &quot;&lt;cluster&gt;&quot;,
@@ -272,7 +306,9 @@
    )
    link = &quot;https://www.nav.no&quot;
    aktivFremTil = ZonedDateTime.now(ZoneId.of(&quot;Z&quot;)).plusDays(14)
-   eksternVarsling = EksternVarslingBestilling(prefererteKanaler = listOf(EksternKanal.SMS))
+   eksternVarsling {
+      preferertKanal = EksternKanal.SMS
+   }
 }
 </code></pre>
 <h4 id="med-java-builder">Med java-builder</h4>
@@ -285,7 +321,10 @@
    .withTekst(&quot;en&quot;, &quot;English text&quot;, false)
    .withLink(&quot;https://www.nav.no&quot;)
    .withAktivFremTil(ZonedDateTime.now(ZoneId.of(&quot;Z&quot;)).plusDays(14))
-   .withEksternVarsling(EksternKanal.SMS)
+   .withEksternVarsling(
+       OpprettVarselBuilder.eksternVarsling()
+               .withPreferertKanal(EksternKanal.SMS)
+   )
    .build();
 </code></pre>
 <h2 id="inaktivering-av-varsel">Inaktivering av varsel</h2>
@@ -448,6 +487,24 @@ Spesifikt varsel: <code>x_minside_id :"&lt;varselId&gt;"</code></p>
       href="#overskriving-av-standardtekster"
       class="nav-link"
       >Overskriving av standardtekster</a
+    >
+    </li>
+  </ul> 
+  <ul class="toc-list-depth-3">
+    <li class="toc-item toc-item-depth-3">
+      <a
+      href="#utsatt-sending"
+      class="nav-link"
+      >Utsatt sending</a
+    >
+    </li>
+  </ul> 
+  <ul class="toc-list-depth-3">
+    <li class="toc-item toc-item-depth-3">
+      <a
+      href="#batching"
+      class="nav-link"
+      >Batching</a
     >
     </li>
   </ul>
