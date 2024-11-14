@@ -139,13 +139,12 @@ vil bruker evt revarsles etter ytterligere 7 dager - 17 dager etter varselet ble
 <h3 id="batching">Batching</h3>
 <p>Produsent kan bestemme om ekstern varsling kan holdes igjen og batches sammen med andre varsler som bestilles innen et gitt tidsrom. Hensikten med dette<br />
 er å skjerme bruker for støy i tilfeller der de ville fått mange sms-er og eposter over en kort periode. Eksterne varsler holdes igjen i opptil én time.</p>
-<p>Fra og med versjon 2.0.0 av builder må produsent selv ta stilling til om ekstern varsling kan batches eller ikke (gjelder ikke for utsatt sending). </p>
 <p>For varsler opprettet med eldre buildere, eller sendt til legacy-topics, gjelder følgende defaults:</p>
 <table>
 <thead>
 <tr>
 <th>type</th>
-<th>kan batches</th>
+<th>batches</th>
 </tr>
 </thead>
 <tbody>
@@ -414,11 +413,22 @@ Spesifikt varsel: <code>x_minside_id :"&lt;varselId&gt;"</code></p>
 <h4 id="ekstern-status-oppdatert">Ekstern status oppdatert</h4>
 <p>Beskriver ekstern endring i status for et varsel (sms og epost). Kommer med ulike 3 statuser.</p>
 <ul>
-<li><code>bestilt</code>: Bestilling av varsling på sms/epost er mottatt av distribusjonsystem.</li>
+<li><code>venter</code>: Bestilling av varsling på sms/epost er lagt til i intern kø</li>
+<li><code>bestilt</code>: Bestilling av ekstern varsling er oversendt til altinn for distribusjon.</li>
 <li><code>sendt</code>: Ekstern varsling er bekreftet sendt via bestemt kanal (sms eller epost), og om det er renotifikasjon.</li>
 <li><code>feilet</code>: Ekstern varsling feilet. Kommer med feilmelding.</li>
+<li><code>kansellert</code>: Det underliggende varselet ble inaktivert før bestilling ble oversendt til altinn.</li>
 </ul>
 <p>Eksempler:</p>
+<pre><code class="language-json">{
+  &quot;@event_name&quot;: &quot;eksternStatusOppdatert&quot;,
+  &quot;status&quot;: &quot;venter&quot;,
+  &quot;varseltype&quot;: &quot;oppgave&quot;,
+  &quot;varselId&quot;: &quot;11223344-aaaa-bbbb-cccc-112233445566&quot;,
+  &quot;namespace&quot;: &quot;team-test&quot;,
+  &quot;appnavn&quot;: &quot;demo-app&quot;
+}
+</code></pre>
 <pre><code class="language-json">{
   &quot;@event_name&quot;: &quot;eksternStatusOppdatert&quot;,
   &quot;status&quot;: &quot;bestilt&quot;,
@@ -435,6 +445,7 @@ Spesifikt varsel: <code>x_minside_id :"&lt;varselId&gt;"</code></p>
   &quot;varselId&quot;: &quot;11223344-aaaa-bbbb-cccc-112233445566&quot;,
   &quot;kanal&quot;: &quot;SMS&quot;,
   &quot;renotifikasjon&quot;: false,
+  &quot;sendtSomBatch&quot;: false,
   &quot;namespace&quot;: &quot;team-test&quot;,
   &quot;appnavn&quot;: &quot;demo-app&quot;
 }
@@ -445,6 +456,15 @@ Spesifikt varsel: <code>x_minside_id :"&lt;varselId&gt;"</code></p>
   &quot;varseltype&quot;: &quot;oppgave&quot;,
   &quot;varselId&quot;: &quot;11223344-aaaa-bbbb-cccc-112233445566&quot;,
   &quot;feilmelding&quot;: &quot;mottaker har reservert seg mot digital kommunikasjon&quot;,
+  &quot;namespace&quot;: &quot;team-test&quot;,
+  &quot;appnavn&quot;: &quot;demo-app&quot;
+}
+</code></pre>
+<pre><code class="language-json">{
+  &quot;@event_name&quot;: &quot;eksternStatusOppdatert&quot;,
+  &quot;status&quot;: &quot;kansellert&quot;,
+  &quot;varseltype&quot;: &quot;oppgave&quot;,
+  &quot;varselId&quot;: &quot;11223344-aaaa-bbbb-cccc-112233445566&quot;,
   &quot;namespace&quot;: &quot;team-test&quot;,
   &quot;appnavn&quot;: &quot;demo-app&quot;
 }
