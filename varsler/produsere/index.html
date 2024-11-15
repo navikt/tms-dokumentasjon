@@ -418,6 +418,7 @@ Spesifikt varsel: <code>x_minside_id :"&lt;varselId&gt;"</code></p>
 <li><code>sendt</code>: Ekstern varsling er bekreftet sendt via bestemt kanal (sms eller epost), og om det er renotifikasjon.</li>
 <li><code>feilet</code>: Ekstern varsling feilet. Kommer med feilmelding.</li>
 <li><code>kansellert</code>: Det underliggende varselet ble inaktivert før bestilling ble oversendt til altinn.</li>
+<li><code>ferdigstilt</code>: Kommer når varsling er ferdigstilt. For eksempel når alle renotifikasjoner er utført eller stoppet.</li>
 </ul>
 <p>Eksempler:</p>
 <pre><code class="language-json">{
@@ -465,6 +466,16 @@ Spesifikt varsel: <code>x_minside_id :"&lt;varselId&gt;"</code></p>
   &quot;status&quot;: &quot;kansellert&quot;,
   &quot;varseltype&quot;: &quot;oppgave&quot;,
   &quot;varselId&quot;: &quot;11223344-aaaa-bbbb-cccc-112233445566&quot;,
+  &quot;namespace&quot;: &quot;team-test&quot;,
+  &quot;appnavn&quot;: &quot;demo-app&quot;
+}
+</code></pre>
+<pre><code class="language-json">{
+  &quot;@event_name&quot;: &quot;eksternStatusOppdatert&quot;,
+  &quot;status&quot;: &quot;ferdigstilt&quot;,
+  &quot;varseltype&quot;: &quot;oppgave&quot;,
+  &quot;varselId&quot;: &quot;11223344-aaaa-bbbb-cccc-112233445566&quot;,
+  &quot;melding&quot;: &quot;Varsling er ferdigstilt og renotifikasjon er stanset.&quot;,
   &quot;namespace&quot;: &quot;team-test&quot;,
   &quot;appnavn&quot;: &quot;demo-app&quot;
 }
