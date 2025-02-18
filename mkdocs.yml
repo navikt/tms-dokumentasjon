@@ -8,6 +8,7 @@ nav:
       - Produsere varsler: varsler/produsere.md
       - Konsumere varsler: varsler/konsumere.md
       - Migrere fra AVRO: varsler/migrere.md
+  - Søknadskvittering (WIP): soknadskvittering.md
 not_in_nav: index.md
 
 extra_css:
