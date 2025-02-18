@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="nb" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Søknadskvittering (WIP) - Min side utvikler-docs</title>
+<link href="../styles/styles.css" rel="stylesheet">
+<link href="../styles/navbar.css" rel="stylesheet">
+<link href="../styles/page-content.css" rel="stylesheet">
+<link href="../styles/toc.css" rel="stylesheet">
+<link href="../styles/search-modal.css" rel="stylesheet">
+<link href="../styles/footer.css" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+<a href=".." class="nav-homepage">
+    <svg class="nav-homepage-icon" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28"
+        fill="none">
+        <circle class="outerCircle" cx="14" cy="14" r="13.25" stroke="black" stroke-width="1.5" />
+        <circle class="innerCircle" cx="14" cy="14" r="7.25" stroke="black" stroke-width="1.5" />
+        <circle cx="9" cy="10" r="2.25" fill="white" stroke="black" stroke-width="1.5" />
+    </svg>
+    <p>
+        Utvikler-docs
+    </p>
+</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+<!-- Main navigation -->
+<div class¨>
+    <ul class="nav navbar-nav">
+        <li class="navitem">
+            <a href="../guide/" class="nav-link">Innholdsguide</a>
+        </li>
+        <li class="navitem">
+            <a href="../utkast/" class="nav-link">Utkast</a>
+        </li>
+        <li class="navitem">
+            <a href="../microfrontend/" class="nav-link">Microfrontend</a>
+        </li>
+        <li class="dropdown">
+            <a href="../varsler/" class="nav-link">Varsler <b class="caret"></b></a>
+        </li>
+        <li class="navitem active">
+            <a href="./" class="nav-link">Søknadskvittering (WIP)</a>
+        </li>
+        <li class="nav-item">
+            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                Søk
+            </a>
+        </li>
+    </ul>
+</div>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+        <li class="nav-item">
+            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                Søk
+            </a>
+        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+<div class="content-wrapper">
+    <div class="page-content" role="main">
+
+<ol>
+<li>Kafka tilgang: Opprett en pull-request mot topic <code>aapen-soknadskvittering-v1</code><br />
+   i <a href="https://github.com/navikt/min-side-soknadskvittering-topic-iac">min-side-soknadskvittering-topic-iac</a>.</li>
+<li>Koble på topicene.</li>
+<li>Send event!</li>
+</ol>
+<h2 id="beskrivelse-og-flyt">Beskrivelse og flyt</h2>
+<p>Topic <em>min-side-soknadskvittering-topic-iac</em> er ment for hendelser i søknader som har skjedd i Navs fagsystem. <br />
+Hendelsene samles av appen <a href="https://github.com/navikt/tms-soknadskvittering">tms-soknadskvittering</a>, slik at det kan<br />
+presenteres for bruker en sentral plass.</p>
+<p>I skrivende stund støtter systemet følgende eventer:</p>
+<ul>
+<li><code>soknadOpprettet</code>: Innledende event med informasjon som er umiddelbart tilgjengelig (Tittel, arkivtema, skjemanummer etc).</li>
+<li><code>soknadOppdatert</code>: Event med forsinket informasjon, som for eksempel lenke til pdf av søknaden.</li>
+<li><code>soknadFerdigstilt</code>: Event som melder at søknaden på ett eller annet vis er ferdigbehandlet.</li>
+<li><code>vedleggEtterspurt</code>: Event som inntreffer dersom bruker må ettersende ytterligere informasjon. </li>
+<li><code>vedleggMottatt</code>: Nav har mottatt vedlegg av bruker eller tredjepart.</li>
+<li><code>vedleggOppdatert</code>: Informasjon om vedlegg er oppdatert, for eksempel lenke til pdf.</li>
+</ul>
+<h2 id="kafka-schemas-og-buildere">Kafka, schemas og buildere</h2>
+<p>Min side varsler bruker ikke lenger Avro for schema-validering og serialisering. Produsenter sender eventer direkte på json-format.</p>
+<p>Vi tilbyr et sett med buildere for kotlin-prosjekter. Builderne sørger for at format er riktig og gjør forhåndsvalidering av innhold. Det er anbefalt å bruke søknadsId som kafka-nøkkel for alle eventer, for å opprettholde kronologi per enkelt søknad.</p>
+<p>Builderne finnes i følgende bibliotek: <code>no.nav.tms.soknadskvittering:kotlin-builder:0.1.1</code></p>
+<p>Vi publiserer disse artifaktene til githubs package-repository. Husk å legge til én av disse repositories i ditt prosjekt:</p>
+<ul>
+<li><code>https://maven.pkg.github.com/navikt/tms-soknadskvittering</code> (krever autentisering)</li>
+<li><code>https://github-package-registry-mirror.gc.nav.no/cached/maven-release</code> (NAIS sin mirror. Krever ingen autentisering)</li>
+</ul>
+<h3 id="bruk-av-buildere-og-kafkaproducer">Bruk av buildere og KafkaProducer</h3>
+<p>Buildere produserer kafka-event på json-format som kan legges rett på kafka. Merk at KafkaProducer må være konfigurert med StringSerializer.</p>
+<p>Eksempel:</p>
+<pre><code class="language-kotlin">val producer: KafkaProducer&lt;String, String&gt;
+val topic = &quot;min-side.aapen-soknadskvittering-v1&quot;
+
+fun createAndSend(soknadsId: String) {
+    val event = SoknadEventBuilder.opprettet {
+        this.soknadsId = soknadsId
+        //...
+    }
+
+   producer.send(ProducerRecord(topic, soknadsId, event))
+}
+</code></pre>
+<h2 id="beskrivelse-av-sknad-eventer">Beskrivelse av søknad-eventer</h2>
+<h3 id="sknad-opprettet">Søknad opprettet</h3>
+<p>Skal sendes når Nav mottar en søknad fra bruker</p>
+<table>
+<thead>
+<tr>
+<th>felt</th>
+<th>påkrevd</th>
+<th>beskrivelse</th>
+<th>restriksjoner</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>soknadsId</td>
+<td>ja</td>
+<td>Id til søknaden</td>
+<td>Må være UUID eller ULID</td>
+</tr>
+<tr>
+<td>ident</td>
+<td>ja</td>
+<td>Fodselsnummer (evt. d-nummer eller tilsvarende) til bruker søknaden tilhører</td>
+<td>Må ha 11 siffer</td>
+</tr>
+<tr>
+<td>tittel</td>
+<td>ja</td>
+<td>Tittel på søknaden</td>
+<td>Maks 80 tegn</td>
+</tr>
+<tr>
+<td>temakode</td>
+<td>ja, minst 1</td>
+<td>Søknadens arkivtemakode</td>
+<td>Maks 3 tegn</td>
+</tr>
+<tr>
+<td>skjemanummer</td>
+<td>ikke for beskjed</td>
+<td>Søknadens skjemanummer</td>
+<td>Maks 40 tegn</td>
+</tr>
+<tr>
+<td>tidspunktMottatt</td>
+<td>ja</td>
+<td>Tidspunktet Nav først mottok søknad fra bruker</td>
+<td></td>
+</tr>
+<tr>
+<td>fristEttersending</td>
+<td>ja</td>
+<td>Dato med frist for ettersending av vedlegg</td>
+<td></td>
+</tr>
+<tr>
+<td>linkSoknad</td>
+<td>nei</td>
+<td>Link til kopi av søknaden der dette er tilgjengelig</td>
+<td>Må være gyldig lenke og maks 200 tegn</td>
+</tr>
+<tr>
+<td>journalpostId</td>
+<td>nei</td>
+<td>Evt journalpostId fra SAF</td>
+<td>Maks 20 tegn</td>
+</tr>
+<tr>
+<td>mottatteVedlegg</td>
+<td>nei</td>
+<td>Liste over vedlegg som ble mottatt sammen med søknaden</td>
+<td>VedleggsId må være unikt på tvers av mottatte og etterspurte vedlegg</td>
+</tr>
+<tr>
+<td>etterspurteVedlegg</td>
+<td>nei</td>
+<td>Liste over vedlegg som mangler i det bruker sendte inn søknaden</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Praktisk eksempel med kotlin builder. Her er journalposId og link til søknad, vedlegg er ikke enda klart. Bruker har meldt at legen sender inn ytterligere informasjon.</p>
+<pre><code class="language-kotlin">
+SoknadEventBuilder.opprettet {
+   soknadsId = &quot;&lt;uuid&gt;&quot;
+   ident = &quot;01234567890&quot;
+   tittel = &quot;Tittel på en søknad&quot;
+   temakode = &quot;UKJ&quot;
+   skjemanummer = &quot;Skjemanummer-123&quot;
+   fristEttersending = LocalDate.now().plusDays(14)
+   mottattVedlegg {
+       vedleggsId = &quot;vedlegg-1&quot;
+       tittel = &quot;Vedlegg som bruker sendte inn sammen med søknad&quot;
+   }
+   etterspurteVedlegg {
+       vedleggsId = &quot;vedlegg-2&quot;
+       brukerErAvsender = false
+       tittel = &quot;Vedlegg som tredjepart sender inn&quot;
+       beskrivelse = &quot;Bruker har meldt at legen sender dette vedlegget til Nav&quot;
+   }
+   tidspunktMottatt = ZonedDateTime.now()
+}
+</code></pre>
+<h3 id="sknad-oppdatert">Søknad oppdatert</h3>
+<p>Tillater endringer av bestemte felt etter søknad er opprettet. Dersom et felt er <code>null</code> blir ingen endring gjort. Dvs at en kan endre felt fra <code>null</code>, men ikke til <code>null</code>.</p>
+<table>
+<thead>
+<tr>
+<th>felt</th>
+<th>påkrevd</th>
+<th>beskrivelse</th>
+<th>restriksjoner</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>soknadsId</td>
+<td>ja</td>
+<td>Id til søknaden</td>
+<td>Må være UUID eller ULID</td>
+</tr>
+<tr>
+<td>fristEttersending</td>
+<td>nei</td>
+<td>Dato med frist for ettersending av vedlegg</td>
+<td></td>
+</tr>
+<tr>
+<td>linkSoknad</td>
+<td>nei</td>
+<td>Link til kopi av søknaden der dette er tilgjengelig</td>
+<td>Må være gyldig lenke og maks 200 tegn</td>
+</tr>
+<tr>
+<td>journalpostId</td>
+<td>nei</td>
+<td>Evt journalpostId fra SAF</td>
+<td>Maks 20 tegn</td>
+</tr>
+</tbody>
+</table>
+<p>Praktisk eksempel med kotlin builder. Her blir søknad oppdatert etter pdf er ferdig generert.</p>
+<pre><code class="language-kotlin">
+SoknadEventBuilder.oppdatert {
+   soknadsId = &quot;&lt;uuid&gt;&quot;
+   linkSoknad = &quot;https://soknader.nav.no/soknad.pdf&quot;
+}
+</code></pre>
+<h3 id="sknad-ferdigstilt">Søknad ferdigstilt</h3>
+<p>Melder fra at søknad er ferdigstilt og ikke lenger vises til bruker</p>
+<table>
+<thead>
+<tr>
+<th>felt</th>
+<th>påkrevd</th>
+<th>beskrivelse</th>
+<th>restriksjoner</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>soknadsId</td>
+<td>ja</td>
+<td>Id til søknaden</td>
+<td>Må være UUID eller ULID</td>
+</tr>
+<tr>
+<td>fristEttersending</td>
+<td>nei</td>
+<td>Dato med frist for ettersending av vedlegg</td>
+<td></td>
+</tr>
+<tr>
+<td>linkSoknad</td>
+<td>nei</td>
+<td>Link til kopi av søknaden der dette er tilgjengelig</td>
+<td>Må være gyldig lenke og maks 200 tegn</td>
+</tr>
+<tr>
+<td>journalpostId</td>
+<td>nei</td>
+<td>Evt journalpostId fra SAF</td>
+<td>Maks 20 tegn</td>
+</tr>
+</tbody>
+</table>
+<p>Praktisk eksempel med kotlin builder.</p>
+<pre><code class="language-kotlin">SoknadEventBuilder.ferdigstilt {
+   soknadsId = &quot;&lt;uuid&gt;&quot;
+}
+</code></pre>
+<h2 id="beskrivelse-av-vedlegg-eventer">Beskrivelse av vedlegg-eventer</h2>
+<h3 id="vedlegg-etterspurt-bruker">Vedlegg etterspurt bruker</h3>
+<p>Sendes når Nav krever ytterligere vedlegg for en søknad av bruker</p>
+<table>
+<thead>
+<tr>
+<th>felt</th>
+<th>påkrevd</th>
+<th>beskrivelse</th>
+<th>restriksjoner</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>soknadsId</td>
+<td>ja</td>
+<td>Id til søknaden</td>
+<td>Må være UUID eller ULID</td>
+</tr>
+<tr>
+<td>vedleggsId</td>
+<td>ja</td>
+<td>Id til vedlegg</td>
+<td>Må være unik innen én søknad. Kan ikke etterspørre samme vedlegg flere ganger</td>
+</tr>
+<tr>
+<td>brukerErAvsender</td>
+<td>ja</td>
+<td>Om bruker eller tredjepart skal sende vedlegg</td>
+<td></td>
+</tr>
+<tr>
+<td>tittel</td>
+<td>ja</td>
+<td>Tittel på etterspurt vedlegg</td>
+<td>Maks 255 tegn</td>
+</tr>
+<tr>
+<td>linkEttersending</td>
+<td>ja</td>
+<td>Link til der bruker skal ettersende vedlegg</td>
+<td>Gyldig lenke og maks 200 tegn</td>
+</tr>
+<tr>
+<td>tidspunktEtterspurt</td>
+<td>ja</td>
+<td>Dato med frist for ettersending av vedlegg</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Praktisk eksempel med kotlin builder.</p>
+<pre><code class="language-kotlin">SoknadEventBuilder.vedleggEtterspurtBruker {
+   soknadsId = &quot;&lt;uuid&gt;&quot;
+   vedleggsId = &quot;vedlegg-3&quot;
+   tittel = &quot;Annet vedlegg som bruker må sende inn&quot;
+   linkEttersending = &quot;https://link.til.ettersending&quot;
+   tidspunktEtterspurt = ZonedDateTime.now()
+}
+</code></pre>
+<h3 id="vedlegg-etterspurt-tredjepart">Vedlegg etterspurt tredjepart</h3>
+<p>Sendes når Nav krever ytterligere vedlegg for en søknad av en tredjepart</p>
+<table>
+<thead>
+<tr>
+<th>felt</th>
+<th>påkrevd</th>
+<th>beskrivelse</th>
+<th>restriksjoner</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>soknadsId</td>
+<td>ja</td>
+<td>Id til søknaden</td>
+<td>Må være UUID eller ULID</td>
+</tr>
+<tr>
+<td>vedleggsId</td>
+<td>ja</td>
+<td>Id til vedlegg</td>
+<td>Må være unik innen én søknad. Kan ikke etterspørre samme vedlegg flere ganger</td>
+</tr>
+<tr>
+<td>brukerErAvsender</td>
+<td>ja</td>
+<td>Om bruker eller tredjepart skal sende vedlegg</td>
+<td></td>
+</tr>
+<tr>
+<td>tittel</td>
+<td>ja</td>
+<td>Tittel på etterspurt vedlegg</td>
+<td>Maks 255 tegn</td>
+</tr>
+<tr>
+<td>beskrivelse</td>
+<td>nei</td>
+<td>Mer utfyllende informasjon om vedlegg tredjepart skal sende inn</td>
+<td>Maks 500 tegn</td>
+</tr>
+<tr>
+<td>tidspunktEtterspurt</td>
+<td>ja</td>
+<td>Dato med frist for ettersending av vedlegg</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Praktisk eksempel med kotlin builder.</p>
+<pre><code class="language-kotlin">SoknadEventBuilder.vedleggEtterspurtTredjepart {
+   soknadsId = &quot;&lt;uuid&gt;&quot;
+   vedleggsId = &quot;vedlegg-4&quot;
+   tittel = &quot;Brukers arbeidsted må sende inn mer informasjon&quot;
+   tidspunktEtterspurt = ZonedDateTime.now()
+}
+</code></pre>
+<h3 id="vedlegg-mottatt">Vedlegg mottatt</h3>
+<p>Sendes når Nav mottar vedlegg. Dersom det finnes et etterspurt vedlegg med samme id, blir dette markert som mottatt.</p>
+<table>
+<thead>
+<tr>
+<th>felt</th>
+<th>påkrevd</th>
+<th>beskrivelse</th>
+<th>restriksjoner</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>soknadsId</td>
+<td>ja</td>
+<td>Id til søknaden</td>
+<td>Må være UUID eller ULID</td>
+</tr>
+<tr>
+<td>vedleggsId</td>
+<td>ja</td>
+<td>Id til vedlegg</td>
+<td>Må være unik innen én søknad. Kan ikke motta samme vedlegg flere ganger</td>
+</tr>
+<tr>
+<td>tittel</td>
+<td>ja</td>
+<td>Tittel på mottatt vedlegg</td>
+<td>Maks 255 tegn</td>
+</tr>
+<tr>
+<td>linkVedlegg</td>
+<td>nei</td>
+<td>Link til kopi av vedlegg</td>
+<td>Gyldig lenke og maks 200 tegn</td>
+</tr>
+<tr>
+<td>brukerErAvsender</td>
+<td>ja</td>
+<td>Om bruker eller tredjepart er kilden til vedlegg</td>
+<td></td>
+</tr>
+<tr>
+<td>tidspunktMottatt</td>
+<td>ja</td>
+<td>Tidspunkt Nav mottok vedlegg</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Praktiske eksempel med kotlin builder der bruker har sendt inn et vedlegg.</p>
+<pre><code class="language-kotlin">SoknadEventBuilder.vedleggMottatt {
+   soknadsId = &quot;&lt;uuid&gt;&quot;
+   vedleggsId = &quot;vedlegg-3&quot;
+   tittel = &quot;Vedlegg&quot;
+   linkVedlegg = &quot;https://soknad.nav.no/vedlegg/vedlegg.pdf&quot;
+   tidspunktMottatt = ZonedDateTime.now()
+}
+</code></pre>
+<h3 id="vedlegg-oppdatert">Vedlegg oppdatert</h3>
+<p>Tillater endringer av bestemte felt etter vedlegg er mottatt. Dersom et felt er <code>null</code> blir ingen endring gjort. Dvs at en kan endre felt fra <code>null</code>, men ikke til <code>null</code>.</p>
+<p>I skrivende stund kan en kun oppdatere lenke til vedlegg.</p>
+<table>
+<thead>
+<tr>
+<th>felt</th>
+<th>påkrevd</th>
+<th>beskrivelse</th>
+<th>restriksjoner</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>soknadsId</td>
+<td>ja</td>
+<td>Id til søknaden</td>
+<td>Må være UUID eller ULID</td>
+</tr>
+<tr>
+<td>vedleggsId</td>
+<td>ja</td>
+<td>Id til vedlegg</td>
+<td>Må matche et mottatt vedlegg.</td>
+</tr>
+<tr>
+<td>linkVedlegg</td>
+<td>nei</td>
+<td>Link til kopi av vedlegg</td>
+<td>Må være gyldig lenke og maks 200 tegn</td>
+</tr>
+</tbody>
+</table>
+<p>Praktisk eksempel med kotlin builder. Her blir vedlegg oppdatert etter pdf er ferdig generert.</p>
+<pre><code class="language-kotlin">
+SoknadEventBuilder.vedleggOppdatert {
+   soknadsId = &quot;&lt;uuid&gt;&quot;
+   linkSoknad = &quot;https://soknader.nav.no/soknad.pdf&quot;
+}
+</code></pre>
+<h3 id="sknad-ferdigstilt_1">Søknad ferdigstilt</h3>
+<p>Melder fra at søknad er ferdigstilt og ikke lenger vises til bruker</p>
+<table>
+<thead>
+<tr>
+<th>felt</th>
+<th>påkrevd</th>
+<th>beskrivelse</th>
+<th>restriksjoner</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>soknadsId</td>
+<td>ja</td>
+<td>Id til søknaden</td>
+<td>Må være UUID eller ULID</td>
+</tr>
+<tr>
+<td>fristEttersending</td>
+<td>nei</td>
+<td>Dato med frist for ettersending av vedlegg</td>
+<td></td>
+</tr>
+<tr>
+<td>linkSoknad</td>
+<td>nei</td>
+<td>Link til kopi av søknaden der dette er tilgjengelig</td>
+<td>Må være gyldig lenke og maks 200 tegn</td>
+</tr>
+<tr>
+<td>journalpostId</td>
+<td>nei</td>
+<td>Evt journalpostId fra SAF</td>
+<td>Maks 20 tegn</td>
+</tr>
+</tbody>
+</table>
+<p>Praktisk eksempel med kotlin builder.</p>
+<pre><code class="language-kotlin">SoknadEventBuilder.ferdigstilt {
+   soknadsId = &quot;&lt;uuid&gt;&quot;
+}
+</code></pre>
+<h2 id="produsent-og-buildere">Produsent og buildere</h2>
+<p>Builderene vil forøke forsøke å utlede hvilket system som produserer eventer basert på miljøvariablene [<code>NAIS_CLUSTER_NAME</code>, <code>NAIS_NAMESPACE</code>, <code>NAIS_APP_NAME</code>].</p>
+<p>For apper som kjører på nais vil disse være satt automatisk. Hvis en ønsker å kjøre tester med automatisk henting av produsent,<br />
+kan en manuelt legge til disse variablene ved hjelp av <code>BuilderEnvironment.extend(&lt;map med variabler&gt;)</code>.</p></div>
+    
+    <div class="page-content-toc"><div class="bs-sidebar custom-toc" role="complementary">
+  <h2>Innhold på siden</h2>
+   
+  <ul class="toc-list-depth-2">
+    <li class="toc-item toc-item-depth-2">
+      <a
+      href="#beskrivelse-og-flyt"
+      class="nav-link"
+      >Beskrivelse og flyt</a
+    >
+    </li>
+  </ul> 
+  <ul class="toc-list-depth-2">
+    <li class="toc-item toc-item-depth-2">
+      <a
+      href="#kafka-schemas-og-buildere"
+      class="nav-link"
+      >Kafka, schemas og buildere</a
+    >
+    </li> 
+  <ul class="toc-list-depth-3">
+    <li class="toc-item toc-item-depth-3">
+      <a
+      href="#bruk-av-buildere-og-kafkaproducer"
+      class="nav-link"
+      >Bruk av buildere og KafkaProducer</a
+    >
+    </li>
+  </ul>
+  </ul> 
+  <ul class="toc-list-depth-2">
+    <li class="toc-item toc-item-depth-2">
+      <a
+      href="#beskrivelse-av-sknad-eventer"
+      class="nav-link"
+      >Beskrivelse av søknad-eventer</a
+    >
+    </li> 
+  <ul class="toc-list-depth-3">
+    <li class="toc-item toc-item-depth-3">
+      <a
+      href="#sknad-opprettet"
+      class="nav-link"
+      >Søknad opprettet</a
+    >
+    </li>
+  </ul> 
+  <ul class="toc-list-depth-3">
+    <li class="toc-item toc-item-depth-3">
+      <a
+      href="#sknad-oppdatert"
+      class="nav-link"
+      >Søknad oppdatert</a
+    >
+    </li>
+  </ul> 
+  <ul class="toc-list-depth-3">
+    <li class="toc-item toc-item-depth-3">
+      <a
+      href="#sknad-ferdigstilt"
+      class="nav-link"
+      >Søknad ferdigstilt</a
+    >
+    </li>
+  </ul>
+  </ul> 
+  <ul class="toc-list-depth-2">
+    <li class="toc-item toc-item-depth-2">
+      <a
+      href="#beskrivelse-av-vedlegg-eventer"
+      class="nav-link"
+      >Beskrivelse av vedlegg-eventer</a
+    >
+    </li> 
+  <ul class="toc-list-depth-3">
+    <li class="toc-item toc-item-depth-3">
+      <a
+      href="#vedlegg-etterspurt-bruker"
+      class="nav-link"
+      >Vedlegg etterspurt bruker</a
+    >
+    </li>
+  </ul> 
+  <ul class="toc-list-depth-3">
+    <li class="toc-item toc-item-depth-3">
+      <a
+      href="#vedlegg-etterspurt-tredjepart"
+      class="nav-link"
+      >Vedlegg etterspurt tredjepart</a
+    >
+    </li>
+  </ul> 
+  <ul class="toc-list-depth-3">
+    <li class="toc-item toc-item-depth-3">
+      <a
+      href="#vedlegg-mottatt"
+      class="nav-link"
+      >Vedlegg mottatt</a
+    >
+    </li>
+  </ul> 
+  <ul class="toc-list-depth-3">
+    <li class="toc-item toc-item-depth-3">
+      <a
+      href="#vedlegg-oppdatert"
+      class="nav-link"
+      >Vedlegg oppdatert</a
+    >
+    </li>
+  </ul> 
+  <ul class="toc-list-depth-3">
+    <li class="toc-item toc-item-depth-3">
+      <a
+      href="#sknad-ferdigstilt_1"
+      class="nav-link"
+      >Søknad ferdigstilt</a
+    >
+    </li>
+  </ul>
+  </ul> 
+  <ul class="toc-list-depth-2">
+    <li class="toc-item toc-item-depth-2">
+      <a
+      href="#produsent-og-buildere"
+      class="nav-link"
+      >Produsent og buildere</a
+    >
+    </li>
+  </ul>
+</div>
+    </div>
+    
+</div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+<section class="footer-wrapper">
+    <h2 id="slack">Min side på slack</h2>
+    <a href="https://nav-it.slack.com/archives/C9CJ794PP">#team-personbruker</a>
+    <a href="https://nav-it.slack.com/archives/CR61BPH7G">#brukernotifikasjoner</a>
+    <a href="https://nav-it.slack.com/archives/C04E3K5MMMY">#utkast</a>
+</section>
+        </footer>
+        <script src="../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js"></script>
+        <script src="../scripts/override_navbar-background.js"></script>
+        <script src="../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Søk</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Lukk"></button>
+            </div>
+            <div class="modal-body">
+                <p>Her kan du søke i disse dokumentene. Skriv søketeksten nedenfor.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Søk ..." id="mkdocs-search-query" title="Skriv søketeksten her">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="Fant ingen resultater"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Tastatursnarveier</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Lukk"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Taster</th>
+                    <th>Handling</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Åpne denne hjelpen</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Neste side</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Forrige side</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Søk</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
