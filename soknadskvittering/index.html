@@ -95,7 +95,7 @@ Hendelsene samles av appen <a href="https://github.com/navikt/tms-soknadskvitter
 presenteres for bruker en sentral plass.</p>
 <p>I skrivende stund støtter systemet følgende eventer:</p>
 <ul>
-<li><code>soknadOpprettet</code>: Innledende event med informasjon som er umiddelbart tilgjengelig (Tittel, arkivtema, skjemanummer etc).</li>
+<li><code>soknadInnsendt</code>: Innledende event med informasjon som er umiddelbart tilgjengelig (Tittel, arkivtema, skjemanummer etc).</li>
 <li><code>soknadOppdatert</code>: Event med forsinket informasjon, som for eksempel lenke til pdf av søknaden.</li>
 <li><code>soknadFerdigstilt</code>: Event som melder at søknaden på ett eller annet vis er ferdigbehandlet.</li>
 <li><code>vedleggEtterspurt</code>: Event som inntreffer dersom bruker må ettersende ytterligere informasjon. </li>
@@ -105,7 +105,7 @@ presenteres for bruker en sentral plass.</p>
 <h2 id="kafka-schemas-og-buildere">Kafka, schemas og buildere</h2>
 <p>Min side varsler bruker ikke lenger Avro for schema-validering og serialisering. Produsenter sender eventer direkte på json-format.</p>
 <p>Vi tilbyr et sett med buildere for kotlin-prosjekter. Builderne sørger for at format er riktig og gjør forhåndsvalidering av innhold. Det er anbefalt å bruke søknadsId som kafka-nøkkel for alle eventer, for å opprettholde kronologi per enkelt søknad.</p>
-<p>Builderne finnes i følgende bibliotek: <code>no.nav.tms.soknadskvittering:kotlin-builder:0.1.1</code></p>
+<p>Builderne finnes i følgende bibliotek: <code>no.nav.tms.soknadskvittering:kotlin-builder:0.2.0</code></p>
 <p>Vi publiserer disse artifaktene til githubs package-repository. Husk å legge til én av disse repositories i ditt prosjekt:</p>
 <ul>
 <li><code>https://maven.pkg.github.com/navikt/tms-soknadskvittering</code> (krever autentisering)</li>
@@ -118,7 +118,7 @@ presenteres for bruker en sentral plass.</p>
 val topic = &quot;min-side.aapen-soknadskvittering-v1&quot;
 
 fun createAndSend(soknadsId: String) {
-    val event = SoknadEventBuilder.opprettet {
+    val event = SoknadEventBuilder.innsendt {
         this.soknadsId = soknadsId
         //...
     }
@@ -127,7 +127,7 @@ fun createAndSend(soknadsId: String) {
 }
 </code></pre>
 <h2 id="beskrivelse-av-sknad-eventer">Beskrivelse av søknad-eventer</h2>
-<h3 id="sknad-opprettet">Søknad opprettet</h3>
+<h3 id="sknad-innsendt">Søknad innsendt</h3>
 <p>Skal sendes når Nav mottar en søknad fra bruker</p>
 <table>
 <thead>
@@ -159,13 +159,13 @@ fun createAndSend(soknadsId: String) {
 </tr>
 <tr>
 <td>temakode</td>
-<td>ja, minst 1</td>
+<td>ja</td>
 <td>Søknadens arkivtemakode</td>
 <td>Maks 3 tegn</td>
 </tr>
 <tr>
 <td>skjemanummer</td>
-<td>ikke for beskjed</td>
+<td>ja</td>
 <td>Søknadens skjemanummer</td>
 <td>Maks 40 tegn</td>
 </tr>
@@ -188,6 +188,12 @@ fun createAndSend(soknadsId: String) {
 <td>Må være gyldig lenke og maks 200 tegn</td>
 </tr>
 <tr>
+<td>linkEttersending</td>
+<td>nei</td>
+<td>Link til generell ettersendingsløsning der dette er tilgjengelig</td>
+<td>Må være gyldig lenke og maks 200 tegn</td>
+</tr>
+<tr>
 <td>journalpostId</td>
 <td>nei</td>
 <td>Evt journalpostId fra SAF</td>
@@ -207,15 +213,17 @@ fun createAndSend(soknadsId: String) {
 </tr>
 </tbody>
 </table>
+<p>JournalpostId brukes til å lenke til tilhørende journalpost i dokumentarkivet, dersom en mer presis lenke ikke er oppgitt.</p>
 <p>Praktisk eksempel med kotlin builder. Her er journalpostId og lenker til søknad og vedlegg er ikke enda klart. Bruker har også meldt at legen sender inn ytterligere informasjon.</p>
 <pre><code class="language-kotlin">
-SoknadEventBuilder.opprettet {
+SoknadEventBuilder.innsendt {
    soknadsId = &quot;&lt;uuid&gt;&quot;
    ident = &quot;01234567890&quot;
    tittel = &quot;Tittel på en søknad&quot;
    temakode = &quot;UKJ&quot;
    skjemanummer = &quot;Skjemanummer-123&quot;
    fristEttersending = LocalDate.now().plusDays(14)
+   linkEttersending = &quot;https://ettersending.nav.no&quot;
    mottattVedlegg {
        vedleggsId = &quot;vedlegg-1&quot;
        tittel = &quot;Vedlegg som bruker sendte inn sammen med søknad&quot;
@@ -230,7 +238,7 @@ SoknadEventBuilder.opprettet {
 }
 </code></pre>
 <h3 id="sknad-oppdatert">Søknad oppdatert</h3>
-<p>Tillater endringer av bestemte felt etter søknad er opprettet. Dersom et felt er <code>null</code> blir ingen endring gjort. Dvs at en kan endre felt fra <code>null</code>, men ikke til <code>null</code>.</p>
+<p>Tillater endringer av bestemte felt etter søknad er innsendt. Dersom et felt er <code>null</code> blir ingen endring gjort. Dvs at en kan endre felt fra <code>null</code>, men ikke til <code>null</code>.</p>
 <table>
 <thead>
 <tr>
@@ -357,7 +365,7 @@ SoknadEventBuilder.oppdatert {
 <tr>
 <td>linkEttersending</td>
 <td>ja</td>
-<td>Link til der bruker skal ettersende vedlegg</td>
+<td>Spisset link til der bruker skal ettersende vedlegg (der dette er forskjellig fra generell lenke)</td>
 <td>Gyldig lenke og maks 200 tegn</td>
 </tr>
 <tr>
@@ -472,6 +480,12 @@ SoknadEventBuilder.oppdatert {
 <td>Gyldig lenke og maks 200 tegn</td>
 </tr>
 <tr>
+<td>journalpostId</td>
+<td>nei</td>
+<td>Evt journalpostId fra SAF</td>
+<td>Maks 20 tegn</td>
+</tr>
+<tr>
 <td>brukerErAvsender</td>
 <td>ja</td>
 <td>Om bruker eller tredjepart er kilden til vedlegg</td>
@@ -485,6 +499,7 @@ SoknadEventBuilder.oppdatert {
 </tr>
 </tbody>
 </table>
+<p>Dersom en mer presis lenke ikke er oppgitt, brukes JournalpostId til å lenke til tilhørede journalpost i dokumentarkivet, </p>
 <p>Praktiske eksempel med kotlin builder der bruker har sendt inn et vedlegg.</p>
 <pre><code class="language-kotlin">SoknadEventBuilder.vedleggMottatt {
    soknadsId = &quot;&lt;uuid&gt;&quot;
@@ -525,8 +540,15 @@ SoknadEventBuilder.oppdatert {
 <td>Link til kopi av vedlegg</td>
 <td>Må være gyldig lenke og maks 200 tegn</td>
 </tr>
+<tr>
+<td>journalpostId</td>
+<td>nei</td>
+<td>Evt journalpostId fra SAF</td>
+<td>Maks 20 tegn</td>
+</tr>
 </tbody>
 </table>
+<p>Dersom en mer presis lenke ikke er oppgitt, brukes JournalpostId til å lenke til tilhørede journalpost i dokumentarkivet,</p>
 <p>Praktisk eksempel med kotlin builder. Her blir vedlegg oppdatert etter pdf er ferdig generert.</p>
 <pre><code class="language-kotlin">
 SoknadEventBuilder.vedleggOppdatert {
@@ -631,9 +653,9 @@ kan en manuelt legge til disse variablene ved hjelp av <code>BuilderEnvironment.
   <ul class="toc-list-depth-3">
     <li class="toc-item toc-item-depth-3">
       <a
-      href="#sknad-opprettet"
+      href="#sknad-innsendt"
       class="nav-link"
-      >Søknad opprettet</a
+      >Søknad innsendt</a
     >
     </li>
   </ul> 
