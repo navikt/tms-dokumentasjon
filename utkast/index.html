@@ -9,12 +9,12 @@
         
         <link rel="shortcut icon" href="../img/favicon.ico">
         <title>Utkast - Min side utvikler-docs</title>
-<link href="../styles/styles.css" rel="stylesheet">
-<link href="../styles/navbar.css" rel="stylesheet">
-<link href="../styles/page-content.css" rel="stylesheet">
-<link href="../styles/toc.css" rel="stylesheet">
-<link href="../styles/search-modal.css" rel="stylesheet">
-<link href="../styles/footer.css" rel="stylesheet">
+<link href="../styles/styles.css" rel="stylesheet" />
+<link href="../styles/navbar.css" rel="stylesheet" />
+<link href="../styles/page-content.css" rel="stylesheet" />
+<link href="../styles/toc.css" rel="stylesheet" />
+<link href="../styles/search-modal.css" rel="stylesheet" />
+<link href="../styles/footer.css" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
         <script>hljs.highlightAll();</script> 
     </head>
@@ -23,15 +23,40 @@
         <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
 <a href=".." class="nav-homepage">
-    <svg class="nav-homepage-icon" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28"
-        fill="none">
-        <circle class="outerCircle" cx="14" cy="14" r="13.25" stroke="black" stroke-width="1.5" />
-        <circle class="innerCircle" cx="14" cy="14" r="7.25" stroke="black" stroke-width="1.5" />
-        <circle cx="9" cy="10" r="2.25" fill="white" stroke="black" stroke-width="1.5" />
-    </svg>
-    <p>
-        Utvikler-docs
-    </p>
+  <svg
+    class="nav-homepage-icon"
+    xmlns="http://www.w3.org/2000/svg"
+    width="28"
+    height="28"
+    viewBox="0 0 28 28"
+    fill="none"
+  >
+    <circle
+      class="outerCircle"
+      cx="14"
+      cy="14"
+      r="13.25"
+      stroke="black"
+      stroke-width="1.5"
+    />
+    <circle
+      class="innerCircle"
+      cx="14"
+      cy="14"
+      r="7.25"
+      stroke="black"
+      stroke-width="1.5"
+    />
+    <circle
+      cx="9"
+      cy="10"
+      r="2.25"
+      fill="white"
+      stroke="black"
+      stroke-width="1.5"
+    />
+  </svg>
+  <p>Utvikler-docs</p>
 </a>
                 <!-- Expander button -->
                 <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -42,36 +67,48 @@
                 <div id="navbar-collapse" class="navbar-collapse collapse">
 <!-- Main navigation -->
 <div class¨>
-    <ul class="nav navbar-nav">
-        <li class="navitem">
-            <a href="../guide/" class="nav-link">Innholdsguide</a>
-        </li>
-        <li class="navitem active">
-            <a href="./" class="nav-link">Utkast</a>
-        </li>
-        <li class="navitem">
-            <a href="../microfrontend/" class="nav-link">Microfrontend</a>
-        </li>
-        <li class="dropdown">
-            <a href="../varsler/" class="nav-link">Varsler <b class="caret"></b></a>
-        </li>
-        <li class="navitem">
-            <a href="../soknadskvittering/" class="nav-link">Søknadskvittering (WIP)</a>
-        </li>
-        <li class="nav-item">
-            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
-                Søk
-            </a>
-        </li>
-    </ul>
+  <ul class="nav navbar-nav">
+    <li class="navitem">
+      <a href="../guide/" class="nav-link">Innholdsguide</a>
+    </li>
+    <li class="navitem active">
+      <a href="./" class="nav-link">Utkast</a>
+    </li>
+    <li class="navitem">
+      <a href="../microfrontend/" class="nav-link">Microfrontend</a>
+    </li>
+    <li class="dropdown">
+      <a href="../varsler/" class="nav-link"
+        >Varsler <b class="caret"></b
+      ></a>
+    </li>
+    <li class="navitem">
+      <a href="../soknadskvittering/" class="nav-link">Søknadskvittering (WIP)</a>
+    </li>
+    <li class="nav-item">
+      <a
+        href="#"
+        class="nav-link"
+        data-toggle="modal"
+        data-target="#mkdocs_search_modal"
+      >
+        Søk
+      </a>
+    </li>
+  </ul>
 </div>
 
                     <ul class="nav navbar-nav ms-md-auto">
-        <li class="nav-item">
-            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
-                Søk
-            </a>
-        </li>
+    <li class="nav-item">
+      <a
+        href="#"
+        class="nav-link"
+        data-toggle="modal"
+        data-target="#mkdocs_search_modal"
+      >
+        Søk
+      </a>
+    </li>
                     </ul>
                 </div>
             </div>
@@ -80,7 +117,7 @@
         <div class="container">
             <div class="row">
 <div class="content-wrapper">
-    <div class="page-content" role="main">
+  <div class="page-content" role="main">
 
 <h1 id="utkast-pa-min-side">Utkast på min side</h1>
 <p>En enklere inngang til påbegynte søknader og dokument-innsendinger.</p>
@@ -135,8 +172,8 @@ Alle utkast: <code>x_contenttype:"utkast"</code><br />
 Spesifikt utkast: <code>x_minside_id :"&lt;utkastid&gt;"</code> </p>
 <h2 id="amplitude-malinger">Amplitude målinger</h2>
 <p><a href="https://github.com/navikt/tms-utkast-mikrofrontend">Utkast-frontenden</a> logger et <a href="https://github.com/navikt/analytics-taxonomy/tree/main/events/skjema%20%C3%A5pnet">skjema åpent</a>-event med <code>url</code> som payload til amplitude når bruker klikker på ett utkast. Om teamet ditt ønsker å få med feltene <code>skjemakode</code> og <code>skjemanavn</code> må metricsfeltet være tilstede og komplett i create-meldingen</p></div>
-    
-    <div class="page-content-toc"><div class="bs-sidebar custom-toc" role="complementary">
+  
+  <div class="page-content-toc"><div class="bs-sidebar custom-toc" role="complementary">
   <h2>Innhold på siden</h2>
    
   <ul class="toc-list-depth-1">
@@ -193,19 +230,21 @@ Spesifikt utkast: <code>x_minside_id :"&lt;utkastid&gt;"</code> </p>
     </li>
   </ul>
   </ul>
-</div>
-    </div>
-    
+</div></div>
+  
 </div>
             </div>
         </div>
 
         <footer class="col-md-12">
 <section class="footer-wrapper">
-    <h2 id="slack">Min side på slack</h2>
-    <a href="https://nav-it.slack.com/archives/C9CJ794PP">#team-personbruker</a>
-    <a href="https://nav-it.slack.com/archives/CR61BPH7G">#brukernotifikasjoner</a>
-    <a href="https://nav-it.slack.com/archives/C04E3K5MMMY">#utkast</a>
+  <h2 id="slack">Min side på slack</h2>
+  <a href="https://nav-it.slack.com/archives/C0912F59V29">#team-minside</a>
+  <a href="https://nav-it.slack.com/archives/C04V21LT27P"
+    >#minside-microfrontends</a
+  >
+  <a href="https://nav-it.slack.com/archives/CR61BPH7G">#minside-varseler</a>
+  <a href="https://nav-it.slack.com/archives/C04E3K5MMMY">#minside-utkast</a>
 </section>
         </footer>
         <script src="../js/bootstrap.bundle.min.js"></script>
