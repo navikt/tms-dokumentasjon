@@ -215,10 +215,10 @@ val opprettVarsel = VarselActionBuilder.opprett {
     )
     link = &quot;https://www.nav.no&quot;
     aktivFremTil = ZonedDateTime.now().plusDays(14)
-    eksternVarsling = EksternVarslingBestilling(
-        preferertKanal = EksternKanal.SMS,
-        smsVarslingstekst = &quot;Dette er en sms om oppgave&quot;,
-    )
+    eksternVarsling {
+        preferertKanal = EksternKanal.SMS
+        smsVarslingstekst = &quot;Dette er en sms om oppgave&quot;
+    }
 }
 
 kafkaProducer.send(ProducerRecord(nyttVarselTopic, varselId, opprettVarsel))
