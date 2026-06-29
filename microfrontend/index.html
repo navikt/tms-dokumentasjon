@@ -120,16 +120,55 @@
   <div class="page-content" role="main">
 
 <h1 id="microfrontends-pa-min-side">Microfrontends på min side</h1>
-<h2 id="personalisering-med-microfrontends">Personalisering med microfrontends.</h2>
-<p>Min side er en dynamisk første-side for alle innloggede brukere. Målet er at innholdet på Min side skal representere brukerens nåværende forhold til Nav. For å oppnå dette, kan team legge inn microfrontends på Min side for å nå ut til sine brukere. En microfrontend kan sees på som en enkel applikasjon, som blir injektet inn på Min side. Microfrontends brukt på Min side kommer i form av små bokser med ulike funksjonalitet og innhold.</p>
 <h2 id="kom-i-gang">Kom i gang</h2>
-<p>Start med <a href="https://github.com/navikt/tms-microfrontend-template-ssr">templaten for server-side-rendret microfrontends</a>. Opprett et nytt repository basert på denne templaten, og følg instruksjonene i <code>README.md</code> for lokal kjøring, bygg og deploy.</p>
+<p>Ta utgangspunkt i <a href="https://github.com/navikt/tms-microfrontend-template-ssr">template for ssr microfrontend</a> og opprett et nytt repository basert på denne templaten.</p>
+<h3 id="konfigurer-applikasjonen">Konfigurer applikasjonen</h3>
+<ol>
+<li><strong>Bytt ut applikasjonsnavn i konfigurasjonsfiler</strong></li>
+</ol>
+<p>CMD + Shift + F og søk etter tms-microfrontend-template-ssr og erstatt dette med ditt applikasjonsnavn.</p>
+<ol>
+<li><strong>Tilpass nais.yaml</strong></li>
+</ol>
+<p>Tilpass både nais/dev-gcp/nais.yaml og nais/prod-gcp/nais.yaml. Alle felter som må tilpasses har tilhørende kommentar med instruksjon i template.</p>
+<ol>
+<li><strong>Tilpass innholdet i .github/workflows/deploy.yaml</strong></li>
+</ol>
+<p>Tilpass deploy.yaml slik kommentarene i koden instruerer. Applikasjonsnavn skal være likt navn på repository.</p>
+<p>Du kan vente med å kommentere inn og tilpasse stegene update-manifest-prod og deploy prod til applikasjonen er klar for prodsetting. </p>
+<ol>
+<li><strong>Etterspør tilganger</strong></li>
+</ol>
+<p>Be om tilgang til å oppdatere manifest og deploye applikasjonen til nais på slack kanalen #minside-microfrontends</p>
+<ol>
+<li><strong>Deploy til produksjon</strong></li>
+</ol>
+<p>Når applikasjonen er klar for prodsetting, kan du kommentere inn update-manifest-prod og deploy-prod stegene i .github/workflows/deploy.yaml. Sørg for at de er fylt inn likt som i steg 3.</p>
+<h2 id="bruk-av-template">Bruk av template</h2>
+<h3 id="sprak">Språk</h3>
+<p>Bruk språkoppsett satt opp i template og legg språkvariablene inn i /language/text.ts</p>
+<h3 id="fallback">Fallback</h3>
+<p>Microfrontenden bør du tilby en fallback - se <code>src/pages/[locale]/fallback.astro</code></p>
+<h3 id="produktanalyse">Produktanalyse</h3>
+<p>Vi bruker dekoratøren sin analyticsfunksjon - se <code>src/pages/[locale]/index.astro</code></p>
+<h3 id="css">CSS</h3>
+<p>For lokal css kan du bruke css moduler som vanlig. </p>
+<p>For bruk av designsystemet må medfølgende css isoleres til microfrontenden. Importer derfor kun de delene av ds-css som er i bruk. Aksel har laget <a href="https://aksel.nav.no/grunnleggende/kode/kommandolinje#56838966b1fc">et verktøy for dette</a> som genererer listen med imports du trenger. Legg listen med imports i /styles/aksel.css.</p>
+<p>CSS isolering er gjort via prefix av designsystemets klassenavn. For at dette skal fungere, må du beholde section taggen som wrapper hver page, hvor applikasjonsnavnet er brukt som klassenavn.</p>
+<h3 id="client-side-interaktivitet">Client-side interaktivitet</h3>
+<p>Ved behov for client-side interaktivitet kan <a href="https://docs.astro.build/en/concepts/islands/#client-islands">Astros Client Islands</a> tas i bruk. Et eksempel ligger i /components/ClientIsland.tsx og oppfører seg som en vanlig React komponent. </p>
+<p>Merk at interaktivitet er tilgjengeliggjort via React. Dette medfører at React major versjonen må samsvare i microfrontend og på Min side.</p>
+<p>Template repoet er satt opp med client-side interaktivitet som default. Hvis microfrontenden ikke har behov for dette kan du fjerne hele integrations-steget i astro.config.mjs, samt react, react-dom og rollup-plugin-import-map fra package.json.</p>
+<h3 id="design">Design</h3>
+<p>Vi stiller visse <a href="https://aksel.nav.no/god-praksis/artikler/retningslinjer-for-design-av-mikrofrontends">designkrav</a> til utformingen av microfrontends, for å sikre en helhetlig brukeropplevelse.</p>
+<h3 id="astro">Astro</h3>
+<p>Repoet er skrevet om fra React til Astro. Se <a href="https://docs.astro.build/en/getting-started/">Astro sin offisielle dokumentasjon</a> eller ta kontakt med oss i #minside-microfrontends for hjelp med overgangen.</p>
 <hr />
 <h3 id="aktivere-og-deaktivere-microfrontends">Aktivere og deaktivere microfrontends</h3>
 <ol>
 <li>
 <p><strong>Koble til kafka topicet</strong><br />
-   Abonner på <a href="https://github.com/navikt/min-side-microfrontend-topic-iac">min-side-microfrontend-topicet</a>. <strong>NOTE:</strong> <code>microfrontendId</code> skal være identisk med navnet på Github-repoet du opprettet basert på templatet tidligere i guiden.</p>
+   Abonner på <a href="https://github.com/navikt/min-side-microfrontend-topic-iac">min-side-microfrontend-topicet</a>. <strong>NOTE:</strong> <code>microfrontendId</code> skal være identisk med navnet på Github-repoet du opprettet basert på templatet tidligere i guiden. Hvis du skriver om en gammel microfrontend til ssr så skal du beholde samme <code>microfrontendId</code>.</p>
 </li>
 <li>
 <p><strong>Send meldinger</strong><br />
@@ -142,7 +181,7 @@
     &quot;@action&quot;: &quot;enable&quot;,
     &quot;ident&quot;: &lt;ident for bruker: fnr/dnr&gt;,
     &quot;microfrontend_id&quot;: &lt;microfrontendId&gt;,
-    &quot;sensitivitet&quot;: &lt;nivå som kreves for å se innholdet i mikrofrontenden, gyldige verdier: substantial og high&gt;,
+    &quot;sensitivitet&quot;: &lt;nivå som kreves for å se innholdet i microfrontenden, gyldige verdier: substantial og high&gt;,
     &quot;@initiated_by&quot;: &lt;ditt-team&gt;
 }
 </code></pre>
@@ -178,66 +217,6 @@
 </tbody>
 </table>
 <p>Hvis feltet utelates, antar systemet <code>high</code>. Logger brukeren inn med <code>idporten-loa-substantial</code> og det finnes microfrontends som krever <code>idporten-loa-high</code>, får brukeren tilbud om «step-up»-innlogging. Se også <a href="https://docs.nais.io/security/auth/idporten/#security-levels">NAIS-dokumentasjonen om security levels</a>.</p>
-<h2 id="rettningslinjer">Rettningslinjer</h2>
-<p>For å sikre en helhetlig brukeropplevelse på tvers av ulike type innhold på Min side, stiller vi visse krav til både innhold i- og utforming av microfrontends. Tabellen under viser en oversikt over disse rettningslinjene.</p>
-<table>
-<thead>
-<tr>
-<th style="text-align: center;">Tema</th>
-<th style="text-align: left;">Krav og resurser</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: center;">Språk</td>
-<td style="text-align: left;">Alt innhold skal finnes på bokmål, nynorsk og engelsk. Språkhåndtering er allerede rigget i templaten – se <code>src/language/text.ts</code>.</td>
-</tr>
-<tr>
-<td style="text-align: center;">Design</td>
-<td style="text-align: left;">Vi stiller visse <a href="https://aksel.nav.no/god-praksis/artikler/retningslinjer-for-design-av-mikrofrontends">designkrav</a> til utformingen av microfrontends, for å sikre en helhetlig brukeropplevelse.</td>
-</tr>
-<tr>
-<td style="text-align: center;">Dependencies</td>
-<td style="text-align: left;">Dersom du benytter deg av client-side React komponenter bør du være på samme Major versjon som <a href="https://github.com/navikt/tms-min-side">tms- min-side</a>.</td>
-</tr>
-<tr>
-<td style="text-align: center;">Analytics</td>
-<td style="text-align: left;">Vi bruker dekoratøren sin analyticsfunksjon - se <code>src/pages/[locale]/index.astro</code>.</td>
-</tr>
-<tr>
-<td style="text-align: center;">Fallback</td>
-<td style="text-align: left;">Dersom microfrontenden har eksterne kall bør du tilby en fallback - se <code>src/pages/[locale]/fallback.astro</code></td>
-</tr>
-</tbody>
-</table>
-<h2 id="plassering-pa-min-side">Plassering på Min side</h2>
-<p>Min side består av tre soner der team kan plassere innhold:</p>
-<table>
-<thead>
-<tr>
-<th style="text-align: center;">Seksjon</th>
-<th style="text-align: left;">Formål</th>
-<th style="text-align: left;">Teknisk støtte</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: center;">Din oversikt</td>
-<td style="text-align: left;">Personlig status og løpende saker relatert til brukerens nåværende forhold til Nav.</td>
-<td style="text-align: left;"><code>kafka</code></td>
-</tr>
-<tr>
-<td style="text-align: center;">Produktkort</td>
-<td style="text-align: left;">Produktkort er strengt talt ikke microfrontender, men regelbaserte lenker som peker til innloggede produktsider for ett område. Vi anbefaler heller å bruke kafka, siden dette er mer treffsikkert i forhold til brukers situasjon, men hvis kafka ikke er en mulighet kan dette være ett alternativ.</td>
-<td style="text-align: left;"><code>Kafka</code> &amp; <code>Regelbasert</code></td>
-</tr>
-<tr>
-<td style="text-align: center;">Kanskje aktuelt for deg</td>
-<td style="text-align: left;">Under kanskje aktuelt for deg skal bruker få forslag til annet innhold som kan være relevant for hen, for eksempel andre stønader eller støttetjenester en bruker kan ha rett på gitt at hen har en spesifikk ytelse. Foreløbig er det kun regelbaserte mikrofrontender som vises i den her seksjonen.</td>
-<td style="text-align: left;"><code>Kafka</code> &amp; <code>Regelbasert</code></td>
-</tr>
-</tbody>
-</table>
 <h2 id="lurer-du-pa-noe">Lurer du på noe?</h2>
 <p>Dersom du har spørsmål, kan disse stilles i <a href="https://nav-it.slack.com/archives/C04V21LT27P">#minside-microfrontends</a> kanalen på slack.</p></div>
   
@@ -255,20 +234,92 @@
   <ul class="toc-list-depth-2">
     <li class="toc-item toc-item-depth-2">
       <a
-      href="#personalisering-med-microfrontends"
-      class="nav-link"
-      >Personalisering med microfrontends.</a
-    >
-    </li>
-  </ul> 
-  <ul class="toc-list-depth-2">
-    <li class="toc-item toc-item-depth-2">
-      <a
       href="#kom-i-gang"
       class="nav-link"
       >Kom i gang</a
     >
     </li> 
+  <ul class="toc-list-depth-3">
+    <li class="toc-item toc-item-depth-3">
+      <a
+      href="#konfigurer-applikasjonen"
+      class="nav-link"
+      >Konfigurer applikasjonen</a
+    >
+    </li>
+  </ul>
+  </ul> 
+  <ul class="toc-list-depth-2">
+    <li class="toc-item toc-item-depth-2">
+      <a
+      href="#bruk-av-template"
+      class="nav-link"
+      >Bruk av template</a
+    >
+    </li> 
+  <ul class="toc-list-depth-3">
+    <li class="toc-item toc-item-depth-3">
+      <a
+      href="#sprak"
+      class="nav-link"
+      >Språk</a
+    >
+    </li>
+  </ul> 
+  <ul class="toc-list-depth-3">
+    <li class="toc-item toc-item-depth-3">
+      <a
+      href="#fallback"
+      class="nav-link"
+      >Fallback</a
+    >
+    </li>
+  </ul> 
+  <ul class="toc-list-depth-3">
+    <li class="toc-item toc-item-depth-3">
+      <a
+      href="#produktanalyse"
+      class="nav-link"
+      >Produktanalyse</a
+    >
+    </li>
+  </ul> 
+  <ul class="toc-list-depth-3">
+    <li class="toc-item toc-item-depth-3">
+      <a
+      href="#css"
+      class="nav-link"
+      >CSS</a
+    >
+    </li>
+  </ul> 
+  <ul class="toc-list-depth-3">
+    <li class="toc-item toc-item-depth-3">
+      <a
+      href="#client-side-interaktivitet"
+      class="nav-link"
+      >Client-side interaktivitet</a
+    >
+    </li>
+  </ul> 
+  <ul class="toc-list-depth-3">
+    <li class="toc-item toc-item-depth-3">
+      <a
+      href="#design"
+      class="nav-link"
+      >Design</a
+    >
+    </li>
+  </ul> 
+  <ul class="toc-list-depth-3">
+    <li class="toc-item toc-item-depth-3">
+      <a
+      href="#astro"
+      class="nav-link"
+      >Astro</a
+    >
+    </li>
+  </ul> 
   <ul class="toc-list-depth-3">
     <li class="toc-item toc-item-depth-3">
       <a
@@ -278,24 +329,6 @@
     >
     </li>  
   </ul>
-  </ul> 
-  <ul class="toc-list-depth-2">
-    <li class="toc-item toc-item-depth-2">
-      <a
-      href="#rettningslinjer"
-      class="nav-link"
-      >Rettningslinjer</a
-    >
-    </li>
-  </ul> 
-  <ul class="toc-list-depth-2">
-    <li class="toc-item toc-item-depth-2">
-      <a
-      href="#plassering-pa-min-side"
-      class="nav-link"
-      >Plassering på Min side</a
-    >
-    </li>
   </ul> 
   <ul class="toc-list-depth-2">
     <li class="toc-item toc-item-depth-2">

@@ -218,7 +218,7 @@ er å skjerme bruker for støy i tilfeller der de ville fått mange sms-er og ep
 </ul>
 <h2 id="oppretting-av-varsel">Oppretting av varsel</h2>
 <p>For å gi varsel til bruker sender en et opprett-varsel event.</p>
-<h3 id="opprett-varsel-felter">Opprett-varsel felter</h3>
+<h3 id="opprett-varsel-felt">Opprett-varsel felt</h3>
 <table>
 <thead>
 <tr>
@@ -295,6 +295,56 @@ er å skjerme bruker for støy i tilfeller der de ville fått mange sms-er og ep
 </tr>
 </tbody>
 </table>
+<h3 id="ekstern-varsling-felt">Ekstern varsling felt</h3>
+<p>Alle felt er valgfrie.</p>
+<table>
+<thead>
+<tr>
+<th>felt</th>
+<th>beskrivelse</th>
+<th>restriksjoner</th>
+<th>tillegginfo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>preferertKanal</td>
+<td>Preferert kanal for ekstern varsling. Endelig kanal kan endre seg basert på brukers kontaktinfo</td>
+<td>Må være én av <code>SMS</code>, <code>EPOST</code>, <code>BETINGET_SMS</code></td>
+<td>Dersom preferert kanal ikke er valgt sendes varsling på epost</td>
+</tr>
+<tr>
+<td>smsVarslingstekst</td>
+<td>Varslingstekst send på sms</td>
+<td>Inntil 160 tegn. Kan ikke inneholde lenke</td>
+<td></td>
+</tr>
+<tr>
+<td>epostVarslingstekst</td>
+<td>Varslingstekst sendt på epost</td>
+<td>Inntil 4000 tegn. Kan ikke inneholde lenke</td>
+<td></td>
+</tr>
+<tr>
+<td>epostVarslingstittel</td>
+<td>Eposttittel</td>
+<td>Inntil 40 tegn. Kan ikke inneholde lenke</td>
+<td></td>
+</tr>
+<tr>
+<td>kanBatches</td>
+<td>Hvorvidt ekstern varsling kan sendes samlet</td>
+<td></td>
+<td>Dersom ikke noe annet er valgt, batches kun beskjeder med standardtekst</td>
+</tr>
+<tr>
+<td>utsettSendingTil</td>
+<td>Tidspunkt for utsatt sending av ekstern varsling</td>
+<td></td>
+<td>Ekstern varsling sendes ikke før angitt tidspunkt er passert, og heller ikke hvis det underliggende varsleret blir fullført først</td>
+</tr>
+</tbody>
+</table>
 <h3 id="json-format">Json-format</h3>
 <pre><code class="language-json">{
    &quot;@event_name&quot;: &quot;opprett&quot;,
@@ -312,11 +362,12 @@ er å skjerme bruker for støy i tilfeller der de ville fått mange sms-er og ep
    &quot;sensitivitet&quot;: &quot;&lt;sensitivitet&gt;&quot;,
    &quot;aktivFremTil&quot;: &quot;&lt;aktivFremTil&gt;&quot;,
    &quot;eksternVarsling&quot;: {
-      &quot;prefererteKanaler&quot;: [&quot;SMS&quot;, &quot;EPOST&quot;],
+      &quot;prefererteKanaler&quot;: [&quot;SMS&quot;],
       &quot;smsVarslingstekst&quot;: &quot;&lt;smsTekst&gt;&quot;,
       &quot;epostVarslingstittel&quot;: &quot;epostTittel&quot;,
       &quot;epostVarslingstekst&quot;: &quot;epostTekst&quot;,
-      &quot;kanBatches&quot;: false
+      &quot;kanBatches&quot;: false,
+      &quot;utsettSendingTil&quot;: &quot;&lt;utsettSendingTil&gt;&quot;
    },
    &quot;produsent&quot;: {
       &quot;cluster&quot;: &quot;&lt;cluster&gt;&quot;,
@@ -624,9 +675,18 @@ Spesifikt varsel: <code>x_minside_id :"&lt;varselId&gt;"</code></p>
   <ul class="toc-list-depth-3">
     <li class="toc-item toc-item-depth-3">
       <a
-      href="#opprett-varsel-felter"
+      href="#opprett-varsel-felt"
       class="nav-link"
-      >Opprett-varsel felter</a
+      >Opprett-varsel felt</a
+    >
+    </li>
+  </ul> 
+  <ul class="toc-list-depth-3">
+    <li class="toc-item toc-item-depth-3">
+      <a
+      href="#ekstern-varsling-felt"
+      class="nav-link"
+      >Ekstern varsling felt</a
     >
     </li>
   </ul> 
