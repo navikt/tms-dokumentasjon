@@ -120,7 +120,10 @@
   <div class="page-content" role="main">
 
 <h1 id="komme-i-gang-med-varsler">Komme i gang med varsler</h1>
-<p><em>For brukeropplevelsen er det viktig at du bruker riktig type varsel. Ta gjerne en ekstrasjekk med <a href="https://navikt.github.io/tms-dokumentasjon/guide/">innholdsguiden vår</a>.</em></p>
+<blockquote>
+<p>[!TIP]<br />
+For brukeropplevelsen er det viktig at du bruker riktig type varsel. Ta gjerne en ekstrasjekk med <a href="https://navikt.github.io/tms-dokumentasjon/guide/">innholdsguiden vår</a>.</p>
+</blockquote>
 <ol>
 <li>Kafka tilgang: Opprett en pull-request mot topic <code>aapen-brukervarsel-v1</code><br />
    i <a href="https://github.com/navikt/min-side-brukervarsel-topic-iac">min-side-brukervarsel-topic-iac</a>.</li>
@@ -154,16 +157,22 @@
 </tr>
 </tbody>
 </table>
-<p><strong>NB! Det er viktig å huske å sende inaktiver-event for oppgave-varsler. Hvis ikke vil det se ut for personen som at oppgaven ikke er utført.</strong></p>
+<blockquote>
+<p>[!WARNING]<br />
+Det er viktig å huske å sende inaktiver-event for oppgave-varsler. Hvis ikke vil det se ut for personen som at oppgaven ikke er utført.</p>
+</blockquote>
 <p>Alle varsler slettes 1 år etter mottaksdato.</p>
 <h2 id="ekstern-varsling">Ekstern varsling</h2>
 <p>Produsent kan velge om bruker også skal varsles via eksterne kanaler (sms og epost). Produsent kan velge preferert kanal, og hvorvidt standardtekst skal overskrives.</p>
 <p>Standardtekst er av typen: <code>Hei! Du har fått en ny &lt;varseltype&gt; fra NAV. Logg inn på NAV for å se hva varselet gjelder. Vennlig hilsen NAV</code></p>
 <h3 id="revarsling">Revarsling</h3>
-<p>Varsler med typen oppgave eller innboks får automatisk revarsling dersom varselet ikke er ferdigstilt etter et bestemt antall dager. Oppgaver blir revarsler etter 7 dager, og innboks blir revarslet etter 4 dager.</p>
+<p>Varsler med typen oppgave eller innboks får automatisk revarsling dersom varselet ikke er ferdigstilt etter et bestemt antall dager. Oppgaver blir revarslet etter 7 dager, og innboks blir revarslet etter 4 dager.</p>
 <h3 id="overskriving-av-standardtekster">Overskriving av standardtekster</h3>
 <p>Dersom en velger å overskrive standardtekster for epost/sms, er det anbefalt å overskrive samtlige tekster. Dette er fordi bruker kan motta varsler via annen kanal enn preferansen.</p>
-<p>Eksterne varseltekster skal ikke inneholde lenker. Det er også produsentens ansvar å ikke sende sensitiv informasjon på epost og sms.</p>
+<blockquote>
+<p>[!CAUTION]<br />
+Eksterne varseltekster skal ikke inneholde lenker. Det er også produsentens ansvar å ikke sende sensitiv informasjon på epost og sms.</p>
+</blockquote>
 <p>Tekst i sms er begrenset til 160 tegn. Tittel for epost er maksimalt 40 tegn, og tekst er maksimalt 4000 tegn. Tekst i epost kan og bør inneholde markup.</p>
 <h3 id="betinget-sms">Betinget sms</h3>
 <p>Fra og med versjon 2.1.0 av varsel-builder kan en velge BETINGET_SMS som preferert kanal. Dette gjør at systemet velger<br />
@@ -202,7 +211,10 @@ er å skjerme bruker for støy i tilfeller der de ville fått mange sms-er og ep
 </tr>
 </tbody>
 </table>
-<p>Varsler med utsatt sending vil aldri batches.</p>
+<blockquote>
+<p>[!NOTE]<br />
+Varsler med utsatt sending vil aldri batches.</p>
+</blockquote>
 <h2 id="kafka-schemas-og-buildere">Kafka, schemas og buildere</h2>
 <p>Min side varsler bruker ikke lenger Avro for schema-validering og serialisering. Produsenter sender eventer direkte på json-format. Vi tilbyr to sett med buildere for henholdsvis java- og kotlin-prosjekter. Det er ikke strengt nødvendig å bruke disse, men sterkt anbefalt. Builderne sørger for at format er riktig og gjør forhåndsvalidering av innhold. Det er også anbefalt å bruke varselId som kafka-nøkkel, for å opprettholde kronologi per enkelt varsel.</p>
 <p>Builderne finnes i følgende bibliotek:</p>
@@ -247,7 +259,7 @@ er å skjerme bruker for støy i tilfeller der de ville fått mange sms-er og ep
 <tr>
 <td>ident</td>
 <td>ja</td>
-<td>Fodselsnummer (evt. d-nummer eller tilsvarende) til mottaker av varsel</td>
+<td>Fødselsnummer (evt. d-nummer eller tilsvarende) til mottaker av varsel</td>
 <td>Må ha 11 siffer</td>
 <td></td>
 </tr>
@@ -283,7 +295,7 @@ er å skjerme bruker for støy i tilfeller der de ville fått mange sms-er og ep
 <td>eksternVarsling</td>
 <td>nei</td>
 <td>Om det skal sendes sms og/eller epost til mottaker</td>
-<td>Kan kun velge preferert kanal <code>SMS</code> eller <code>EPOST</code>.</td>
+<td>Må være én av <code>SMS</code>, <code>EPOST</code> eller <code>BETINGET_SMS</code>.</td>
 <td>Dersom ekstern varslingstekst ikke er satt blir det sendt en standardtekst.</td>
 </tr>
 <tr>
@@ -308,9 +320,9 @@ er å skjerme bruker for støy i tilfeller der de ville fått mange sms-er og ep
 </thead>
 <tbody>
 <tr>
-<td>preferertKanal</td>
+<td>prefererteKanaler</td>
 <td>Preferert kanal for ekstern varsling. Endelig kanal kan endre seg basert på brukers kontaktinfo</td>
-<td>Må være én av <code>SMS</code>, <code>EPOST</code>, <code>BETINGET_SMS</code></td>
+<td>Må være én av <code>SMS</code>, <code>EPOST</code> eller <code>BETINGET_SMS</code></td>
 <td>Dersom preferert kanal ikke er valgt sendes varsling på epost</td>
 </tr>
 <tr>
@@ -341,7 +353,7 @@ er å skjerme bruker for støy i tilfeller der de ville fått mange sms-er og ep
 <td>utsettSendingTil</td>
 <td>Tidspunkt for utsatt sending av ekstern varsling</td>
 <td></td>
-<td>Ekstern varsling sendes ikke før angitt tidspunkt er passert, og heller ikke hvis det underliggende varsleret blir fullført først</td>
+<td>Ekstern varsling sendes ikke før angitt tidspunkt er passert, og heller ikke hvis det underliggende varselet blir fullført først</td>
 </tr>
 </tbody>
 </table>
@@ -480,9 +492,11 @@ kan en manuelt legge til disse variablene ved hjelp av <code>BuilderEnvironment.
 <h2 id="overvaking-av-varsler">Overvåking av varsler</h2>
 <h3 id="logging">Logging</h3>
 <p>Hendelser blir logget til kibana med custom felter for filtrering</p>
-<p>Alle varsler: <code>x_contenttype:"varsel"</code><br />
-Sendt fra bestemt team: <code>x_initiated_by: "&lt;namespace&gt;"</code><br />
-Spesifikt varsel: <code>x_minside_id :"&lt;varselId&gt;"</code></p>
+<ul>
+<li>Alle varsler: <code>x_contenttype:"varsel"</code></li>
+<li>Sendt fra bestemt team: <code>x_initiated_by: "&lt;namespace&gt;"</code></li>
+<li>Spesifikt varsel: <code>x_minside_id :"&lt;varselId&gt;"</code></li>
+</ul>
 <h3 id="kafka">Kafka</h3>
 <p>Produsenter kan lytte på topic <code>aapen-varsel-hendelse-v1</code> for å følge med på status på varsler. Hendelser som kan skje for varsler er <code>opprettet</code>, <code>inaktivert</code>, <code>slettet</code> og <code>eksternStatusOppdatert</code>.</p>
 <h4 id="opprettet-inaktivert-og-slettet">Opprettet, inaktivert, og slettet</h4>

@@ -125,21 +125,27 @@
 <h2 id="buildere-og-avro">Buildere og avro</h2>
 <p>Vi bruker ikke lenger avro for å validere schema. Varsel-eventer sendes som json-string, med varsel-id som nøkkel. </p>
 <h2 id="endringer-i-meldingene">Endringer i meldingene</h2>
-<p>Se <a href="https://navikt.github.io/tms-dokumentasjon/varsler/produsere/">produsere varsler</a> for dokumentasjon av nytt format.</p>
-<h4 id="meldingstyper">meldingstyper</h4>
+<blockquote>
+<p>[!NOTE]<br />
+Se <a href="https://navikt.github.io/tms-dokumentasjon/varsler/produsere/">produsere varsler</a> for dokumentasjon av nytt format.</p>
+</blockquote>
+<h3 id="meldingstyper">meldingstyper</h3>
 <p>Tidligere har det vært fire meldingstyper (beskjed, oppgave, innboks, done). Disse er nå slått sammen til to objekter: opprett og inaktiver. Varseltypen spesifiseres i opprett-eventet.</p>
-<h4 id="endring-av-feltnavn">endring av feltnavn</h4>
+<h3 id="endring-av-feltnavn">endring av feltnavn</h3>
 <ul>
 <li><code>eventId</code> -&gt; <code>varselId</code></li>
 <li><code>sikkerhetsnivaa</code> -&gt; <code>sensitivitet</code> (3 -&gt; substantial, 4 -&gt; high)</li>
 <li><code>synligFremTil</code> -&gt; <code>aktivFremTil</code></li>
 <li><code>fodselsnummer</code> -&gt; <code>ident</code></li>
 </ul>
-<h4 id="deprekerte-felter">deprekerte felter</h4>
+<h3 id="deprekerte-felter">deprekerte felter</h3>
 <p><code>grupperingsId</code> og <code>tidspunkt</code> er fjernet.</p>
-<h4 id="tekst">tekst</h4>
-<p>Alle tekster må ha en språkkode. Det er anbefalt å legge til tekst for flere språk.<br />
+<h3 id="tekst">tekst</h3>
+<blockquote>
+<p>[!WARNING]<br />
+Alle tekster må ha en språkkode. Det er anbefalt å legge til tekst for flere språk.<br />
 Om det er tekst på flere språk, må én være satt som default.</p>
+</blockquote>
 <h2 id="eksempel">Eksempel</h2>
 <p>Et system sender varsler til brukere til gammelt topic med avro, og skal migreres.</p>
 <p>Varslene har:<br />
@@ -149,7 +155,7 @@ Om det er tekst på flere språk, må én være satt som default.</p>
 - frist 14 dager etter oppretting<br />
 - teksten "Dette er et oppgave-varsel"<br />
 - ekstern varsling på sms med teksten "Dette er en sms om oppgave"</p>
-<h4 id="gammelt-oppsett-med-avro-builder">Gammelt oppsett med avro-builder</h4>
+<h3 id="gammelt-oppsett-med-avro-builder">Gammelt oppsett med avro-builder</h3>
 <pre><code class="language-kotlin">val gammeltOppgaveTopic = &quot;min-side.aapen-brukernotifikasjon-oppgave-v1&quot;
 
 val kafkaProps = Properties().apply {
@@ -189,7 +195,7 @@ val done = DoneInputBuilder()
 
 kafkaProducer.send(ProducerRecord(gammeltDoneTopic, nokkel, done))
 </code></pre>
-<h4 id="nytt-oppsett-med-kotlin-builder">Nytt oppsett med kotlin-builder</h4>
+<h3 id="nytt-oppsett-med-kotlin-builder">Nytt oppsett med kotlin-builder</h3>
 <pre><code class="language-kotlin">
 val nyttVarselTopic = &quot;min-side.aapen-brukervarsel-v1&quot;
 
@@ -266,7 +272,43 @@ kafkaProducer.send(ProducerRecord(nyttVarselTopic, oppgaveId, inaktiverVarsel))
       class="nav-link"
       >Endringer i meldingene</a
     >
-    </li>    
+    </li> 
+  <ul class="toc-list-depth-3">
+    <li class="toc-item toc-item-depth-3">
+      <a
+      href="#meldingstyper"
+      class="nav-link"
+      >meldingstyper</a
+    >
+    </li>
+  </ul> 
+  <ul class="toc-list-depth-3">
+    <li class="toc-item toc-item-depth-3">
+      <a
+      href="#endring-av-feltnavn"
+      class="nav-link"
+      >endring av feltnavn</a
+    >
+    </li>
+  </ul> 
+  <ul class="toc-list-depth-3">
+    <li class="toc-item toc-item-depth-3">
+      <a
+      href="#deprekerte-felter"
+      class="nav-link"
+      >deprekerte felter</a
+    >
+    </li>
+  </ul> 
+  <ul class="toc-list-depth-3">
+    <li class="toc-item toc-item-depth-3">
+      <a
+      href="#tekst"
+      class="nav-link"
+      >tekst</a
+    >
+    </li>
+  </ul>
   </ul> 
   <ul class="toc-list-depth-2">
     <li class="toc-item toc-item-depth-2">
@@ -275,7 +317,25 @@ kafkaProducer.send(ProducerRecord(nyttVarselTopic, oppgaveId, inaktiverVarsel))
       class="nav-link"
       >Eksempel</a
     >
-    </li>  
+    </li> 
+  <ul class="toc-list-depth-3">
+    <li class="toc-item toc-item-depth-3">
+      <a
+      href="#gammelt-oppsett-med-avro-builder"
+      class="nav-link"
+      >Gammelt oppsett med avro-builder</a
+    >
+    </li>
+  </ul> 
+  <ul class="toc-list-depth-3">
+    <li class="toc-item toc-item-depth-3">
+      <a
+      href="#nytt-oppsett-med-kotlin-builder"
+      class="nav-link"
+      >Nytt oppsett med kotlin-builder</a
+    >
+    </li>
+  </ul>
   </ul>
   </ul>
 </div></div>

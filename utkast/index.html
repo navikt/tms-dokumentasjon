@@ -129,17 +129,22 @@
 <li>Eksempel:  En påbegynt søknad. Den kan sendes inn, eller en bruker kan velge å ikke sende den inn.</li>
 </ul>
 <h2 id="hvordan-fungerer-det">Hvordan fungerer det?</h2>
-<p>Koble på <a href="https://github.com/navikt/min-side-utkast-topic-iac">min-side-utkast-iac-topicet</a> og kjør på!<br />
-<em>utkast støtter tre hendelser: created, updated, og deleted</em></p>
+<p>Koble på <a href="https://github.com/navikt/min-side-utkast-topic-iac">min-side-utkast-iac-topicet</a> og kjør på!</p>
+<blockquote>
+<p>[!NOTE]<br />
+Utkast støtter tre hendelser: <code>created</code>, <code>updated</code> og <code>deleted</code>.</p>
+</blockquote>
 <ol>
 <li>Send en created-melding når en bruker har lagret et utkast</li>
 <li>Send en updated-melding hvis url-en eller tittelen til utkastet har endret seg.</li>
 <li>Send en deleted melding når bruker enten har sendt inn, eller hvis utkastet har blitt slettet enten av bruker eller systemet.</li>
 </ol>
 <h2 id="kafka">Kafka</h2>
-<p><strong>topic</strong>: aapen-utkast-v1<br />
-<strong>tilgang</strong>: <a href="https://github.com/navikt/min-side-utkast-topic-iac">min-side-utkast-iac-topic</a><br />
-<strong>hendelser</strong>: <code>created</code>, <code>updated</code>, <code>deleted</code></p>
+<ul>
+<li><strong>topic</strong>: aapen-utkast-v1</li>
+<li><strong>tilgang</strong>: <a href="https://github.com/navikt/min-side-utkast-topic-iac">min-side-utkast-iac-topic</a></li>
+<li><strong>hendelser</strong>: <code>created</code>, <code>updated</code>, <code>deleted</code></li>
+</ul>
 <h3 id="meldingsformat">meldingsformat</h3>
 <h4 id="create-og-update">create og update</h4>
 <pre><code class="language-json">{
@@ -165,12 +170,18 @@
   &quot;utkastId&quot;: &quot;&lt;uuid&gt;&quot;
 }
 </code></pre>
-<p>Det finnes også et <a href="https://github.com/navikt/tms-utkast/pkgs/container/tms-utkast%2Ftms-utkast">message-builder bibliotek</a> som lager meldingene for deg.<br />
-NB! Det er kun ting som <strong>ikke er innsendt</strong> som skal ligge på utkast-siden.</p>
+<blockquote>
+<p>[!TIP]<br />
+Det finnes også et <a href="https://github.com/navikt/tms-utkast/pkgs/container/tms-utkast%2Ftms-utkast">message-builder bibliotek</a> som lager meldingene for deg.</p>
+<p>[!WARNING]<br />
+Det er kun ting som <strong>ikke er innsendt</strong> som skal ligge på utkast-siden.</p>
+</blockquote>
 <h2 id="observability">Observability</h2>
-<p>Hendelser blir logget til kibana med customfelter for filtrering<br />
-Alle utkast: <code>x_contenttype:"utkast"</code><br />
-Spesifikt utkast: <code>x_minside_id :"&lt;utkastid&gt;"</code> </p>
+<p>Hendelser blir logget til kibana med customfelter for filtrering</p>
+<ul>
+<li>Alle utkast: <code>x_contenttype:"utkast"</code></li>
+<li>Spesifikt utkast: <code>x_minside_id :"&lt;utkastid&gt;"</code></li>
+</ul>
 <h2 id="amplitude-malinger">Amplitude målinger</h2>
 <p><a href="https://github.com/navikt/tms-utkast-mikrofrontend">Utkast-frontenden</a> logger et <a href="https://github.com/navikt/analytics-taxonomy/tree/main/events/skjema%20%C3%A5pnet">skjema åpent</a>-event med <code>url</code> som payload til amplitude når bruker klikker på ett utkast. Om teamet ditt ønsker å få med feltene <code>skjemakode</code> og <code>skjemanavn</code> må metricsfeltet være tilstede og komplett i create-meldingen</p></div>
   
