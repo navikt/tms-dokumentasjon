@@ -120,27 +120,31 @@
   <div class="page-content" role="main">
 
 <h1 id="migrere-fra-avro">Migrere fra AVRO</h1>
+<p>Denne guiden er for produsenter som fortsatt sender varsler på de gamle<br />
+Avro-topicene. Kort fortalt: ett felles topic i stedet for flere, json i stedet<br />
+for Avro, og to meldingstyper i stedet for fire. Skal du sette opp varsler for<br />
+første gang, trenger du ikke denne guiden.</p>
 <h2 id="topic">Topic</h2>
 <p>Produsenter trenger kun å forholde seg til ett topic for å opprette og inaktivere varsler. Opprett pr i <a href="https://github.com/navikt/min-side-brukervarsel-topic-iac">github-repository</a>. </p>
-<h2 id="buildere-og-avro">Buildere og avro</h2>
+<h2 id="buildere-og-avro">Buildere og Avro</h2>
 <p>Vi bruker ikke lenger avro for å validere schema. Varsel-eventer sendes som json-string, med varsel-id som nøkkel. </p>
 <h2 id="endringer-i-meldingene">Endringer i meldingene</h2>
 <blockquote>
 <p>[!NOTE]<br />
 Se <a href="https://navikt.github.io/tms-dokumentasjon/varsler/produsere/">produsere varsler</a> for dokumentasjon av nytt format.</p>
 </blockquote>
-<h3 id="meldingstyper">meldingstyper</h3>
+<h3 id="meldingstyper">Meldingstyper</h3>
 <p>Tidligere har det vært fire meldingstyper (beskjed, oppgave, innboks, done). Disse er nå slått sammen til to objekter: opprett og inaktiver. Varseltypen spesifiseres i opprett-eventet.</p>
-<h3 id="endring-av-feltnavn">endring av feltnavn</h3>
+<h3 id="endring-av-feltnavn">Endring av feltnavn</h3>
 <ul>
 <li><code>eventId</code> -&gt; <code>varselId</code></li>
 <li><code>sikkerhetsnivaa</code> -&gt; <code>sensitivitet</code> (3 -&gt; substantial, 4 -&gt; high)</li>
 <li><code>synligFremTil</code> -&gt; <code>aktivFremTil</code></li>
 <li><code>fodselsnummer</code> -&gt; <code>ident</code></li>
 </ul>
-<h3 id="deprekerte-felter">deprekerte felter</h3>
+<h3 id="deprekerte-felter">Deprekerte felter</h3>
 <p><code>grupperingsId</code> og <code>tidspunkt</code> er fjernet.</p>
-<h3 id="tekst">tekst</h3>
+<h3 id="tekst">Tekst</h3>
 <blockquote>
 <p>[!WARNING]<br />
 Alle tekster må ha en språkkode. Det er anbefalt å legge til tekst for flere språk.<br />
@@ -155,7 +159,7 @@ Om det er tekst på flere språk, må én være satt som default.</p>
 - frist 14 dager etter oppretting<br />
 - teksten "Dette er et oppgave-varsel"<br />
 - ekstern varsling på sms med teksten "Dette er en sms om oppgave"</p>
-<h3 id="gammelt-oppsett-med-avro-builder">Gammelt oppsett med avro-builder</h3>
+<h3 id="gammelt-oppsett-med-avro-builder">Gammelt oppsett med Avro-builder</h3>
 <pre><code class="language-kotlin">val gammeltOppgaveTopic = &quot;min-side.aapen-brukernotifikasjon-oppgave-v1&quot;
 
 val kafkaProps = Properties().apply {
@@ -234,7 +238,9 @@ val inaktiverVarsel = VarselActionBuilder.inaktiver {
 }
 
 kafkaProducer.send(ProducerRecord(nyttVarselTopic, oppgaveId, inaktiverVarsel))
-</code></pre></div>
+</code></pre>
+<h2 id="kontakt">Kontakt</h2>
+<p>Ta kontakt med oss <a href="https://nav-it.slack.com/archives/C0912F59V29">på Slack</a> hvis du lurer på noe.</p></div>
   
   <div class="page-content-toc"><div class="bs-sidebar custom-toc" role="complementary">
   <h2>Innhold på siden</h2>
@@ -261,7 +267,7 @@ kafkaProducer.send(ProducerRecord(nyttVarselTopic, oppgaveId, inaktiverVarsel))
       <a
       href="#buildere-og-avro"
       class="nav-link"
-      >Buildere og avro</a
+      >Buildere og Avro</a
     >
     </li>
   </ul> 
@@ -278,7 +284,7 @@ kafkaProducer.send(ProducerRecord(nyttVarselTopic, oppgaveId, inaktiverVarsel))
       <a
       href="#meldingstyper"
       class="nav-link"
-      >meldingstyper</a
+      >Meldingstyper</a
     >
     </li>
   </ul> 
@@ -287,7 +293,7 @@ kafkaProducer.send(ProducerRecord(nyttVarselTopic, oppgaveId, inaktiverVarsel))
       <a
       href="#endring-av-feltnavn"
       class="nav-link"
-      >endring av feltnavn</a
+      >Endring av feltnavn</a
     >
     </li>
   </ul> 
@@ -296,7 +302,7 @@ kafkaProducer.send(ProducerRecord(nyttVarselTopic, oppgaveId, inaktiverVarsel))
       <a
       href="#deprekerte-felter"
       class="nav-link"
-      >deprekerte felter</a
+      >Deprekerte felter</a
     >
     </li>
   </ul> 
@@ -305,7 +311,7 @@ kafkaProducer.send(ProducerRecord(nyttVarselTopic, oppgaveId, inaktiverVarsel))
       <a
       href="#tekst"
       class="nav-link"
-      >tekst</a
+      >Tekst</a
     >
     </li>
   </ul>
@@ -323,7 +329,7 @@ kafkaProducer.send(ProducerRecord(nyttVarselTopic, oppgaveId, inaktiverVarsel))
       <a
       href="#gammelt-oppsett-med-avro-builder"
       class="nav-link"
-      >Gammelt oppsett med avro-builder</a
+      >Gammelt oppsett med Avro-builder</a
     >
     </li>
   </ul> 
@@ -336,6 +342,15 @@ kafkaProducer.send(ProducerRecord(nyttVarselTopic, oppgaveId, inaktiverVarsel))
     >
     </li>
   </ul>
+  </ul> 
+  <ul class="toc-list-depth-2">
+    <li class="toc-item toc-item-depth-2">
+      <a
+      href="#kontakt"
+      class="nav-link"
+      >Kontakt</a
+    >
+    </li>
   </ul>
   </ul>
 </div></div>
