@@ -162,9 +162,16 @@ For brukeropplevelsen er det viktig at du bruker riktig type varsel. Ta gjerne e
 Det er viktig å huske å sende inaktiver-event for oppgave-varsler. Hvis ikke vil det se ut for personen som at oppgaven ikke er utført.</p>
 </blockquote>
 <p>Alle varsler slettes 1 år etter mottaksdato.</p>
+<h2 id="tekst-pa-min-side">Tekst på Min Side</h2>
+<p><code>tekst</code>-feltet bestemmer innholdet i tekst på Min Side og i varselbjella. Det er mulig å legge til tekst-alternativer for ulike språk, som vises basert på hva bruker har valgt i språkvelgeren.</p>
+<p>Tekstlengden kan være opptil 300 tegn for Beskjed, og 500 tegn for Oppgave og Innboks. For brukere med mange varsler kan det fort bli mye informasjon å forholde seg til. Det er derfor anbefalt å holde tekstene klare og konsise. </p>
+<blockquote>
+<p>[!NOTE]<br />
+Markdown i varseltekst på Min Side er ikke støttet. Heller ikke egendefinerte linjeskift. Tekst wrappes dynamisk basert på lengde og evt skjemstørrelse.</p>
+</blockquote>
 <h2 id="ekstern-varsling">Ekstern varsling</h2>
 <p>Produsent kan velge om bruker også skal varsles via eksterne kanaler (sms og epost). Produsent kan velge preferert kanal, og hvorvidt standardtekst skal overskrives.</p>
-<p>Standardtekst er av typen: <code>Hei! Du har fått en ny &lt;varseltype&gt; fra NAV. Logg inn på NAV for å se hva varselet gjelder. Vennlig hilsen NAV</code></p>
+<p>Standardtekst er av typen: <code>Hei! Du har fått en ny &lt;beskjed|oppgave|melding&gt; fra Nav. Logg inn på Nav for å se hva &lt;beskjeden|oppgaven|meldingen&gt; gjelder. Vennlig hilsen Nav</code></p>
 <h3 id="revarsling">Revarsling</h3>
 <p>Varsler med typen oppgave eller innboks får automatisk revarsling dersom varselet ikke er ferdigstilt etter et bestemt antall dager. Oppgaver blir revarslet etter 7 dager, og innboks blir revarslet etter 4 dager.</p>
 <h3 id="overskriving-av-standardtekster">Overskriving av standardtekster</h3>
@@ -220,8 +227,8 @@ Varsler med utsatt sending vil aldri batches.</p>
 <p>Builderne finnes i følgende bibliotek:</p>
 <h3 id="github-maven-repository">Github Maven repository</h3>
 <ul>
-<li>kotlin: no.nav.tms.varsel:kotlin-builder:2.1.1</li>
-<li>java: no.nav.tms.varsel:java-builder:2.1.1</li>
+<li>kotlin: no.nav.tms.varsel:kotlin-builder:2.2.0</li>
+<li>java: no.nav.tms.varsel:java-builder:2.2.0</li>
 </ul>
 <p>Vi publiserer disse artifaktene til githubs package-repository. Husk å legge til én av disse repositories i ditt prosjekt:</p>
 <ul>
@@ -603,6 +610,15 @@ kan en manuelt legge til disse variablene ved hjelp av <code>BuilderEnvironment.
       href="#varseltyper"
       class="nav-link"
       >Varseltyper</a
+    >
+    </li>
+  </ul> 
+  <ul class="toc-list-depth-2">
+    <li class="toc-item toc-item-depth-2">
+      <a
+      href="#tekst-pa-min-side"
+      class="nav-link"
+      >Tekst på Min Side</a
     >
     </li>
   </ul> 
